@@ -1,0 +1,9 @@
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\bin\Debug\CustomSoft.Template.Dominio.Excepciones.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\bin\Debug\CustomSoft.Template.Dominio.Excepciones.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\obj\Debug\CustomSoft.Template.Dominio.Excepciones.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\obj\Debug\CustomSoft.Template.Dominio.Excepciones.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\bin\Debug\CustomSoft.Template.Dominio.Excepciones.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\bin\Debug\CustomSoft.Template.Dominio.Excepciones.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\obj\Debug\CustomSoft.Template.Dominio.Excepciones.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\obj\Debug\CustomSoft.Template.Dominio.Excepciones.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio.Excepciones\obj\Debug\CustomSoft.Template.Dominio.Excepciones.csprojResolveAssemblyReference.cache

@@ -1,0 +1,133 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.CatalogosService;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Dominio.Excepciones.CuentaGasto;
+using CustomSoft.Template.Modelo.Dominio.Base;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.CuentaGastoDominio
+{
+    partial class CuentaGastoDominio : ICuentaGastoDominio
+    {        
+        private ICuentaGastoRepositorio CuentaGastoRepositorio;
+        public CuentaGastoDominio()
+        {
+            CuentaGastoRepositorio = FactoryEngine<ICuentaGastoRepositorio>.GetInstance("ICuentaGastoRepositorioConfig");     
+        }
+        /// <summary>
+        /// Esta función inserta en la base de datos, los datos del CFDI además que
+        /// envía al servidor FTP el archivo físico y guarda en base de datos en tabla expediente digital
+        /// </summary>
+        /// <param name="cfdi">Contiene el archivo físico y los datos del CFDI</param>
+        /// <returns></returns>
+        public CuentaGasto InsertaFactura(CuentaGasto cuentaGasto)
+        {                        
+            //using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                var cuentaGastoResponse = CuentaGastoRepositorio.DameIdCuentaGastoExistente(cuentaGasto);
+                if (cuentaGastoResponse.IdCuentaGasto == 0)
+                {
+                    //Inserta a la base de datos la cuenta de gasto y regresa una entidad cuenta gasto con el id
+                    cuentaGastoResponse = CuentaGastoRepositorio.InsertaFactura(cuentaGasto);
+                    //se envía uno por uno los impuestos a la base de datos
+                    InsertarImpuestos(cuentaGasto);
+                    //Se crea el request del NAS para enviarlo al Servicio FTP                
+                    cuentaGasto = EnviarArchivoFTPInsertarBase(cuentaGasto);
+                }
+                //transaction.Complete();
+                return cuentaGastoResponse;
+            }            
+        }
+
+        private CuentaGasto EnviarArchivoFTPInsertarBase(CuentaGasto cuentaGasto)
+        {
+            var request = new RecibeArchivoRequest()
+            {
+                Item = cuentaGasto.ArchivoFisico,
+                UsuarioEjecucion = "",
+                Operacion = TipoOperacionArchivo.Insertar
+            };
+            //hago llamado a NAS  
+            var ftp = Util.ServicioFTPSoftrade();            
+            var response = ftp.OperacionArchivo(request);
+            //TODO: calcular idTipoDocumento a CatalogosService
+            cuentaGasto.ArchivoFisico = response.Item;
+            var catalogos = Util.ServicioCatalogos();
+            var responseCatalogos =
+                catalogos.ExtraerCatalogoItem(
+                    RequestTipoDocumentoXAbreviatura(cuentaGasto.ArchivoFisico.ExtensionArchivo, cuentaGasto.IdUsuario));
+            cuentaGasto.ArchivoFisico.IdTipoDocumento = responseCatalogos.Item.Id;
+            //Aquí se hace la inserción a la tabla expediente digital
+            cuentaGasto.ArchivoFisico = CuentaGastoRepositorio.InsertaExpedienteDigital(cuentaGasto.ArchivoFisico,
+                cuentaGasto.IdCuentaGasto, cuentaGasto.IdUsuario);
+            return cuentaGasto;
+
+        }
+
+        //public CuentaGasto GuardarDocumento(CuentaGasto cuentaGasto)
+        //{
+        //    ValidarPedimento(cuentaGasto);
+        //    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+        //    {
+        //        //Se crea el request del NAS para enviarlo al Servicio FTP
+        //        var request = new RecibeArchivoRequest()
+        //        {
+        //            EjecucionValida = false,                    
+        //            Item = ConvertirArchivo(cuentaGasto),                   
+        //            MensajeError = "",
+        //            UsuarioEjecucion = ""
+        //        };
+        //        //hago llamado a NAS  
+        //        var ftp = ServicioFTPSoftrade();
+        //        var response = ftp.OperacionArchivo(request);
+        //        //TODO: calcular idTipoDocumento a CatalogosService
+        //        var catalogos = ServicioCatalogos();
+        //        var responseCatalogos = catalogos.ExtraerTipoDocumento(RequestTipoDocumentoXAbreviatura(cuentaGasto.ArchivoFisico.ExtensionArchivo, cuentaGasto.IdUsuario));
+        //        cuentaGasto.ArchivoFisico.IdTipoDocumento = responseCatalogos.Item.Id;
+        //        //Aquí se hace la inserción a la tabla expediente digital
+        //        cuentaGasto.ArchivoFisico = CuentaGastoRepositorio.InsertaExpedienteDigital(cuentaGasto.ArchivoFisico,
+        //            cuentaGasto.IdCuentaGasto, cuentaGasto.IdUsuario);
+        //        cuentaGasto.ArchivoFisico.IdArchivo = response.Item.IdArchivo;
+        //        cuentaGasto.ArchivoFisico = null;
+        //        transaction.Complete();
+        //        return cuentaGasto;
+        //    }
+        //}
+
+        public CuentaGasto GetFactura(CuentaGasto cuentaGasto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ListadoCuentaGasto GetList(ListadoCuentaGasto cuentaGasto)
+        {
+            //    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                var cuentaGastoResponse = CuentaGastoRepositorio.GetList(cuentaGasto);
+                if (cuentaGasto.Lista == null)
+                {
+                    throw new PedimentoSinCuentaDeGastos();
+                }
+                //transaction.Complete();
+                return cuentaGastoResponse;
+            }            
+            //throw new NotImplementedException();
+        }
+
+      
+        public void Dispose()
+        {            
+            CuentaGastoRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+       
+    }
+}

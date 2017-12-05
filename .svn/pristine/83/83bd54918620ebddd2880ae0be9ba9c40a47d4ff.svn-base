@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2121/CatalogosService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" />
+  <xs:complexType name="CatalogosBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="CatalogoALlamar" type="q1:Catalogo" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="FiltradoEspecifico" type="q2:Filtrado" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CatalogosBase" nillable="true" type="tns:CatalogosBase" />
+  <xs:complexType name="CatalogoRequeridoBase">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="CatalogoALlamar" type="q3:Catalogo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CatalogoRequeridoBase" nillable="true" type="tns:CatalogoRequeridoBase" />
+  <xs:complexType name="CatalogoGPRequeridoBase">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="Catalogo" type="q4:CatalogoGP" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CatalogoGPRequeridoBase" nillable="true" type="tns:CatalogoGPRequeridoBase" />
+  <xs:complexType name="CatalogosGPBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="CatalogoALlamar" type="q5:Catalogo" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="FiltradoEspecifico" type="q6:Filtrado" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CatalogosGPBase" nillable="true" type="tns:CatalogosGPBase" />
+</xs:schema>

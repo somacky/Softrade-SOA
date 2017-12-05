@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" />
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" />
+  <xs:element name="ExtraerItemAduanaSeccion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q1:AduanaSeccionItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemAduanaSeccionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerItemAduanaSeccionResult" nillable="true" type="q2:AduanaSeccionItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemClavePedimento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q3:ClavePedimentoItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemClavePedimentoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerItemClavePedimentoResult" nillable="true" type="q4:ClavePedimentoItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemTipoComprobante">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q5:TipoComprobanteItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemTipoComprobanteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerItemTipoComprobanteResult" nillable="true" type="q6:TipoComprobanteOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemTipoMovimiento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q7:TipoMovimientoItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemTipoMovimientoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerItemTipoMovimientoResult" nillable="true" type="q8:TipoMovimientoItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemTipoOperacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q9:TipoOperacionItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerItemTipoOperacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerItemTipoOperacionResult" nillable="true" type="q10:TipoOperacionItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoDocumentoItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q11:TipoDocumentoItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoDocumentoItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerTipoDocumentoItemResult" nillable="true" type="q12:TipoDocumentoItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerFraccionItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q13:FraccionItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerFraccionItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerFraccionItemResult" nillable="true" type="q14:FraccionItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerContribucionGravamenDerechoItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q15:ContribucionGravamenDerechoItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerContribucionGravamenDerechoItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerContribucionGravamenDerechoItemResult" nillable="true" type="q16:ContribucionGravamenDerechoItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoPruebaSuficienteItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q17:TipoPruebaSuficienteItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoPruebaSuficienteItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerTipoPruebaSuficienteItemResult" nillable="true" type="q18:TipoPruebaSuficienteItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoContenedorItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q19:TipoContenedorItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoContenedorItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerTipoContenedorItemResult" nillable="true" type="q20:TipoContenedorItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoGuiaItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q21:TipoGuiaItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerTipoGuiaItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerTipoGuiaItemResult" nillable="true" type="q22:TipoGuiaItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerFormaPagoItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q23:FormaPagoItemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerFormaPagoItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerFormaPagoItemResult" nillable="true" type="q24:FormaPagoItemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerCatalogoItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q25:CatalogoGeneralOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerCatalogoItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerCatalogoItemResult" nillable="true" type="q26:CatalogoGeneralOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

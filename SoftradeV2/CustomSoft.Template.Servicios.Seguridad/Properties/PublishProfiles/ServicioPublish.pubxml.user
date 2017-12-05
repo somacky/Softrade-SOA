@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\SoftradeProject\FTPService</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/CustomSoft.Template.Dominio.Contratos.dll">
+      <publishTime>07/11/2015 16:08:19</publishTime>
+    </File>
+    <File Include="bin/CustomSoft.Template.Modelo.dll">
+      <publishTime>07/11/2015 16:08:18</publishTime>
+    </File>
+    <File Include="bin/CustomSoft.Template.Servicios.Seguridad.Contratos.dll">
+      <publishTime>07/11/2015 16:08:18</publishTime>
+    </File>
+    <File Include="bin/CustomSoft.Template.Servicios.Seguridad.dll">
+      <publishTime>07/13/2015 11:49:11</publishTime>
+    </File>
+    <File Include="bin/FTPSoftrade.Template.Modelo.dll">
+      <publishTime>06/30/2015 12:10:14</publishTime>
+    </File>
+    <File Include="bin/MCS.ApplicationBlock.Logging.dll">
+      <publishTime>01/20/2015 17:01:24</publishTime>
+    </File>
+    <File Include="bin/MCS.Factory.dll">
+      <publishTime>03/19/2015 10:55:38</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>07/13/2015 11:50:16</publishTime>
+    </File>
+    <File Include="SeguridadService.svc">
+      <publishTime>07/01/2015 12:33:47</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>07/11/2015 16:08:20</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

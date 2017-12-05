@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:21250/GPFiltrosService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://localhost:21250/GPFiltrosService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Base" />
+  <xs:complexType name="CatalogoPersonalizadoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Base" base="q1:OperacionRequestBaseOfFiltrosBusqueda0caiiWiN">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" minOccurs="0" name="ProgramaFiltro" type="q2:ProgramaFiltro" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoPersonalizadoRequest" nillable="true" type="tns:CatalogoPersonalizadoRequest" />
+</xs:schema>

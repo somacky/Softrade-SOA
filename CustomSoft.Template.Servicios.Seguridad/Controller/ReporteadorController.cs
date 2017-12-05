@@ -1,0 +1,152 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Web;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using MCS.ApplicationBlock.Logging;
+using MCS.ApplicationBlock.Logging.Providers;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class ReporteadorController : IDisposable
+    {
+        private IReporteadorDominio reporteadorDominio;
+
+        public ReporteadorController()
+        {
+            reporteadorDominio = FactoryEngine<IReporteadorDominio>.GetInstance("IReporteadorDominioConfig");
+        }
+
+        public ReporteadorResponse ExcuteReportes(ReporteadorRequest request)
+        {
+            ReporteadorResponse response = new ReporteadorResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = string.Empty
+            };            
+            request.Item.IdUsuario = request.IdUsuarioEjecucion;
+            try
+            {
+                Util.ComprobarToken(request.Token);   
+                switch (request.Item.NombreReporte)
+                {
+                    case Reporte.IvaPagadoNivelPartida:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReportePagoNPartida(request.Item);
+                        }
+                        break;
+                    case Reporte.IvaPagadoNivelPedimento:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReportePagoNPedimento(request.Item);
+                        }
+                        break;
+                    case Reporte.OperacionNivelPartida:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteOperacionesNPartida(request.Item);
+                        }
+                        break;
+                    case Reporte.OperacionNivelPedimento:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteOperacionesNPedimento(request.Item);
+                        }
+                        break;
+                    case Reporte.ResumenOperaciones:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteResumenOperaciones(request.Item);
+                        }
+                        break;
+                    case Reporte.CuentaGastosDetallado:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteCuentaGastosDetallado(request.Item);
+                        }
+                        break;
+                    case Reporte.CuentaGastosTotalizado:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteCuentaGastosTotalizado(request.Item);
+                        }
+                        break;
+                    case Reporte.DiasDespacho:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteDiasDespacho(request.Item);
+                        }
+                        break;
+                    case Reporte.VerificacionCGAgenteAduanal:
+                        {
+                            response.Item = reporteadorDominio.DameInformacionReporteCuentaGastoAA(request.Item);
+                        }
+                        break;
+                    case Reporte.Anexo18DictamenFiscal:
+                        {
+                            if (request.IdUsuarioEjecucion == 0)
+                                throw new Exception("El usuario de ejecución no puede ser cero");
+                            response.Item = reporteadorDominio.DameInformacionReporteAnexo18(request.Item);
+                        }
+                        break;
+                    case Reporte.Anexo9DictamenFiscal:
+                        {
+                            response.Item = reporteadorDominio.DameInformacionReporteAnexo9(request.Item);
+                        }
+                        break;
+                    case Reporte.EstatusExpedienteDigital:
+                        {
+                            response.Item = reporteadorDominio.DameInformacionReporteEstatusExpedienteDigital(request.Item);
+                        }
+                        break;
+                    case Reporte.ContribucionesMis7:
+                        {
+                            response.Item = reporteadorDominio.DameInformacionReporteConstribucionesMis7(request.Item);
+                        }
+                        break;
+                    case Reporte.DiasDespachoMis7:
+                        {
+                            response.Item = reporteadorDominio.DameInformacionReporteDiasDespachoMis7(request.Item);
+                        }
+                        break;
+                    case Reporte.OperacionesMis7:
+                        {
+                            response.Item = reporteadorDominio.DameInformacionReporteOperacionesMis7(request.Item);
+                        }
+                        break;
+                }
+                response.EjecucionValida = true;
+            }
+            catch (Exception ex)
+            {
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+                }
+            }
+            return response;
+        }
+
+        public void Dispose()
+        {
+            reporteadorDominio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+    }
+}

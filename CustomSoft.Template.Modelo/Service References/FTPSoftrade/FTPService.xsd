@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8090/FTPService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://localhost:8090/FTPService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Dominio.Base" />
+  <xs:complexType name="Archivo">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Dominio.Base" base="q1:ArchivoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ExtensionArchivo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaSubida" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IdCliente" type="xs:int" />
+          <xs:element minOccurs="0" name="IdEmpresa" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipoDocumento" type="xs:int" />
+          <xs:element minOccurs="0" name="LongitudArchivo" type="xs:float" />
+          <xs:element minOccurs="0" name="Patente" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PathDestino" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" minOccurs="0" name="TipoArchivoFiltro" type="q2:TipoArchivo" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" minOccurs="0" name="TipoDeCerKey" type="q3:TipoCerKey" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Archivo" nillable="true" type="tns:Archivo" />
+</xs:schema>

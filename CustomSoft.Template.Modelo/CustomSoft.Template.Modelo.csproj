@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{65253AA4-3DA5-488C-ABAA-550DF1A83068}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomSoft.Template.Modelo</RootNamespace>
+    <AssemblyName>CustomSoft.Template.Modelo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Compartido\Enumeradores.cs" />
+    <Compile Include="Compartido\EnumeradoresArticulo.cs" />
+    <Compile Include="Compartido\EnumeradoresCuentaGasto.cs" />
+    <Compile Include="Compartido\EnumeradoresEmpresa.cs" />
+    <Compile Include="Compartido\EnumeradoresGraficas.cs" />
+    <Compile Include="Compartido\EnumeradoresMotor.cs" />
+    <Compile Include="Compartido\EnumeradoresPedimento.cs" />
+    <Compile Include="Compartido\EnumeradoresReporteador.cs" />
+    <Compile Include="Compartido\EnumeradoresTipoCambio.cs" />
+    <Compile Include="Compartido\EnumeradoresTipoRFC.cs" />
+    <Compile Include="Compartido\EnumeradoresURLTemporal.cs" />
+    <Compile Include="Compartido\EnumeradorToken.cs" />
+    <Compile Include="Compartido\Paginacion.cs" />
+    <Compile Include="Compartido\UsuarioXEmpresa.cs" />
+    <Compile Include="Dominio\Base\ArticuloBase.cs" />
+    <Compile Include="Dominio\Base\CatalogoEspecifico\CatalogoEspecificoRequerido.cs" />
+    <Compile Include="Dominio\Base\CatalogoEspecifico\CatalogosEspecificosBase.cs" />
+    <Compile Include="Dominio\Base\CuentaGastoBase.cs" />
+    <Compile Include="Dominio\Base\DatosBase.cs" />
+    <Compile Include="Dominio\Base\DigitalizacionVUCEMBase.cs" />
+    <Compile Include="Dominio\Base\EDocumentCOVE\DatosCOVEBase.cs" />
+    <Compile Include="Dominio\Base\EDocumentCOVE\DatosEdocumentBase.cs" />
+    <Compile Include="Dominio\Base\EmpresaBase\EmpresaBase.cs" />
+    <Compile Include="Dominio\Base\EstadoClimaBase.cs" />
+    <Compile Include="Dominio\Base\ExpedienteDigital\ExpedienteDigitalBase.cs" />
+    <Compile Include="Dominio\Base\ExpedienteDigital\FiltroExpedienteDigital.cs" />
+    <Compile Include="Dominio\Base\GraficasBase.cs" />
+    <Compile Include="Dominio\Base\MotorBase\DatosBitacoraCOVE.cs" />
+    <Compile Include="Dominio\Base\MotorBase\DatosBulkBase.cs" />
+    <Compile Include="Dominio\Base\MotorBase\DatosPedimentoInsercionVUCEM.cs" />
+    <Compile Include="Dominio\Base\MotorBase\PedimentosPendientesBase.cs" />
+    <Compile Include="Dominio\Base\NotificacionBase.cs" />
+    <Compile Include="Dominio\Base\PatenteBase\PatenteBase.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosBasePedimento.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg301DatosGeneralesPedComplementario.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg302PruebaSuficiente.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg351DeterminacionContribucionesNPart.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg352DetalleImportacionEUACAN.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg353DeterminacionPagoContribucioneNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg355PagoContribucionesPorAplicacion.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg358ObservacionesNPedComplementario.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg502Transporte.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg503Guias.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg504Contenedores.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg505Facturas.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg506Fechas.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg507IdentificadoresNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg508CuentasAduanerasNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg509TasasNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg510ContribucionesNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg511ObservacionesNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg512Descargos.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg513Compensaciones.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg514DocumentoAmparaFormaPago.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg515InformeIndustriaAut.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg516Candados.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg520Destinatario.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg551Partidas.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg552Mercancias.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg553Permisos.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg554IdentificadoreNPart.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg555CuentasAduanerasNPart.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg556TasasNPart.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg557GravamenNPart.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg558ObservacionesNPart.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg560PartidaIndAutomotriz.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg601DatosGeneralesPrevioConsolidado.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg701Rectificacion.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg702DiferenciaNPed.cs" />
+    <Compile Include="Dominio\Base\Pedimento\DatosReg801FinArchivo.cs" />
+    <Compile Include="Dominio\Base\Pedimento\PedimentoBase.cs" />
+    <Compile Include="Dominio\Base\ReporteadorBase.cs" />
+    <Compile Include="Dominio\Base\ResponseBase.cs" />
+    <Compile Include="Dominio\Base\RFCBase.cs" />
+    <Compile Include="Dominio\Base\CFDISATBase.cs" />
+    <Compile Include="Dominio\Base\TasaCambioBase.cs" />
+    <Compile Include="Dominio\Base\TokenBase.cs" />
+    <Compile Include="Dominio\Base\UrlTemporalBase.cs" />
+    <Compile Include="Dominio\Entidades\ArchivoM.cs" />
+    <Compile Include="Dominio\Entidades\Articulo.cs" />
+    <Compile Include="Dominio\Entidades\BaseDatos.cs" />
+    <Compile Include="Dominio\Entidades\CatalogoEspecifico.cs" />
+    <Compile Include="Dominio\Entidades\CFDI.cs" />
+    <Compile Include="Dominio\Entidades\CuentaGasto.cs" />
+    <Compile Include="Dominio\Entidades\DatosReporte.cs" />
+    <Compile Include="Dominio\Entidades\DigitalizacionVUCEM.cs" />
+    <Compile Include="Dominio\Entidades\DocumentoExpedienteDigital.cs" />
+    <Compile Include="Dominio\Entidades\EDocumentCOVE\DatosCOVE.cs" />
+    <Compile Include="Dominio\Entidades\Empresa\Empresa.cs" />
+    <Compile Include="Dominio\Entidades\Empresa\EntidadEmpresa.cs" />
+    <Compile Include="Dominio\Entidades\Empresa\ListaEmpresa.cs" />
+    <Compile Include="Dominio\Entidades\EntidadArchivoM.cs" />
+    <Compile Include="Dominio\Entidades\EstadoClima.cs" />
+    <Compile Include="Dominio\Entidades\ExpedienteDigital\ArchivoExpedienteDigital.cs" />
+    <Compile Include="Dominio\Entidades\ExpedienteDigital\ExpedienteDigital.cs" />
+    <Compile Include="Dominio\Entidades\ExpedienteDigital\ListaExpedienteDigital.cs" />
+    <Compile Include="Dominio\Entidades\Graficas.cs" />
+    <Compile Include="Dominio\Entidades\Motor\BitacoraCOVE.cs" />
+    <Compile Include="Dominio\Entidades\Motor\BitacoraEdocument.cs" />
+    <Compile Include="Dominio\Entidades\Motor\EntidadFinalPedimento.cs" />
+    <Compile Include="Dominio\Entidades\Motor\EntidadListadoVUCEMInsercion.cs" />
+    <Compile Include="Dominio\Entidades\Motor\EntidadMotor.cs" />
+    <Compile Include="Dominio\Entidades\Motor\ListadoPedimentosPendientes.cs" />
+    <Compile Include="Dominio\Entidades\Motor\ListadoPedimentosXProcesar.cs" />
+    <Compile Include="Dominio\Entidades\Motor\TablaBulk.cs" />
+    <Compile Include="Dominio\Entidades\Notificacion.cs" />
+    <Compile Include="Dominio\Entidades\Patente.cs" />
+    <Compile Include="Dominio\Entidades\Pedimento.cs" />
+    <Compile Include="Dominio\Entidades\ReporteadorEntidad.cs" />
+    <Compile Include="Dominio\Entidades\RFC.cs" />
+    <Compile Include="Dominio\Entidades\TasaCambio.cs" />
+    <Compile Include="Dominio\Entidades\Token.cs" />
+    <Compile Include="Dominio\Entidades\UrlTemporal.cs" />
+    <Compile Include="Dominio\Entidades\Usuario.cs" />
+    <Compile Include="Dominio\Filtro\RFCFiltro.cs" />
+    <Compile Include="Dominio\Filtro\UsuarioFiltro.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FTPSoftrade\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\VUCEMService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Servicios\Base\OperacionRequestBase.cs" />
+    <Compile Include="Servicios\Base\OperacionResponseBase.cs" />
+    <Compile Include="Servicios\Base\RequestBase.cs" />
+    <Compile Include="Servicios\Base\ResponseBase.cs" />
+    <Compile Include="Servicios\Request\EstadoClimaRequest.cs" />
+    <Compile Include="Servicios\Request\OperacionesGraficasRequest.cs" />
+    <Compile Include="Servicios\Request\TasaCambioRequest.cs" />
+    <Compile Include="Servicios\Request\CatalogoEspecificoOperacionRequest.cs" />
+    <Compile Include="Servicios\Request\DatosCOVERequest.cs" />
+    <Compile Include="Servicios\Request\DigitalizacionVUCEMRequest.cs" />
+    <Compile Include="Servicios\Request\DocumentoExpedienteDigitalRequest.cs" />
+    <Compile Include="Servicios\Request\ExpedienteDigitalInsertRequest.cs" />
+    <Compile Include="Servicios\Request\ExpedienteDigitalRequest.cs" />
+    <Compile Include="Servicios\Request\NotificacionRequest.cs" />
+    <Compile Include="Servicios\Request\OperacionArticuloRequest.cs" />
+    <Compile Include="Servicios\Request\OperacionEmpresaItemRequest.cs" />
+    <Compile Include="Servicios\Request\OperacionEmpresaListaRequest.cs" />
+    <Compile Include="Servicios\Request\OperacionMotorRequest.cs" />
+    <Compile Include="Servicios\Request\OperacionPedimentoRequest.cs" />
+    <Compile Include="Servicios\Request\CuentaGastoOperacionRequest.cs" />
+    <Compile Include="Servicios\Request\PedimentoOperacionRequest.cs" />
+    <Compile Include="Servicios\Request\ReporteadorRequest.cs" />
+    <Compile Include="Servicios\Request\RFCRequest.cs" />
+    <Compile Include="Servicios\Request\TokenRequest.cs" />
+    <Compile Include="Servicios\Request\UrlTemporalRequest.cs" />
+    <Compile Include="Servicios\Request\UsuarioOperacionRequest.cs" />
+    <Compile Include="Servicios\Response\CatalogoEspecificoOperacionResponse.cs" />
+    <Compile Include="Servicios\Response\DatosCOVEResponse.cs" />
+    <Compile Include="Servicios\Response\DigitalizacionVUCEMResponse.cs" />
+    <Compile Include="Servicios\Response\DocumentoExpedienteDigitalResponse.cs" />
+    <Compile Include="Servicios\Response\EstadoClimaResponse.cs" />
+    <Compile Include="Servicios\Response\ExpedienteDigitalInsertResponse.cs" />
+    <Compile Include="Servicios\Response\ExpedienteDigitalResponse.cs" />
+    <Compile Include="Servicios\Response\NotificacionResponse.cs" />
+    <Compile Include="Servicios\Response\OperacionArticuloResponse.cs" />
+    <Compile Include="Servicios\Response\OperacionEmpresaItemResponse.cs" />
+    <Compile Include="Servicios\Response\OperacionEmpresaListaResponse.cs" />
+    <Compile Include="Servicios\Response\OperacionesGraficasResponse.cs" />
+    <Compile Include="Servicios\Response\OperacionMotorResponse.cs" />
+    <Compile Include="Servicios\Response\OperacionPedimentoResponse.cs" />
+    <Compile Include="Servicios\Response\CuentaGastoOperacionResponse.cs" />
+    <Compile Include="Servicios\Response\PedimentoOperacionResponse.cs" />
+    <Compile Include="Servicios\Response\ReporteadorResponse.cs" />
+    <Compile Include="Servicios\Response\RFCResponse.cs" />
+    <Compile Include="Servicios\Response\TasaCambioResponse.cs" />
+    <Compile Include="Servicios\Response\TokenResponse.cs" />
+    <Compile Include="Servicios\Response\UrlTemporalResponse.cs" />
+    <Compile Include="Servicios\Response\UsuarioOperacionResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\FTPSoftrade\CustomSoft.Template.Modelo.FTPSoftrade.RecibeArchivoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService.wsdl" />
+    <None Include="Service References\FTPSoftrade\FTPService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\CustomSoft.Template.Modelo.VUCEMService.ConsultaDocumentoDigitalizadoVUCEMResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VUCEMService\CustomSoft.Template.Modelo.VUCEMService.ConsultaEdocumentVucemResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VUCEMService\CustomSoft.Template.Modelo.VUCEMService.InvocaVUCEMEstatusPedimentoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VUCEMService\CustomSoft.Template.Modelo.VUCEMService.InvocaVUCEMListadosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VUCEMService\CustomSoft.Template.Modelo.VUCEMService.InvocaVUCEMPedimentoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VUCEMService\VucemService.wsdl" />
+    <None Include="Service References\VUCEMService\VUCEMService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FTPSoftrade\" />
+    <WCFMetadataStorage Include="Service References\VUCEMService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\FTPService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\VUCEMService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

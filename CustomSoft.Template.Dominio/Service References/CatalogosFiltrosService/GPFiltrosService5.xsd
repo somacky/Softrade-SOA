@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="EnumeradoresCatalogoPersonalizadoGPAduanalString">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ClientesInspeccion" />
+      <xs:enumeration value="EstatusInspeccion" />
+      <xs:enumeration value="Pais" />
+      <xs:enumeration value="ProveedorInspeccion" />
+      <xs:enumeration value="ResultadoInspeccion" />
+      <xs:enumeration value="TipoEmbarque" />
+      <xs:enumeration value="ZonaInspeccion" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EnumeradoresCatalogoPersonalizadoGPAduanalString" nillable="true" type="tns:EnumeradoresCatalogoPersonalizadoGPAduanalString" />
+  <xs:simpleType name="EnumeradoresCatalogoPersonalizadoSoftradeString">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Aduana" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EnumeradoresCatalogoPersonalizadoSoftradeString" nillable="true" type="tns:EnumeradoresCatalogoPersonalizadoSoftradeString" />
+  <xs:simpleType name="ProgramaFiltro">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GPAduanal" />
+      <xs:enumeration value="Softrade" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProgramaFiltro" nillable="true" type="tns:ProgramaFiltro" />
+</xs:schema>

@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CustomSoft.Template.Modelo.Dominio.Base
+{    
+    [DataContract]
+    public abstract class CuentaGastoBase
+    {
+        [DataMember]
+        public IEnumerable<ListaImpuestos> TrasladoImpuestos { get; set; }
+        [DataMember]
+        public IEnumerable<ListaImpuestos> RetencionImpuestos { get; set; }
+        [DataMember]
+        public IEnumerable<DetalleCuentaGasto> DetalleCuentaGastos { get; set; }
+        [DataMember]
+        public int IdCuentaGasto { get; set; }
+        [DataMember]
+        public int IdEmpresa { get; set; }
+        [DataMember]
+        public int IdPedimento { get; set; }
+        [DataMember]
+        public string NumeroFactura { get; set; }
+        [DataMember]
+        public string OtrosDatos { get; set; }
+        [DataMember]
+        public DateTime TimeStamp { get; set; }
+        [DataMember]
+        public int IdComplementoFacturaVW { get; set; }
+        [DataMember]
+        public string XML { get; set; }
+        [DataMember]
+        public string PDF { get; set; }
+        [DataMember]
+        public int IdMonedaVW { get; set; }
+        [DataMember]
+        public double MontoTotal { get; set; }
+        [DataMember]
+        public double TipoCambio { get; set; }
+        [DataMember]
+        public string UUID { get; set; }
+        [DataMember]
+        public DateTime FechaFactura { get; set; }
+        [DataMember]
+        public double Subtotal { get; set; }
+        [DataMember]
+        public int IdTipoComprobanteVW { get; set; }
+        [DataMember]
+        public string RFCEmisor { get; set; }
+        [DataMember]
+        public string NombreEmisor { get; set; }
+        [DataMember]
+        public double IVA { get; set; }
+        [DataMember]
+        public double IEPS { get; set; }
+        [DataMember]
+        public double RetencionIVA { get; set; }
+        [DataMember]
+        public double RetencionISR { get; set; }
+        [DataMember]
+        public bool Confirmado { get; set; }
+    }
+    
+    [DataContract]
+    public class DetalleCuentaGasto
+    {
+        [DataMember]
+        public int IdDetalleCuentaGasto { get; set; }
+        [DataMember]
+        public int IdCuentaGasto { get; set; }
+        [DataMember]
+        public int IdServicioVW { get; set; }
+        [DataMember]
+        public string NoIdentificacion { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public string Unidad { get; set; }
+        [DataMember]
+        public double ValorMercancia { get; set; }
+        [DataMember]
+        public double Cantidad { get; set; }
+        [DataMember]
+        public double ValorUnitario { get; set; }
+        [DataMember]
+        public double ValorTotal { get; set; }
+    }
+
+    [DataContract]
+    public class ListaImpuestos
+    {                
+        [DataMember]
+        public int IdImpuestoXCuentaGasto { get; set; }
+        [DataMember]
+        public string Impuesto { get; set; }
+        [DataMember]
+        public decimal Tasa { get; set; }
+        [DataMember]
+        public decimal Importe { get; set; }
+        [DataMember]
+        public bool EsTraslado { get; set; }
+    }
+}

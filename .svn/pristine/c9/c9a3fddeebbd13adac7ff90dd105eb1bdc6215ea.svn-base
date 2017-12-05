@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c7004bbf-60cf-4186-9b2a-7ffa7b880636" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:21250/GPFiltrosService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GPFiltrosService.disco" MetadataType="Disco" ID="a01035dc-d4d2-4042-87a7-627b51df82fe" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?disco" />
+    <MetadataFile FileName="GPFiltrosService.xsd" MetadataType="Schema" ID="a27ce43f-b826-42f8-a04b-8a63454fcb7a" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd4" />
+    <MetadataFile FileName="GPFiltrosService1.xsd" MetadataType="Schema" ID="e98ac1eb-7cc5-40d6-9f47-bbc5c30d8c18" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GPFiltrosService2.xsd" MetadataType="Schema" ID="54b10e29-d621-4f67-8477-80939d613876" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GPFiltrosService3.xsd" MetadataType="Schema" ID="6a8557c7-4060-44f5-94d1-057bbd83db10" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd6" />
+    <MetadataFile FileName="GPFiltrosService4.xsd" MetadataType="Schema" ID="8d804ca2-a257-484c-b0d8-2f29e54a03d3" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GPFiltrosService5.xsd" MetadataType="Schema" ID="bc086292-413a-4db6-af51-0b7e2b3b2886" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GPFiltrosService6.xsd" MetadataType="Schema" ID="4d09f51d-a08d-4b4e-8cc6-ed10eb7b75a7" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd7" />
+    <MetadataFile FileName="GPFiltrosService7.xsd" MetadataType="Schema" ID="0f5461c6-458e-4a4e-b86b-39a1add33d80" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GPFiltrosService.wsdl" MetadataType="Wsdl" ID="fe62a7d9-acfa-49e0-b589-0abd635c342e" SourceId="1" SourceUrl="http://localhost:21250/GPFiltrosService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

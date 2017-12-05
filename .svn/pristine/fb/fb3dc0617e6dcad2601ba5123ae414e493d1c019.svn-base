@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades.ExpedienteDigital;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.ExpedienteDigital
+{
+    public class ExpedienteDigitalDominio : IExpedienteDigitalDominio
+    {
+        private IExpedienteDigitalRepositorio iExpedienteDigitalRepositorio = null;
+
+        public ExpedienteDigitalDominio()
+        {
+            iExpedienteDigitalRepositorio =
+                FactoryEngine<IExpedienteDigitalRepositorio>.GetInstance("IExpedienteDigitalRepositorioConfig");
+        }
+
+        public Modelo.Dominio.Entidades.ExpedienteDigital.ExpedienteDigital InsertarExpedienteDigital(
+            Modelo.Dominio.Entidades.ExpedienteDigital.ExpedienteDigital expediente)
+        {
+            expediente = iExpedienteDigitalRepositorio.InsertaExpedienteDigital(expediente);
+            return expediente;
+        }
+
+        public ListaExpedienteDigital ExtraerListaDocumentos(ListaExpedienteDigital listaExpedienteDigital)
+        {
+            //using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                var where = ExpedienteDigitalRutinasDominio.CrearWhere(listaExpedienteDigital);
+                listaExpedienteDigital =
+                    iExpedienteDigitalRepositorio.ObtenerListaDeArchivos(where, listaExpedienteDigital, listaExpedienteDigital.IdUsuario);
+                //transaction.Complete();
+            }
+            return listaExpedienteDigital;
+        }
+
+        public ListaExpedienteDigital ExtraerListaDocumentosTop5(ListaExpedienteDigital listaExpedienteDigital)
+        {
+            //using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                switch (listaExpedienteDigital.ExpedienteExtraer)
+                {
+                    case Expediente.Factura:
+                        listaExpedienteDigital =
+                            iExpedienteDigitalRepositorio.ObtenerListaDeArchivosTop5CuentaGasto(listaExpedienteDigital, listaExpedienteDigital.IdUsuario);
+                        break;
+                    case Expediente.Pedimento:
+                        listaExpedienteDigital =
+                            iExpedienteDigitalRepositorio.ObtenerListaDeArchivosTop5Pedimento(listaExpedienteDigital, listaExpedienteDigital.IdUsuario);
+                        break;
+                }
+                //transaction.Complete();
+            }
+            return listaExpedienteDigital;
+        }
+
+        public void Dispose()
+        {
+            iExpedienteDigitalRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

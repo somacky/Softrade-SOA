@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Servicios.Base;
+
+namespace CustomSoft.Template.Modelo.Dominio.Base
+{
+    public abstract class OperacionRequestBase<TEntidad> : RequestBase where TEntidad : class
+    {
+        /// <summary>
+        /// Información de la entidad a operar, el tipo de operación será definido 
+        /// de acuerdo a las funcionalidades del servicio
+        /// </summary>
+        [DataMember]
+        public TEntidad Item { get; set; }
+    }
+}

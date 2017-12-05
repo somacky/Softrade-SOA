@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    /// <summary>
+    /// implementacion de las operacion CRUD (Create, Read, update, delete)
+    /// </summary>
+    public class UsuarioRepositorio:IUsuarioRepositorio
+    {
+
+        private SqlHelper helper = null;
+
+        public UsuarioRepositorio()
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer());
+        }
+
+        //no tengo los metodos privados
+
+        public Usuario InsertaUsuario(Usuario pUsuario)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+
+            //parametros.Add(new SqlParameterItem(""));
+            return null;
+        }
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        public Usuario Registrar(Usuario item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario Actualizar(Usuario item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario GetEntidad(Usuario filtro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Usuario> GetLista(Modelo.Dominio.Filtro.UsuarioFilro filtro, ref Modelo.Compartido.Paginacion paginacion)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

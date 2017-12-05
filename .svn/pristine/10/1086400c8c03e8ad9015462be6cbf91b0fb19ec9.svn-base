@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Compartido" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Compartido" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="TipoConsulta">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ByRFC" />
+      <xs:enumeration value="ByPatente" />
+      <xs:enumeration value="ByPedimento" />
+      <xs:enumeration value="ByCoveEDocument" />
+      <xs:enumeration value="ByContendor" />
+      <xs:enumeration value="ByGuia" />
+      <xs:enumeration value="ByAduana" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoConsulta" nillable="true" type="tns:TipoConsulta" />
+  <xs:simpleType name="TipoConsultaPedimento">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PedimentoCompleto" />
+      <xs:enumeration value="PedimentoSimple" />
+      <xs:enumeration value="Partida" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoConsultaPedimento" nillable="true" type="tns:TipoConsultaPedimento" />
+</xs:schema>

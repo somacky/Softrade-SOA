@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:21250/GPFiltrosService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://localhost:21250/GPFiltrosService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Base" />
+  <xs:complexType name="FiltrosBusqueda">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" minOccurs="0" name="BusquedaGPAduanal" type="q1:EnumeradoresCatalogoPersonalizadoGPAduanalString" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" minOccurs="0" name="BusquedaSoftrade" type="q2:EnumeradoresCatalogoPersonalizadoSoftradeString" />
+      <xs:element minOccurs="0" name="EnIngles" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IdCliente" type="xs:int" />
+      <xs:element minOccurs="0" name="IdEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="IdRol" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiltrosBusqueda" nillable="true" type="tns:FiltrosBusqueda" />
+  <xs:complexType name="ListaCatalogoPersonalizadoString">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Lista" nillable="true" type="tns:ArrayOfCatalogoPersonalizadoString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListaCatalogoPersonalizadoString" nillable="true" type="tns:ListaCatalogoPersonalizadoString" />
+  <xs:complexType name="ArrayOfCatalogoPersonalizadoString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CatalogoPersonalizadoString" nillable="true" type="tns:CatalogoPersonalizadoString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCatalogoPersonalizadoString" nillable="true" type="tns:ArrayOfCatalogoPersonalizadoString" />
+  <xs:complexType name="CatalogoPersonalizadoString">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Base" base="q3:CatalogoPersonalizadoBase">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Compartido" minOccurs="0" name="CatalogoPersonalizado" type="q4:EnumeradoresCatalogoPersonalizadoGPAduanalString" />
+          <xs:element minOccurs="0" name="Descripcion2" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoPersonalizadoString" nillable="true" type="tns:CatalogoPersonalizadoString" />
+</xs:schema>

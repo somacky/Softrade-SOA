@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.CatalogosService;
+using CustomSoft.Template.Modelo.VUCEMService;
+
+//using CustomSoft.Template.Modelo.VUCEMService;
+//new EndpointAddress("http://207.198.117.44:8888/SACService.svc");
+//new EndpointAddress("http://localhost:8585/VUCEMService.svc");
+
+namespace CustomSoft.Template.Dominio.OperacionMotor
+{
+    partial class OperacionMotorDominio
+    {
+        private SeguridadVucemServiceClient ServicioVUCEM()
+        {
+            //var basicHttpBinding = new WSHttpBinding(SecurityMode.Transport);
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            //basicHttpBinding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;
+            var endpoint =
+                new EndpointAddress(
+                    "http://localhost:8585/VUCEMService.svc");
+            var servicioConsultarListadoPedimento = new SeguridadVucemServiceClient(basicHttpBinding, endpoint);
+            return servicioConsultarListadoPedimento;
+        }
+
+        //public VucemOperacionRequest CreaRequestListadoPedimentos(RequestVUCEM pRequestVucem)
+        private VucemOperacionRequest CreaRequestListadoPedimentos(string pUsuario, string pPass, int pAduana, string pRFC, DateTime pFechaInicial, DateTime pFechaFin)
+        {
+            var requestlistado = new VucemOperacionRequest();
+            requestlistado.pUsuarioAA = pUsuario.Trim();
+            requestlistado.pPassAA = pPass.Trim();
+            requestlistado.pAduana = pAduana;
+            requestlistado.pRFC = pRFC.Trim();
+            requestlistado.FechaInicial = pFechaInicial;
+            requestlistado.FechaFinal = pFechaFin;
+            requestlistado.NoIntentos = 1;
+            requestlistado.Consulta = TipoConsulta.ByRFC;
+            //requestlistado.pUsuarioAA = "VECM6011173A2";
+            //requestlistado.pPassAA = "rJ6/wsPzE4AWCNo9NhKEaQGUQkJl7RZQAJBeOAtqKajjR63zhEalSf/asMBZ1J4R";
+            //requestlistado.pAduana = 470;
+            //requestlistado.pRFC = "VECM6011173A2";
+            //requestlistado.FechaInicial = Convert.ToDateTime("01/01/2015");
+            //requestlistado.FechaFinal = Convert.ToDateTime("01/01/2015");
+            return requestlistado;
+        }
+
+        /// <summary>
+        /// Funcion que Crea el Request para invocar a WCFVUCEM el pedimento (Cuerpo)
+        /// </summary>
+        /// <param name="pUsuarioAA"></param>
+        /// <param name="pPasswordAA"></param>
+        /// <param name="pAduana"></param>
+        /// <param name="pPatente"></param>
+        /// <param name="pPedimento"></param>
+        /// <returns></returns>
+        private VucemOperacionPedimentoCompletoRequest CreaRequestPedimento(string pUsuarioAA, string pPasswordAA,
+            int pAduana, string pPatente, string pPedimento)
+        {
+            var requesPedimento = new VucemOperacionPedimentoCompletoRequest();
+            requesPedimento.Consulta = TipoConsultaPedimento.PedimentoCompleto;
+            requesPedimento.NoIntentos = 1;
+            requesPedimento.Entidad = new RequestVUCEM();
+            requesPedimento.Entidad.pUsuarioAA = pUsuarioAA;
+            requesPedimento.Entidad.pPassAA = pPasswordAA;
+            requesPedimento.Entidad.pAduana = pAduana;
+            requesPedimento.Entidad.pPatente = pPatente;
+            requesPedimento.Entidad.pPedimento = pPedimento;
+            return requesPedimento;
+        }
+
+        private VucemOperacionPedimentoCompletoRequest CreaRequestPartida(string pUsuarioAA, string pPasswordAA,
+            int pAduana, string pPatente, string pPedimento, int pNoPartida, long pNoOperacion)
+        {
+            var requesPedimento = new VucemOperacionPedimentoCompletoRequest();
+            requesPedimento.Entidad = new RequestVUCEM();
+            requesPedimento.Consulta = TipoConsultaPedimento.Partida;
+            requesPedimento.NoIntentos = 1;
+            requesPedimento.Entidad = new RequestVUCEM();
+            requesPedimento.Entidad.pUsuarioAA = pUsuarioAA;
+            requesPedimento.Entidad.pPassAA = pPasswordAA;
+            requesPedimento.Entidad.pAduana = pAduana;
+            requesPedimento.Entidad.pPatente = pPatente;
+            requesPedimento.Entidad.pPedimento = pPedimento;
+            requesPedimento.Entidad.NoPartida = pNoPartida;
+            requesPedimento.Entidad.pNumeroOperacion = pNoOperacion;
+            return requesPedimento;
+        }
+
+        public CatalogosServiceClient ServicioCatalogos()
+        {
+            var catalogosService = System.Configuration.ConfigurationSettings.AppSettings.Get("CatalogosService");
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            var endpoint =
+                new EndpointAddress(
+                    catalogosService);
+            var servicioCatalogos = new CatalogosServiceClient(basicHttpBinding, endpoint);
+            return servicioCatalogos;
+        }
+
+        private CatalogoGeneralOperacionRequest RequestTipoCatalogoXAbreviatura(string pAlias, int idUsuarioEjecucion, Catalogo pTipoCatagolo)
+        {
+            return new CatalogoGeneralOperacionRequest()
+            {
+                ExtraccionCatalogo = TipoExtraccionCatalogo.ExtraerIdXAbreviatura,
+                IdUsuarioEjecucion = idUsuarioEjecucion,
+                Item = new EntidadCatalogo()
+                {
+                    Alias = pAlias,
+                    CatalogoALlamar = pTipoCatagolo,
+                    FiltradoEspecifico = Filtrado.Alias
+                }
+            };
+        }
+
+        private CatalogoGeneralOperacionRequest RequestTipoCatalogoXDescripcion(string pAlias, int idUsuarioEjecucion, Catalogo pTipoCatagolo, Filtrado pFiltrado)
+        {
+            return new CatalogoGeneralOperacionRequest()
+            {
+                ExtraccionCatalogo = TipoExtraccionCatalogo.ExtraerIdXAbreviatura,
+                IdUsuarioEjecucion = idUsuarioEjecucion,
+                Item = new EntidadCatalogo()
+                {
+                    Alias = pAlias,
+                    CatalogoALlamar = pTipoCatagolo,
+                    FiltradoEspecifico = pFiltrado
+                }
+            };
+        }
+    }
+}

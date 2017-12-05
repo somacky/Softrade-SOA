@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Entidades.COVE" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Entidades.COVE" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd12" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ConsultaEdocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cove" nillable="true" type="tns:COVE" />
+      <xs:element minOccurs="0" name="NumAdenda" nillable="true" type="tns:Adenda" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsultaEdocumentResponse" nillable="true" type="tns:ConsultaEdocumentResponse" />
+  <xs:complexType name="COVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Automotriz" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Destinatario" nillable="true" type="tns:PersonaCOVE" />
+      <xs:element minOccurs="0" name="Edocument" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Emisor" nillable="true" type="tns:PersonaCOVE" />
+      <xs:element minOccurs="0" name="Facturas" nillable="true" type="tns:ArrayOfFactura" />
+      <xs:element minOccurs="0" name="FechaExpedicion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdAduana" type="xs:int" />
+      <xs:element minOccurs="0" name="IdCOVE" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroFacturaRelacionFacturas" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDF" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PatentesAduanales" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="RelacionFacturas" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RfcsConsulta" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SumaValorTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TipoFigura" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoOperacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="XML" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="COVE" nillable="true" type="tns:COVE" />
+  <xs:complexType name="PersonaCOVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApellidoMaterno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApellidoPaterno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Domicilio" nillable="true" type="tns:DomicilioCOVE" />
+      <xs:element minOccurs="0" name="Identificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoIdentificador" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonaCOVE" nillable="true" type="tns:PersonaCOVE" />
+  <xs:complexType name="DomicilioCOVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Calle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoPostal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Colonia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EntidadFederativa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Localidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Municipio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroExterior" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroInterior" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Pais" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DomicilioCOVE" nillable="true" type="tns:DomicilioCOVE" />
+  <xs:complexType name="ArrayOfFactura">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Factura" nillable="true" type="tns:Factura" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFactura" nillable="true" type="tns:ArrayOfFactura" />
+  <xs:complexType name="Factura">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CertificadoOrigen" type="xs:int" />
+      <xs:element minOccurs="0" name="Destinatario" nillable="true" type="tns:PersonaCOVE" />
+      <xs:element minOccurs="0" name="Emisor" nillable="true" type="tns:PersonaCOVE" />
+      <xs:element minOccurs="0" name="IdFactura" type="xs:int" />
+      <xs:element minOccurs="0" name="Mercancias" nillable="true" type="tns:ArrayOfMercanciaCOVE" />
+      <xs:element minOccurs="0" name="NumeroExportadorConfiable" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroFactura" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Subdivision" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Factura" nillable="true" type="tns:Factura" />
+  <xs:complexType name="ArrayOfMercanciaCOVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MercanciaCOVE" nillable="true" type="tns:MercanciaCOVE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMercanciaCOVE" nillable="true" type="tns:ArrayOfMercanciaCOVE" />
+  <xs:complexType name="MercanciaCOVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cantidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ClaveUnidadMedida" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionGenerica" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionesEspecificas" nillable="true" type="tns:ArrayOfDetalleMercancia" />
+      <xs:element minOccurs="0" name="IdMercanciaCOVE" type="xs:int" />
+      <xs:element minOccurs="0" name="IdMoneda" type="xs:int" />
+      <xs:element minOccurs="0" name="IdUnidadFacturaVW" type="xs:int" />
+      <xs:element minOccurs="0" name="TipoMoneda" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValorDolares" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ValorTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ValorUnitario" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MercanciaCOVE" nillable="true" type="tns:MercanciaCOVE" />
+  <xs:complexType name="ArrayOfDetalleMercancia">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DetalleMercancia" nillable="true" type="tns:DetalleMercancia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDetalleMercancia" nillable="true" type="tns:ArrayOfDetalleMercancia" />
+  <xs:complexType name="DetalleMercancia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdDetalleMercancia" type="xs:int" />
+      <xs:element minOccurs="0" name="Marca" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Modelo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroSerie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubModelo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DetalleMercancia" nillable="true" type="tns:DetalleMercancia" />
+  <xs:complexType name="Adenda">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Adenda" nillable="true" type="tns:Adenda" />
+</xs:schema>

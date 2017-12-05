@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Librerias", "1. Librerias", "{6467A360-6FC1-4052-B34D-C8C30D557D40}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Desktop\Cursos\Contoso Template\Librerias\MCS.ApplicationBlock.Logging.dll = ..\..\..\..\Desktop\Cursos\Contoso Template\Librerias\MCS.ApplicationBlock.Logging.dll
+		..\..\..\..\Desktop\Cursos\Contoso Template\Librerias\MCS.ApplicationBlock.SqlServer.dll = ..\..\..\..\Desktop\Cursos\Contoso Template\Librerias\MCS.ApplicationBlock.SqlServer.dll
+		..\..\..\..\Desktop\Cursos\Contoso Template\Librerias\MCS.Factory.dll = ..\..\..\..\Desktop\Cursos\Contoso Template\Librerias\MCS.Factory.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Modelo", "2.Modelo", "{F6A59E74-6F6E-49B8-BC3B-8D14C44C82DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Repositorio", "3.Repositorio", "{7E00CAAF-4B00-47DE-9765-EACC12EAABDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Dominio", "4.Dominio", "{45BBC723-65B0-42CD-B4C1-598EF8A9DC96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Servicios", "5. Servicios", "{6AD96DA0-6F4A-453B-BA1F-3C4508F37E4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.Presentacion", "6.Presentacion", "{BE58CCD8-4EC0-4432-9194-4DB93C51101F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSoft.Template.Modelo", "CustomSoft.Template.Modelo\CustomSoft.Template.Modelo.csproj", "{65253AA4-3DA5-488C-ABAA-550DF1A83068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSoft.Template.Repositorio.Contratos", "CustomSoft.Template.Repositorio.Contratos\CustomSoft.Template.Repositorio.Contratos.csproj", "{A05AB729-9EC8-4299-BBD7-17C69DF8074F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSoft.Template.Repositorio.SqlServer", "CustomSoft.Template.Repositorio.SqlServer\CustomSoft.Template.Repositorio.SqlServer.csproj", "{3F45379D-D90A-42ED-9ADB-DEFDD7A772B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSoft.Template.Dominio.Contratos", "CustomSoft.Template.Dominio.Contratos\CustomSoft.Template.Dominio.Contratos.csproj", "{6D6EF385-67D0-4383-83B9-13E87B1AE7E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65253AA4-3DA5-488C-ABAA-550DF1A83068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65253AA4-3DA5-488C-ABAA-550DF1A83068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65253AA4-3DA5-488C-ABAA-550DF1A83068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65253AA4-3DA5-488C-ABAA-550DF1A83068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A05AB729-9EC8-4299-BBD7-17C69DF8074F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A05AB729-9EC8-4299-BBD7-17C69DF8074F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A05AB729-9EC8-4299-BBD7-17C69DF8074F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A05AB729-9EC8-4299-BBD7-17C69DF8074F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F45379D-D90A-42ED-9ADB-DEFDD7A772B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F45379D-D90A-42ED-9ADB-DEFDD7A772B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F45379D-D90A-42ED-9ADB-DEFDD7A772B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F45379D-D90A-42ED-9ADB-DEFDD7A772B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D6EF385-67D0-4383-83B9-13E87B1AE7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D6EF385-67D0-4383-83B9-13E87B1AE7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D6EF385-67D0-4383-83B9-13E87B1AE7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D6EF385-67D0-4383-83B9-13E87B1AE7E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65253AA4-3DA5-488C-ABAA-550DF1A83068} = {F6A59E74-6F6E-49B8-BC3B-8D14C44C82DC}
+		{A05AB729-9EC8-4299-BBD7-17C69DF8074F} = {7E00CAAF-4B00-47DE-9765-EACC12EAABDA}
+		{3F45379D-D90A-42ED-9ADB-DEFDD7A772B9} = {7E00CAAF-4B00-47DE-9765-EACC12EAABDA}
+		{6D6EF385-67D0-4383-83B9-13E87B1AE7E4} = {45BBC723-65B0-42CD-B4C1-598EF8A9DC96}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

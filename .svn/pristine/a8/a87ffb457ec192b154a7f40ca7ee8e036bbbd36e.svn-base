@@ -1,0 +1,100 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades.ExpedienteDigital;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    public class ExpedienteDigitalRepositorio : IExpedienteDigitalRepositorio
+    {
+        private SqlHelper helper = null;
+
+        public ExpedienteDigitalRepositorio()
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+        }
+        public void InicializarConexion()
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+        }
+        public ListaExpedienteDigital ObtenerListaDeArchivos(string where, ListaExpedienteDigital request)
+        {
+            var listaExpedienteDigital = new List<ExpedienteDigital>();
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pWhere", SqlDbType.VarChar, 4000, where));
+            parametros.Add(new SqlParameterItem("@pPagina", SqlDbType.SmallInt, request.ListaPaginacion.Pagina));
+            parametros.Add(new SqlParameterItem("@pRegistros", SqlDbType.SmallInt, request.ListaPaginacion.Registros));                            
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.SmallInt, request.IdUsuario));            
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameListaXWhere", parametros);            
+            while (reader.Read())
+            {                
+                listaExpedienteDigital.Add(new ExpedienteDigital()
+                {                    
+                    IdExpedienteDigital = reader.GetInt32(reader.GetOrdinal("IdExpedienteDigital")),
+                    Empresa = reader.GetString(reader.GetOrdinal("Empresa")),
+                    Identificador = reader.GetString(reader.GetOrdinal("Identificador")),
+                    TipoDocumento = reader.GetString(reader.GetOrdinal("TipoDocumento")),
+                    FechaSubida = reader.GetDateTime(reader.GetOrdinal("TimeStamp"))
+                });                                   
+            }
+            reader.Close();
+            request.ListaPaginacion.TotalRegistros = ObtenerTotalRegistros(where, request);            
+            request.ListaDocumentos = listaExpedienteDigital;
+            return request;
+        }
+
+        public ListaExpedienteDigital ObtenerListaDeArchivosTop5(ListaExpedienteDigital request, int idTipoDocumento)
+        {
+            var listaExpedienteDigital = new List<ExpedienteDigital>();
+            var parametros = new List<SqlParameterItem>();            
+            parametros.Add(new SqlParameterItem("@pPagina", SqlDbType.SmallInt, request.ListaPaginacion.Pagina));
+            parametros.Add(new SqlParameterItem("@pRegistros", SqlDbType.SmallInt, request.ListaPaginacion.Registros));
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.SmallInt, request.IdUsuario));
+            parametros.Add(new SqlParameterItem("@pIdTipoDocumento", SqlDbType.SmallInt, idTipoDocumento));
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameListaXTop5", parametros);
+            while (reader.Read())
+            {
+                listaExpedienteDigital.Add(new ExpedienteDigital()
+                {
+                    IdExpedienteDigital = reader.GetInt32(reader.GetOrdinal("IdExpedienteDigital")),
+                    Empresa = reader.GetString(reader.GetOrdinal("Empresa")),
+                    Identificador = reader.GetString(reader.GetOrdinal("Identificador")),
+                    TipoDocumento = reader.GetString(reader.GetOrdinal("TipoDocumento")),
+                    FechaSubida = reader.GetDateTime(reader.GetOrdinal("TimeStamp"))
+                });
+            }
+            reader.Close();            
+            request.ListaDocumentos = listaExpedienteDigital;
+            return request;
+        }
+
+        public int ObtenerTotalRegistros(string where, ListaExpedienteDigital request)
+        {            
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pWhere", SqlDbType.VarChar, 500, where));            
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.SmallInt, request.IdUsuario));
+            //parametros.Add(new SqlParameterItem("@pTotalRegistros", SqlDbType.Int, ParameterDirection.Output));
+            InicializarConexion();
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameTotalRegistrosXWhere", parametros);
+            int totalRegistros = 0;
+            while (reader.Read())
+            {
+                totalRegistros = reader.GetInt32((reader.GetOrdinal("Conteo")));
+            }
+            reader.Close();
+            return totalRegistros;
+        }
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

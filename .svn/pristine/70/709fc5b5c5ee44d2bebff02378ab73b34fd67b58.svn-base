@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+
+namespace CustomSoft.Template.Repositorio.Contratos
+{
+    public interface IOperacionPedimentoRepositorio : IDisposable
+    {
+        bool RegistraPedimentoBD(ArchivoM pedimento);
+        Archivo InsertaExpedienteDigital(Archivo archivo, int idCuentaGasto, int idUsuario);
+        int DameIdAduanaXClave(ArchivoM pedimento);
+        int DameIdPatenteXNumeroPatente(ArchivoM pedimento);
+        ArchivoM DameIdPedimentoXPedimento(ArchivoM pedimento);
+
+    }
+}

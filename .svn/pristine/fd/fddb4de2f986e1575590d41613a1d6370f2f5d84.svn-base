@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades.ExpedienteDigital;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.ExpedienteDigital
+{
+    public class ExpedienteDigitaDominio : IExpedienteDigitalDominio
+    {
+        private IExpedienteDigitalRepositorio iExpedienteDigitalRepositorio = null;
+
+        public ExpedienteDigitaDominio()
+        {
+            iExpedienteDigitalRepositorio =
+                FactoryEngine<IExpedienteDigitalRepositorio>.GetInstance("IExpedienteDigitalDominioConfig");
+        }
+
+
+        public ListaExpedienteDigital ExtraerListaDocumentos(ListaExpedienteDigital listaExpedienteDigital)
+        {
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                var where = ExpedienteDigitalRutinasDominio.CrearWhere(listaExpedienteDigital);
+                listaExpedienteDigital.ListaDocumentos =
+                    iExpedienteDigitalRepositorio.ObtenerListaDeArchivos(where);
+                transaction.Complete();
+            }
+            return listaExpedienteDigital;
+        }
+
+        public void Dispose()
+        {
+            iExpedienteDigitalRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

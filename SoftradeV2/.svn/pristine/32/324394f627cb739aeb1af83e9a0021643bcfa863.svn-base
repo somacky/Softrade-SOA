@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CustomSoft.Template.Servicios.Seguridad.Service1" CodeBehind="SeguridadService.svc.cs" %>

@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Entidades.ExpedienteDigital;
+
+namespace CustomSoft.Template.Repositorio.Contratos
+{
+    public interface IExpedienteDigitalRepositorio : IDisposable
+    {
+        ListaExpedienteDigital ObtenerListaDeArchivos(string where, ListaExpedienteDigital request);
+        ListaExpedienteDigital ObtenerListaDeArchivosTop5(ListaExpedienteDigital request, int idTipoDocumento);
+    }
+}

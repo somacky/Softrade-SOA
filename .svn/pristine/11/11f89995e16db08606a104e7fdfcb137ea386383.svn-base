@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" />
+  <xs:complexType name="OperacionRequestBaseOfEntidadCatalogocYoVAI_SS">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperacionRequestBaseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="EntidadCatalogo" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" minOccurs="0" name="Item" nillable="true" type="q1:EntidadCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperacionRequestBaseOfEntidadCatalogocYoVAI_SS" nillable="true" type="tns:OperacionRequestBaseOfEntidadCatalogocYoVAI_SS" />
+  <xs:complexType name="RequestBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdUsuarioEjecucion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestBase" nillable="true" type="tns:RequestBase" />
+  <xs:complexType name="OperacionResponseBaseOfEntidadCatalogocYoVAI_SS">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperacionResponseBaseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="EntidadCatalogo" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseBase">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" minOccurs="0" name="Item" nillable="true" type="q2:EntidadCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperacionResponseBaseOfEntidadCatalogocYoVAI_SS" nillable="true" type="tns:OperacionResponseBaseOfEntidadCatalogocYoVAI_SS" />
+  <xs:complexType name="ResponseBase">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EjecucionValida" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MensajeError" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseBase" nillable="true" type="tns:ResponseBase" />
+  <xs:complexType name="OperacionRequestBaseOfCatalogoRequeridocYoVAI_SS">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperacionRequestBaseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CatalogoRequerido" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" minOccurs="0" name="Item" nillable="true" type="q3:CatalogoRequerido" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperacionRequestBaseOfCatalogoRequeridocYoVAI_SS" nillable="true" type="tns:OperacionRequestBaseOfCatalogoRequeridocYoVAI_SS" />
+  <xs:complexType name="OperacionResponseBaseOfArrayOfEntidadCatalogocYoVAI_SS">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperacionResponseBaseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfEntidadCatalogo" Namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseBase">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" minOccurs="0" name="Item" nillable="true" type="q4:ArrayOfEntidadCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperacionResponseBaseOfArrayOfEntidadCatalogocYoVAI_SS" nillable="true" type="tns:OperacionResponseBaseOfArrayOfEntidadCatalogocYoVAI_SS" />
+</xs:schema>

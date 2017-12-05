@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades.ExpedienteDigital;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    public class ExpedienteDigitalRepositorio : IExpedienteDigitalRepositorio
+    {
+        private SqlHelper helper = null;
+
+        public ExpedienteDigitalRepositorio()
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+        }
+        public List<ExpedienteDigital> ObtenerListaDeArchivos(string where)
+        {
+            List<ExpedienteDigital> listaExpedienteDigital = null;
+            var parametros = new SqlParameterItem("@pWhere", SqlDbType.VarChar, 4000, where);
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameListaXWhere", parametros);
+            while (reader.Read())
+            {
+                listaExpedienteDigital.Add(new ExpedienteDigital()
+                {
+                    IdExpedienteDigital = reader.GetInt32(reader.GetOrdinal("IdExpedienteDigital")),
+                    Empresa = reader.GetString(reader.GetOrdinal("Empresa")),
+                    Identificador = reader.GetString(reader.GetOrdinal("Identificador")),
+                    TipoDocumento = reader.GetString(reader.GetOrdinal("TipoDocumento"))
+                });                                   
+            }
+            return listaExpedienteDigital;
+        }
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

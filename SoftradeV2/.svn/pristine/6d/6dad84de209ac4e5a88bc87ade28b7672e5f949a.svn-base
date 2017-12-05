@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Configuration;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+
+namespace CustomSoft.Template.Dominio.ArchivoDominio
+{
+    public partial class ArchivoDominio : IRecibirArchivoDominio
+    {
+        public Archivo ProcesarArchivo(Archivo archivo)
+        {
+            ValidarLongitudArchivo(archivo);
+            using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                var archivoFTP = new ModeloFTP
+                {
+                    //Item = archivo,
+                    Extension = archivo.Extension,
+                    UsuarioFTP = string.Empty,
+                    Password = string.Empty,
+                    PathOrigen = GuardaArchivoEnCarpetaTemporal(archivo)
+                };
+
+                var exitoso = SubeArchivoFtp(archivoFTP);
+                //TODO:falta insertar en base de datos la ruta y nombre archivo
+
+                transaction.Complete();
+            }
+            return null;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

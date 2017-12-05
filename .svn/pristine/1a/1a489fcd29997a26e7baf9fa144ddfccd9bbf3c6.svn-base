@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" />
+  <xs:import schemaLocation="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base.Pedimento" />
+  <xs:import schemaLocation="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Compartido" />
+  <xs:complexType name="ArchivoM">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base.Pedimento" base="q1:DatosBasePedimento">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Candados" nillable="true" type="q2:ArrayOfDatosReg516Candados" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Compensaciones" nillable="true" type="q3:ArrayOfDatosReg513Compensaciones" />
+          <xs:element minOccurs="0" name="Contenedores" nillable="true" type="q1:ArrayOfDatosReg504Contenedores" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="ContribucionesNPed" nillable="true" type="q4:ArrayOfDatosReg510ContribucionesNPed" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="CuentasAduanerasNPed" nillable="true" type="q5:ArrayOfDatosReg508CuentasAduanerasNPed" />
+          <xs:element minOccurs="0" name="DatosGeneralesPedComplementario" nillable="true" type="q1:DatosReg301DatosGeneralesPedComplementario" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="DatosGeneralesPrevioConsolidado" nillable="true" type="q6:DatosReg601DatosGeneralesPrevioConsolidado" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Descargos" nillable="true" type="q7:ArrayOfDatosReg512Descargos" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Destinatarios" nillable="true" type="q8:ArrayOfDatosReg520Destinatario" />
+          <xs:element minOccurs="0" name="DetContribucionesNPart" nillable="true" type="q1:ArrayOfDatosReg351DeterminacionContribucionesNPart" />
+          <xs:element minOccurs="0" name="DetalleImportacionEUACAN" nillable="true" type="q1:ArrayOfDatosReg352DetalleImportacionEUACAN" />
+          <xs:element minOccurs="0" name="DeterminacionPagoContribucioneNPed" nillable="true" type="q1:ArrayOfDatosReg353DeterminacionPagoContribucioneNPed" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="DiferenciaNPed" nillable="true" type="q9:ArrayOfDatosReg702DiferenciaNPed" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="DoctosFormaPago" nillable="true" type="q10:ArrayOfDatosReg514DocumentoAmparaFormaPago" />
+          <xs:element minOccurs="0" name="Facturas" nillable="true" type="q1:ArrayOfDatosReg505Facturas" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Fechas" nillable="true" type="q11:ArrayOfDatosReg506Fechas" />
+          <xs:element minOccurs="0" name="FinArchivo" nillable="true" type="q1:DatosReg801FinArchivo" />
+          <xs:element minOccurs="0" name="Guias" nillable="true" type="q1:ArrayOfDatosReg503Guias" />
+          <xs:element minOccurs="0" name="IdUsuarioEjecucion" type="xs:int" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="IdentificadoresNPed" nillable="true" type="q12:ArrayOfDatosReg507IdentificadoresNPed" />
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="InformeIndustriaAut" nillable="true" type="q13:DatosReg515InformeIndustriaAut" />
+          <xs:element minOccurs="0" name="NombreArchivo" nillable="true" type="xs:string" />
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="ObservacionesNPed" nillable="true" type="q14:ArrayOfDatosReg511ObservacionesNPed" />
+          <xs:element minOccurs="0" name="ObservacionesNPedComplementario" nillable="true" type="q1:ArrayOfDatosReg358ObservacionesNPedComplementario" />
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Compartido" minOccurs="0" name="OrigenPedimento" type="q15:EnumeradoresPedimento.OrigenPedimento" />
+          <xs:element minOccurs="0" name="PagoContribucionesPorAplicacion" nillable="true" type="q1:ArrayOfDatosReg355PagoContribucionesPorAplicacion" />
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="PartidaIndAutomotriz" nillable="true" type="q16:ArrayOfDatosReg560PartidaIndAutomotriz" />
+          <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Partidas" nillable="true" type="q17:ArrayOfDatosReg551Partidas" />
+          <xs:element minOccurs="0" name="PruebaSuficiente" nillable="true" type="q1:ArrayOfDatosReg302PruebaSuficiente" />
+          <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="Rectificacion" nillable="true" type="q18:DatosReg701Rectificacion" />
+          <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" minOccurs="0" name="TasasNPed" nillable="true" type="q19:ArrayOfDatosReg509TasasNPed" />
+          <xs:element minOccurs="0" name="Transporte" nillable="true" type="q1:ArrayOfDatosReg502Transporte" />
+          <xs:element minOccurs="0" name="ValorAduanaTotal" type="xs:float" />
+          <xs:element minOccurs="0" name="ValorComercialtotal" type="xs:float" />
+          <xs:element minOccurs="0" name="ValorDolares" type="xs:float" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ArchivoM" nillable="true" type="tns:ArchivoM" />
+</xs:schema>

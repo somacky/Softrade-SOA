@@ -1,0 +1,14 @@
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Repositorio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Repositorio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\obj\Debug\CustomSoft.Template.Repositorio.Contratos.csprojResolveAssemblyReference.cache
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\obj\Debug\CustomSoft.Template.Repositorio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\obj\Debug\CustomSoft.Template.Repositorio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Repositorio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Repositorio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\obj\Debug\CustomSoft.Template.Repositorio.Contratos.csprojResolveAssemblyReference.cache
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\obj\Debug\CustomSoft.Template.Repositorio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Repositorio.Contratos\obj\Debug\CustomSoft.Template.Repositorio.Contratos.pdb

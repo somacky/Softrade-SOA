@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <!--<system.web>
+    <httpRuntime maxRequestLength=""/>
+  </system.web>
+  Este es para el Servidor Web.-->
+  <!--inicio datos-->
+  <configSections>
+    <section name="factoryConfiguration"
+              type="MCS.Factory.Configuration.FactoryConfiguration, MCS.Factory, Version=1.0.0.0, Culture=neutral"
+              allowLocation="true"
+              allowDefinition="Everywhere"
+              restartOnExternalChanges="false" />
+  </configSections>
+  <factoryConfiguration>
+    <factorySettings>
+      <add contractName="IUsuarioRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.UsuarioRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer"      />
+
+      <add contractName="IUsuarioDominioConfig"
+           typeName="CustomSoft.Template.Dominio.UsuarioDominio.UsuarioDominio"
+           libraryName="CustomSoft.Template.Dominio"      />
+
+      <add contractName="IRFCDominioConfig"
+           typeName="CustomSoft.Template.Dominio.RFCDominio"
+           libraryName="CustomSoft.Template.Dominio"      />
+
+      <add contractName="IRFCRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.RFCRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer"      />
+
+      <add contractName="IPedimentoDominioConfig"
+         typeName="CustomSoft.Template.Dominio.OperacionPedimento.OperacionPedimentoDominio"
+         libraryName="CustomSoft.Template.Dominio"      />
+
+      <add contractName="IPedimentoRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.OperacionPedimentoRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer"      />
+
+      <add contractName="ICuentaGastoDominioConfig"
+           typeName="CustomSoft.Template.Dominio.CuentaGastoDominio.CuentaGastoDominio"
+           libraryName="CustomSoft.Template.Dominio"      />
+
+      <add contractName="ICuentaGastoRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.CuentaGastoRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer"      />
+      
+      <add contractName="ICatalogosRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.CatalogosRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer"      />     
+
+      <add contractName="IReporteadorRepositorioConfig" 
+           typeName="CustomSoft.Template.Repositorio.SqlServer.ReporteadorRepositorio" 
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="IReporteadorDominioConfig" 
+           typeName="CustomSoft.Template.Dominio.Reporteador.ReporteadorDominio" 
+           libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="ICatalogoEspecificoRepositorioConfig" 
+           typeName="CustomSoft.Template.Repositorio.SqlServer.CatalogoEspecificoRepositorio" 
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="ICatalogoEspecificoDominioConfig" 
+           typeName="CustomSoft.Template.Dominio.CatalogoEspecificoDominio" 
+           libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="IDocumentoExpedienteDigitalRepositorioConfig"
+         typeName="CustomSoft.Template.Repositorio.SqlServer.DocumentoExpedienteDigitalRepositorio"
+         libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="IDocumentoExpedienteDigitalDominioConfig"
+           typeName="CustomSoft.Template.Dominio.DocumentoExpedienteDigital.DocumentoExpedienteDigitalDominio"
+           libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IExpedienteDigitalDominioConfig"           
+           typeName="CustomSoft.Template.Dominio.ExpedienteDigital.ExpedienteDigitalDominio"
+           libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="IExpedienteDigitalRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.ExpedienteDigitalRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />    
+    
+      <add contractName="INotificacionDominioConfig"           
+           typeName="CustomSoft.Template.Dominio.NotificacionDominio"
+           libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="INotificacionRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.NotificacionRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+    
+     <add contractName="IOperacionEmpresaRepositorioConfig" 
+          typeName="CustomSoft.Template.Repositorio.SqlServer.OperacionEmpresaRepositorio" 
+          libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="IOperacionEmpresaDominioConfig" 
+           typeName="CustomSoft.Template.Dominio.OperacionEmpresa.OperacionEmpresaDominio" 
+          libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="IOperacionMotorDominioConfig" 
+           typeName="CustomSoft.Template.Dominio.OperacionMotor.OperacionMotorDominio" 
+          libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="IOperacionMotorRepositorioConfig" 
+           typeName="CustomSoft.Template.Repositorio.SqlServer.OperacionMotorRepositorio" 
+        libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+      
+      <add contractName="INotificacionDominioConfig" 
+           typeName="CustomSoft.Template.Dominio.NotificacionDominio" 
+          libraryName="CustomSoft.Template.Dominio" />
+      
+      <add contractName="INotificacionRepositorioConfig" 
+           typeName="CustomSoft.Template.Repositorio.SqlServer.NotificacionRepositorio" 
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="IArticuloDominioConfig"
+           typeName="CustomSoft.Template.Dominio.ArticuloDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IArticuloRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.ArticuloRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+      
+      <add contractName="IOperacionesEdocumentCOVEDominioConfig"
+           typeName="CustomSoft.Template.Dominio.EdocumentCOVE.OperacionesEdocumentCOVEDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IOperacionEdocumentCOVERepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.OperacionEdocumentCOVERepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="IDigitalizacionVUCEMDominioConfig"
+           typeName="CustomSoft.Template.Dominio.DigitalizacionVUCEM.DigitalizacionVUCEMDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IDigitalizacionVUCEMRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.DigitalizacionVUCEMRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="ITokenDominioConfig"
+          typeName="CustomSoft.Template.Dominio.TokenDominio"
+         libraryName="CustomSoft.Template.Dominio" />
+      
+     <add contractName="IUrlTemporalDominioConfig"
+           typeName="CustomSoft.Template.Dominio.UrlTemporalDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IUrlTemporalRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.UrlTemporalRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+      
+     <add contractName="ITasaCambioDominioConfig"
+           typeName="CustomSoft.Template.Dominio.TasaCambioDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="ITasaCambioRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.TasaCambioRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+      
+      <add contractName="IEstadoClimaDominioConfig"
+           typeName="CustomSoft.Template.Dominio.EstadoClimaDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IEstadoClimaRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.EstadoClimaRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName="IGraficasDominioConfig"
+           typeName="CustomSoft.Template.Dominio.GraficasDominio"
+          libraryName="CustomSoft.Template.Dominio" />
+
+      <add contractName="IGraficasRepositorioConfig"
+           typeName="CustomSoft.Template.Repositorio.SqlServer.GraficasRepositorio.GraficasRepositorio"
+           libraryName="CustomSoft.Template.Repositorio.SqlServer" />
+      
+      
+    </factorySettings>
+  </factoryConfiguration>
+  <!--fin agregado-->
+  
+
+  <appSettings>
+    <add key="rutaLogging" value="C:\WcfLogging"/>
+    <add key="separadorTipoExcepcion" value="`"/>
+    <add key="pathTokens" value="C:\Softrade\Tokens\"/>
+    
+    <!--Sección de mensajes de error para reglas de negocio-->
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="errorArchivoCorrupto" value="El archivo está corrupto, intente enviarlo nuevamente"/>
+    <add key="errorArchivoNoSubido" value="El archivo físico no se guardó correctamente"/>
+    <add key="errorSubidaFTP" value="El FTP no responde o no pudo guardar el archivo"/>
+    <add key="ErrorNombreExistente"  value="El Nombre del usuario ya existe"/>
+    <add key="ErrorCorreoExistente" value="El Correo ya existe"/>
+    <add key="ErrorLoginExistente"  value="El Login del usuario ya existe seleccione otro" />    
+    <add key="errorCambioContrasena"  value="Hubo un error al intentar cambiar la contraseña, notifica con sistemas" />
+    <add key="UsuarioOPasswordIncorrectos" value="El usuario o Password son incorrectos. "/>
+    <add key="errorNoExisteRFC" value="El RFC buscado no existe"/>
+    <add key="errorFallaPedimento" value="El Pedimento no se pudo ingresar a la Base de datos"/>    
+    
+    
+    <add key="errorVucemService" value="El WCFVUCEM no respondio a Peticion de Listado  consulte al Admin" />
+    
+    <add key="errorWhereVacio" value="La Variable Where no puede venir vacio, favor de verificar" />
+    <add key="errorSQLException" value="Se tuvo una Exception en SQL favor de informar al admin" />
+    <add key="PedimentosPenError" value="No se Pudo obtener el listado de los pedimentos a consultar en VUCEM, posible error de SQL" />
+    <add key="DiaEjecucionError" value="No se Pudo ejectutar Tarea de DiaEjecucion informa al Admin" />
+    <add key="IdEmpresaError" value="El IdEmpresa no puede venir en 0 Revisar Rquest" />
+    <add key="errorInsercionListado" value="Se tuvo una Exception en la insercion del listado en BD, consulte al Admin"/>
+    <add key="erroeCierreListadoBD" value="Se tuvo una exception en el cierre del listado en BD, Consulta al Admin"/>
+    <add key="errorListadoPedimentos" value="Se Tuvo una exception en la consulta de los pedimentos en BD a procesar, posible error de SQL"/>
+    <add key="errorVucemPedimento" value="El WCFVUCEM no respondio a Pedicion de Pedimentos Completo, consulte al admin" />
+    <add key="errorVUCEMPartida" value="el WCFVUCEM no respondio a peticion de Partida, consulte al admin"/>
+    
+    <add key="errorNoExistenArticulos" value="No se encontraron Artículos con el filtro buscado"/>
+
+    <add key="errorNoExtrajoCove" value="El COVE no pudo ser extraido, puede que el Servidor no respondiera o las credenciales enviadas son incorrectas"/>
+    <add key="coveNoInsertado" value="El COVE no se insertó en la base de datos, aunque si fue extraido del VUCEM, verifica con Sistemas"/>
+    
+    <add key="errorDescargaDigitalizacionVUCEM" value="El documento buscado no pudo ser insertado o descargado, notifique al área de Sistemas. O intente más tarde"/>
+    <add key="errorInsertarDigitalizacion" value="No se pudo insertar en la base de datos, verificar con Sistemas"/>
+
+    <add key="tokenNoEncontrado" value="El token buscado no existe en la BD." />
+    <add key="tokenExpirado" value="El token ha expirado, genera un nuevo token" />
+    
+    <add key="errorUrlTemporal" value="La url buscada no existe, o está caducada." />
+    <add key="pedimentoSinCuentaGasto" value="LEste pedimento no tiene cuentas de gasto asignadas" />
+    
+
+    <add key="paginaActualDefault"      value="1" />
+    <add key="paginaRegistrosDefault"   value="20" />
+    <add key="paginaRegistrosTop5"   value="5" />
+    <add key="paginaRegistrosNotificacion"   value="10" />    
+
+
+    <add key="errorWhereVacio" value="La Variable Where no puede venir vacio, favor de verificar" />
+    <add key="errorSQLException" value="Se tuvo una Exception en SQL favor de informar al admin" />
+
+    <add key="NoPatenteError" value="No se Encontro Patente relacionada, favor de revisar" />
+    <add key="errorSegundoIntento" value="No se pudo Obtener pedimento, con Fiel de AA" />
+    <add key="errorSegundoIntentoPar" value="No se pudo Obtener partida, con Fiel de AA" />
+
+
+    <add key="FTPService" value="http://207.198.117.41:8090/FTPService.svc" />
+    <add key="CatalogosService" value= "http://207.198.117.44:2121/CatalogosService.svc" />
+    <add key="VUCEMService" value= "http://207.198.117.41:8787/VUCEMService.svc" />
+
+    <!--<add key="CatalogosService" value="http://localhost:2121/CatalogosService.svc" />-->
+    <!--<add key="FTPService" value= "http://localhost:8090/FTPService.svc" />-->
+    <!--<add key="VUCEMService" value= "http://192.168.2.160:8585/VUCEMService.svc" />-->
+    <!--<add key="VUCEMService" value= "http://192.168.2.111:8585/VUCEMService.svc" />-->
+    
+  
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+  </appSettings>
+
+  <connectionStrings>
+   <add name="cnSqlServerMainSoft"
+         connectionString="Data Source=207.198.117.43\CS2015SVR01,1444;Initial Catalog=MainSoft;Persist Security Info=True;User ID=salterno15;Password=SgwY725Pa"/>
+  <add name="cnSqlServerSoftTrade"
+         connectionString="Data Source=207.198.117.43\CS2015SVR01,1444;Initial Catalog=BASF;Persist Security Info=True;User ID=salterno15;Password=SgwY725Pa"/>
+   <add name="cnSqlServerCatalogo"
+         connectionString="Data Source=207.198.117.43\CS2015SVR01,1444;Initial Catalog=CatalogosAnexo22;Persist Security Info=True;User ID=salterno15;Password=SgwY725Pa"/>
+  <add name="cnSqlServerEmpresas" 
+       connectionString="Data Source=207.198.117.43\CS2015SVR01,1444;Initial Catalog={0};Persist Security Info=True;User ID=salterno15;Password=SgwY725Pa" />
+     <add name="cnSqlServerSac" 
+         connectionString="server=sac32soft.no-ip.net\\ESEACEK8,1444;database=SACDB;application name=SAC Web;Persist Security Info=False;uid=offixrel2;pwd=3dataINTER12;Min Pool Size=10;Max Pool Size=100;" />
+  </connectionStrings>
+  
+  
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5"/>
+  </system.web>
+  <system.serviceModel>
+    <!--nuevo-->
+    <bindings>
+      <basicHttpBinding>
+        <binding  maxReceivedMessageSize="999999999" maxBufferPoolSize="999999999" maxBufferSize="999999999"></binding>
+      </basicHttpBinding>
+    </bindings>
+    <client />
+    <services>
+      <service name="CustomSoft.Template.Servicios.Seguridad.SoftradeService">
+        <endpoint address="" binding="basicHttpBinding" contract="CustomSoft.Template.Servicios.Seguridad.Contratos.ISoftradeService" />
+      </service>
+    </services>
+    <!--nuevo fin-->
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <!-- Para evitar revelar información de los metadatos, establezca los valores siguientes en false antes de la implementación -->
+          <serviceMetadata httpGetEnabled="true"/>
+          <!-- Para recibir detalles de las excepciones en los fallos, con el fin de poder realizar la depuración, establezca el valor siguiente en true. Para no revelar información sobre las excepciones, establézcalo en false antes de la implementación -->
+          <!--<serviceDebug includeExceptionDetailInFaults="true"/>-->
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
+  </system.serviceModel>
+  <system.webServer>
+    <!--<modules runAllManagedModulesForAllRequests="true"/>-->
+    <!--
+        Para examinar el directorio raíz de la aplicación web durante la depuración, establezca el valor siguiente en true.
+        Establézcalo en false antes de la implementación para evitar revelar información sobre la carpeta de aplicación web.
+      -->
+    <!--<directoryBrowse enabled="true"/>-->
+  </system.webServer>
+
+
+</configuration>

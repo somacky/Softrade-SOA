@@ -1,0 +1,31 @@
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\obj\Debug\CustomSoft.Template.Dominio.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\obj\Debug\CustomSoft.Template.Dominio.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Repositorio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\MCS.Factory.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Repositorio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\obj\Debug\CustomSoft.Template.Dominio.csprojResolveAssemblyReference.cache
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Excepciones.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Excepciones.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Excepciones.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Repositorio.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\MCS.Factory.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Dominio.Excepciones.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\bin\Debug\CustomSoft.Template.Repositorio.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad\bin\CustomSoft.Template.Dominio.dll.config
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad\bin\CustomSoft.Template.Dominio.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad\bin\CustomSoft.Template.Dominio.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\obj\Debug\CustomSoft.Template.Dominio.csprojResolveAssemblyReference.cache
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\obj\Debug\CustomSoft.Template.Dominio.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Dominio\obj\Debug\CustomSoft.Template.Dominio.pdb

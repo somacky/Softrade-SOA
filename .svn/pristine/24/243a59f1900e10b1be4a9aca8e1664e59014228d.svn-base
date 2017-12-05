@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" />
+  <xs:complexType name="CatalogoGeneralOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q1:OperacionResponseBaseOfEntidadCatalogocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoGeneralOperacionResponse" nillable="true" type="tns:CatalogoGeneralOperacionResponse" />
+  <xs:complexType name="ListadoCatalogoGeneralOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q2:OperacionResponseBaseOfArrayOfEntidadCatalogocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListadoCatalogoGeneralOperacionResponse" nillable="true" type="tns:ListadoCatalogoGeneralOperacionResponse" />
+</xs:schema>

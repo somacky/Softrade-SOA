@@ -1,0 +1,12 @@
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Modelo\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Modelo\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Modelo\obj\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Modelo\obj\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad\bin\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad\bin\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Debug\CustomSoft.Template.Modelo.dll.config
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\obj\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\obj\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\obj\Debug\CustomSoft.Template.Modelo.csprojResolveAssemblyReference.cache

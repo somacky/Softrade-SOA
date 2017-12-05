@@ -1,0 +1,16 @@
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\obj\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.csprojResolveAssemblyReference.cache
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\obj\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\obj\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\FTPSoftrade.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\bin\Debug\FTPSoftrade.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\obj\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.csprojResolveAssemblyReference.cache
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\obj\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Servicios.Seguridad.Contratos\obj\Debug\CustomSoft.Template.Servicios.Seguridad.Contratos.pdb

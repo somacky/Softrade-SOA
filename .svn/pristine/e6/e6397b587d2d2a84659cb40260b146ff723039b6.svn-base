@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" />
+  <xs:complexType name="AduanaSeccionItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q1:OperacionRequestBaseOfAduanaSeccioncYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q2:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AduanaSeccionItemOperacionRequest" nillable="true" type="tns:AduanaSeccionItemOperacionRequest" />
+  <xs:complexType name="ClavePedimentoItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q3:OperacionRequestBaseOfClavePedimentocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q4:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClavePedimentoItemOperacionRequest" nillable="true" type="tns:ClavePedimentoItemOperacionRequest" />
+  <xs:complexType name="TipoComprobanteItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q5:OperacionRequestBaseOfTipoComprobantecYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q6:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoComprobanteItemOperacionRequest" nillable="true" type="tns:TipoComprobanteItemOperacionRequest" />
+  <xs:complexType name="TipoMovimientoItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q7:OperacionRequestBaseOfTipoMovimientocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q8:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoMovimientoItemOperacionRequest" nillable="true" type="tns:TipoMovimientoItemOperacionRequest" />
+  <xs:complexType name="TipoOperacionItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q9:OperacionRequestBaseOfTipoOperacioncYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q10:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoOperacionItemOperacionRequest" nillable="true" type="tns:TipoOperacionItemOperacionRequest" />
+  <xs:complexType name="TipoDocumentoItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q11:OperacionRequestBaseOfTipoDocumentocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q12:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoDocumentoItemOperacionRequest" nillable="true" type="tns:TipoDocumentoItemOperacionRequest" />
+  <xs:complexType name="FraccionItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q13:OperacionRequestBaseOfFraccioncYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q14:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FraccionItemOperacionRequest" nillable="true" type="tns:FraccionItemOperacionRequest" />
+  <xs:complexType name="ContribucionGravamenDerechoItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q15:OperacionRequestBaseOfContribucionGravamenDerechocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q16:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContribucionGravamenDerechoItemOperacionRequest" nillable="true" type="tns:ContribucionGravamenDerechoItemOperacionRequest" />
+  <xs:complexType name="TipoPruebaSuficienteItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q17:OperacionRequestBaseOfTipoPruebaSuficientecYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q18:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoPruebaSuficienteItemOperacionRequest" nillable="true" type="tns:TipoPruebaSuficienteItemOperacionRequest" />
+  <xs:complexType name="TipoContenedorItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q19:OperacionRequestBaseOfTipoContenedorcYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q20:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoContenedorItemOperacionRequest" nillable="true" type="tns:TipoContenedorItemOperacionRequest" />
+  <xs:complexType name="TipoGuiaItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q21:OperacionRequestBaseOfTipoGuiacYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q22:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoGuiaItemOperacionRequest" nillable="true" type="tns:TipoGuiaItemOperacionRequest" />
+  <xs:complexType name="FormaPagoItemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q23="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q23:OperacionRequestBaseOfFormaPagocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q24:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FormaPagoItemOperacionRequest" nillable="true" type="tns:FormaPagoItemOperacionRequest" />
+  <xs:complexType name="CatalogoGeneralOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q25="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q25:OperacionRequestBaseOfEntidadCatalogocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q26:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoGeneralOperacionRequest" nillable="true" type="tns:CatalogoGeneralOperacionRequest" />
+</xs:schema>

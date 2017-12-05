@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PedimentoBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdAduanaSeccionVW" type="xs:int" />
+      <xs:element minOccurs="0" name="IdEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPatente" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPedimento" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreAduanaDespacho" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroAduanaDespacho" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPedimento" type="xs:long" />
+      <xs:element minOccurs="0" name="Patente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PedimentoBase" nillable="true" type="tns:PedimentoBase" />
+  <xs:complexType name="ArrayOfEstadosPedimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EstadosPedimento" nillable="true" type="tns:EstadosPedimento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstadosPedimento" nillable="true" type="tns:ArrayOfEstadosPedimento" />
+  <xs:complexType name="EstadosPedimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cantidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DescripcionSubEstado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcionestado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" type="xs:int" />
+      <xs:element minOccurs="0" name="Factura" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Secuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="SubEstado" type="xs:int" />
+      <xs:element minOccurs="0" name="Valor" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EstadosPedimento" nillable="true" type="tns:EstadosPedimento" />
+  <xs:complexType name="VUCEMBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PasswordWSVucem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RFC" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VUCEMBase" nillable="true" type="tns:VUCEMBase" />
+</xs:schema>

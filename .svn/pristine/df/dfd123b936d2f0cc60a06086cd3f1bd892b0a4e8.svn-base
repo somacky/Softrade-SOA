@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="717ef60a-4619-4a6d-ba85-d8eb76fc84f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.2.160:2121/CatalogosService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CatalogosService.xsd" MetadataType="Schema" ID="ac5a44c4-dfbf-48a3-a84e-279b0f3e4f7a" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CatalogosService1.xsd" MetadataType="Schema" ID="3f52c121-4a80-4fd5-b225-fbfc8fef16ad" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd6" />
+    <MetadataFile FileName="CatalogosService2.xsd" MetadataType="Schema" ID="cf0f3897-ef53-442c-bf9b-0bcfd59468f3" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd4" />
+    <MetadataFile FileName="CatalogosService3.xsd" MetadataType="Schema" ID="cf128a17-d68f-456f-a012-25b1aaa3f8ee" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CatalogosService4.xsd" MetadataType="Schema" ID="2e5feef8-6bbd-4f70-8f44-6a8f9d2f5daa" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd5" />
+    <MetadataFile FileName="CatalogosService.disco" MetadataType="Disco" ID="2d3a5984-081d-473c-909f-5fe105d5e1f2" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?disco" />
+    <MetadataFile FileName="CatalogosService5.xsd" MetadataType="Schema" ID="cbd085c8-0a7a-4fec-9c4a-66815a6299c3" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CatalogosService.wsdl" MetadataType="Wsdl" ID="e5c224b4-5006-4874-95ad-cf4a12322ca2" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?wsdl" />
+    <MetadataFile FileName="CatalogosService6.xsd" MetadataType="Schema" ID="b53f3757-4c93-4d5f-b8ce-d8e135f7cb5f" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd3" />
+    <MetadataFile FileName="CatalogosService7.xsd" MetadataType="Schema" ID="1f1f44d6-82b8-4f60-9e32-164848b21e21" SourceId="1" SourceUrl="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd7" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

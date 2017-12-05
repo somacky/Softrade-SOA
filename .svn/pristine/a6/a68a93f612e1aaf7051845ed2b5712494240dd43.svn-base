@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F81F0628-EBE2-4C86-BEB5-31C353C0C3F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomSoft.Template.Dominio</RootNamespace>
+    <AssemblyName>CustomSoft.Template.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\CustomSoft.Template.Servicios.Seguridad\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MCS.Factory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=012f222d6ca5f71f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\MCS.Factory.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CatalogoEspecificoDominio.cs" />
+    <Compile Include="CuentaGastoDominio\CuentaGastoDominio.cs" />
+    <Compile Include="CuentaGastoDominio\CuentaGastoRutinasDominio.cs" />
+    <Compile Include="DocumentoExpedienteDigital\DocumentoExpedienteDigitalDominio.cs" />
+    <Compile Include="DocumentoExpedienteDigital\DocumentoExpedienteDigitalRutinasDominio.cs" />
+    <Compile Include="ExpedienteDigital\ExpedienteDigitalDominio.cs" />
+    <Compile Include="ExpedienteDigital\ExpedienteDigitalRutinasDominio.cs" />
+    <Compile Include="NotificacionDominio.cs" />
+    <Compile Include="OperacionEmpresa\OperacionEmpresaDominio.cs" />
+    <Compile Include="OperacionMotor\OperacionMotorDominio.cs" />
+    <Compile Include="OperacionMotor\OperacionMotorRutinasDominio.cs" />
+    <Compile Include="OperacionPedimento\OperacionPedimentoDominio.cs" />
+    <Compile Include="OperacionPedimento\OperacionPedimentoRutinasDominio.cs" />
+    <Compile Include="Reporteador\Reporteadordominio.cs" />
+    <Compile Include="RFCDominio.cs" />
+    <Compile Include="Service References\CatalogosService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FTPSoftrade\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\VUCEMService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioDominio\CriptografiaDominio.cs" />
+    <Compile Include="UsuarioDominio\UsuarioDominio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioDominio\UsuarioDominioRutinas.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomSoft.Template.Dominio.Contratos\CustomSoft.Template.Dominio.Contratos.csproj">
+      <Project>{6d6ef385-67d0-4383-83b9-13e87b1ae7e4}</Project>
+      <Name>CustomSoft.Template.Dominio.Contratos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomSoft.Template.Dominio.Excepciones\CustomSoft.Template.Dominio.Excepciones.csproj">
+      <Project>{f3ab7db8-c563-4742-8aa2-ca2a2b42c08b}</Project>
+      <Name>CustomSoft.Template.Dominio.Excepciones</Name>
+    </ProjectReference>
+    <!--=======
+    <ProjectReference Include="..\CustomSoft.Template.Dominio.Excepciones\CustomSoft.Template.Dominio.Excepciones.csproj">
+      <Project>{F3AB7DB8-C563-4742-8AA2-CA2A2B42C08B}</Project>
+      <Name>CustomSoft.Template.Dominio.Excepciones</Name>
+    </ProjectReference>
+>>>>>>> .r30-->
+    <ProjectReference Include="..\CustomSoft.Template.Modelo\CustomSoft.Template.Modelo.csproj">
+      <Project>{65253aa4-3da5-488c-abaa-550df1a83068}</Project>
+      <Name>CustomSoft.Template.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomSoft.Template.Repositorio.Contratos\CustomSoft.Template.Repositorio.Contratos.csproj">
+      <Project>{a05ab729-9ec8-4299-bbd7-17c69df8074f}</Project>
+      <Name>CustomSoft.Template.Repositorio.Contratos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\CustomSoft.Template.Modelo.FTPSoftrade.RecibeArchivoResponse.datasource" />
+    <None Include="Properties\DataSources\FTPSoftrade.Template.Modelo.Servicio.Response.RecibeArchivoResponse.datasource" />
+    <None Include="Service References\CatalogosService\CatalogosService.wsdl" />
+    <None Include="Service References\CatalogosService\CatalogosService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CustomSoft.Template.Dominio.CatalogosService.CatalogoGeneralOperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CatalogosService\CustomSoft.Template.Dominio.CatalogosService.ListadoCatalogoGeneralOperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService.wsdl" />
+    <None Include="Service References\FTPSoftrade\FTPService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FTPSoftrade\FTPService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VucemService.wsdl" />
+    <None Include="Service References\VUCEMService\VUCEMService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VUCEMService\VUCEMService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CatalogosService\" />
+    <WCFMetadataStorage Include="Service References\FTPSoftrade\" />
+    <WCFMetadataStorage Include="Service References\VUCEMService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\CatalogosService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\VUCEMService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VUCEMService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\FTPService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FTPSoftrade\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

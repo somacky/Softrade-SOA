@@ -1,0 +1,159 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Empresa;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Modelo.VUCEMService;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.DigitalizacionVUCEM
+{
+    public partial class DigitalizacionVUCEMDominio
+    {
+        public Modelo.Dominio.Entidades.DigitalizacionVUCEM LlamarDigitalizacionVUCEM(Modelo.Dominio.Entidades.DigitalizacionVUCEM documento, ConsultaDigitalizacionVUCEMPor consultaPor)
+        {
+            documento = GenerarLlamadoEspecifico(documento, consultaPor);
+            var request = new ConsultaDocumentoDigitalizadoVUCEMRequest()
+            {
+                request = new DocumentoVUCEMRequest()
+                {
+                    Entidad = documento.Documento
+                }
+
+            };
+            
+            var vucem = Util.ServicioVUCEM();
+            var response = vucem.ConsultaDocumentoDigitalizadoVUCEM(request);
+            documento.ArchivoFisico = new Archivo();
+            documento.ArchivoFisico.ArchivoBytes =
+                response.ConsultaDocumentoDigitalizadoVUCEMResult.Entidad.DocumentoPDF;
+
+            if (response.ConsultaDocumentoDigitalizadoVUCEMResult.EjecucionValida)
+                //generar el request archivo
+            {
+                documento = GetDataParaFTP(documento);
+                documento.ArchivoFisico = GuardarArchivoFTP(documento.ArchivoFisico, documento.IdCliente,
+                    documento.IdEmpresa, documento.Patente, documento.Documento.Edocument);
+            }
+            return documento;
+        }
+
+        private Modelo.Dominio.Entidades.DigitalizacionVUCEM GetDataParaFTP(
+            Modelo.Dominio.Entidades.DigitalizacionVUCEM item)
+        {
+            var io = FactoryEngine<IOperacionEmpresaDominio>.GetInstance("IOperacionEmpresaDominioConfig");
+            var req = new EntidadEmpresa()
+            {
+                OperacionEspecifica = OperacionEmpresaItem.DameDatosEmpresaXId,
+                DatosEmpresa = new Empresa()
+                {
+                    IdEmpresaVw = item.IdEmpresa
+
+                },
+                DatosPatente = new Patente()
+                {
+                    IdPatente = item.IdPatente
+                }
+            };
+            var response = io.OperacionEmpresaItem(req);
+            item.IdCliente = response.DatosEmpresa.IdClienteVw;
+            req = new EntidadEmpresa()
+            {
+                OperacionEspecifica = OperacionEmpresaItem.DameDatosPatenteXId,
+                DatosEmpresa = new Empresa()
+                {
+                    IdEmpresaVw = item.IdEmpresa
+
+                },
+                DatosPatente = new Patente()
+                {
+                    IdPatente = item.IdPatente
+                }
+            };
+            response = io.OperacionEmpresaItem(req);
+            item.Patente = response.DatosPatente.NumeroPatente;
+            return item;
+        }
+
+        private Modelo.Dominio.Entidades.DigitalizacionVUCEM GenerarLlamadoEspecifico(Modelo.Dominio.Entidades.DigitalizacionVUCEM documento, ConsultaDigitalizacionVUCEMPor consultaPor)
+        {
+
+            //var vucem = Util.ServicioVUCEM();
+            var io = FactoryEngine<IOperacionEmpresaDominio>.GetInstance("IOperacionEmpresaDominioConfig");
+            var entidad = new Modelo.Dominio.Entidades.DigitalizacionVUCEM();
+            switch (consultaPor)
+            {
+                case ConsultaDigitalizacionVUCEMPor.Empresa:
+                    var req = new EntidadEmpresa()
+                    {
+                        OperacionEspecifica = OperacionEmpresaItem.DameDatosEmpresaXId,
+                        DatosEmpresa = new Empresa()
+                        {
+                            IdEmpresaVw = documento.IdEmpresa
+
+                        },
+                        DatosPatente = new Patente()
+                        {
+                            IdPatente = documento.IdPatente
+                        }
+                    };
+                    var response = io.OperacionEmpresaItem(req);
+                    documento.Documento.RFC = response.DatosEmpresa.RFC;
+                    documento.Documento.PasswordWSVucem = response.DatosEmpresa.WebKeyVUCEM;
+                    break;
+                case ConsultaDigitalizacionVUCEMPor.Patente:
+                    req = new EntidadEmpresa()
+                    {
+                        OperacionEspecifica = OperacionEmpresaItem.DameDatosPatenteXId,
+                        DatosEmpresa = new Empresa()
+                        {
+                            IdEmpresaVw = documento.IdEmpresa
+
+                        },
+                        DatosPatente = new Patente()
+                        {
+                            IdPatente = documento.IdPatente
+                        }
+                    };
+                    response = io.OperacionEmpresaItem(req);  
+                    documento.Documento.RFC = response.DatosPatente.RFC;
+                    documento.Documento.PasswordWSVucem = response.DatosPatente.WebKeyVUCEM;
+                    break;
+            }
+            return documento;
+            //var response = vucem.ConsultaEdocumentVucem(new ConsultaEdocumentVUCEMRequest());
+        }
+
+        private Archivo LlamadoAServidorFTP(Archivo archivo)
+        {
+            var request = new RecibeArchivoRequest()
+            {
+                Item = archivo,
+                UsuarioEjecucion = "",
+                Operacion = TipoOperacionArchivo.Insertar
+            };
+            var ftp = Util.ServicioFTPSoftrade();
+            var responseFTP = ftp.OperacionArchivo(request);
+            return responseFTP.Item;
+        }
+       
+        private Archivo GuardarArchivoFTP(Archivo archivo, int idCliente, int idEmpresa, string patente, string eDocument)
+        {
+            var request = archivo;
+            request.IdCliente = idCliente;
+            request.IdEmpresa = idEmpresa;
+            request.Patente = patente;
+            //request.ExtensionArchivo = "pdf";
+            request.TipoArchivoFiltro = TipoArchivo.PDF;
+            request.NombreArchivo = eDocument;
+            request.LongitudArchivo = archivo.ArchivoBytes.Length;
+
+            return LlamadoAServidorFTP(request);
+        }
+    }
+}

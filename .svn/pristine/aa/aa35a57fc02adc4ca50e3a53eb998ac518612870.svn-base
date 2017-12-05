@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ICatalogosService" />
+                <binding name="DgieWSPortSoapBinding" />
+                <binding name="BasicHttpBinding_IGPFiltrosService" />
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://www.banxico.org.mx/DgieWSWeb/DgieWS"
+                binding="basicHttpBinding" bindingConfiguration="DgieWSPortSoapBinding"
+                contract="BanxicoService.DgieWSPort" name="DgieWSPort" />
+            <endpoint address="http://localhost:21250/GPFiltrosService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IGPFiltrosService"
+                contract="CatalogosFiltrosService.IGPFiltrosService" name="BasicHttpBinding_IGPFiltrosService" />
+            <endpoint address="http://localhost:2121/CatalogosService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICatalogosService"
+                contract="CatalogosService.ICatalogosService" name="BasicHttpBinding_ICatalogosService" />
+        </client>
+    </system.serviceModel>
+</configuration>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" />
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" />
+  <xs:complexType name="AduanaSeccion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q1:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AduanaSeccion" nillable="true" type="tns:AduanaSeccion" />
+  <xs:complexType name="ClavePedimento">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q2:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClavePedimento" nillable="true" type="tns:ClavePedimento" />
+  <xs:complexType name="TipoComprobante">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q3:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoComprobante" nillable="true" type="tns:TipoComprobante" />
+  <xs:complexType name="TipoMovimiento">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q4:CatalogosBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoMovimiento" nillable="true" type="tns:TipoMovimiento" />
+  <xs:complexType name="TipoOperacion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q5:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoOperacion" nillable="true" type="tns:TipoOperacion" />
+  <xs:complexType name="TipoDocumento">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q6:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoDocumento" nillable="true" type="tns:TipoDocumento" />
+  <xs:complexType name="Fraccion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q7:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Fraccion" nillable="true" type="tns:Fraccion" />
+  <xs:complexType name="ContribucionGravamenDerecho">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q8:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContribucionGravamenDerecho" nillable="true" type="tns:ContribucionGravamenDerecho" />
+  <xs:complexType name="TipoPruebaSuficiente">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q9:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoPruebaSuficiente" nillable="true" type="tns:TipoPruebaSuficiente" />
+  <xs:complexType name="TipoContenedor">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q10:CatalogosBase">
+        <xs:sequence>
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q11:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoContenedor" nillable="true" type="tns:TipoContenedor" />
+  <xs:complexType name="TipoGuia">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q12:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoGuia" nillable="true" type="tns:TipoGuia" />
+  <xs:complexType name="FormaPago">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q13:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FormaPago" nillable="true" type="tns:FormaPago" />
+  <xs:complexType name="EntidadCatalogo">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q14:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EntidadCatalogo" nillable="true" type="tns:EntidadCatalogo" />
+</xs:schema>

@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CustomSoft.Template.Modelo.Dominio.Base
+{
+    [DataContract]
+    public abstract class OperacionResponseBase<TEntidad> : ResponseBase where TEntidad : class
+    {
+        /// <summary>
+        /// Información de la entidad procesada como resultado de un mantenimiento 
+        /// o búsqueda de tipo GetItem
+        /// </summary>
+        [DataMember]
+        public TEntidad Item { get; set; }
+    }
+}

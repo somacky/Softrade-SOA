@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+using CustomSoft.Template.Dominio.Excepciones.Notificaciones;
+
+namespace CustomSoft.Template.Dominio
+{
+    public class NotificacionDominio : INotificacionDominio
+    {
+        private INotificacionRepositorio iNotificacionRepositorio = null;
+
+        public NotificacionDominio()
+        {
+            iNotificacionRepositorio =
+                FactoryEngine<INotificacionRepositorio>.GetInstance("INotificacionRepositorioConfig");
+        }
+
+        public ListNotificaciones OperacionNotificacion(ListNotificaciones notificacion)
+        {
+            try
+            {
+                //using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    switch (notificacion.OperacionDeNotificacion)
+                    {
+                        case Modelo.Compartido.OperacionNotificacion.Extraer:
+                            notificacion =  iNotificacionRepositorio.UltimasNotificaciones(notificacion);
+                            break;
+                        case Modelo.Compartido.OperacionNotificacion.Marcar:
+                            notificacion = iNotificacionRepositorio.MarcarNotificacionesVistas(notificacion);
+                            break;
+                    }
+                    //transaction.Complete();
+                    return notificacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NoSeEncontroNotificacionError();
+            }
+            return null;
+        }
+
+        public void Dispose()
+        {
+            iNotificacionRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

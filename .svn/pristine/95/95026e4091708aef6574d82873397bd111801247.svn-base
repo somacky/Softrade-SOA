@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.CatalogosService;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+
+
+namespace CustomSoft.Template.Dominio.OperacionPedimento
+{
+    partial class OperacionPedimentoDominio
+    {
+        public CatalogosServiceClient ServicioCatalogos()
+        {
+            var catalogosService = System.Configuration.ConfigurationSettings.AppSettings.Get("CatalogosService");
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            var endpoint =
+                new EndpointAddress(
+                    catalogosService);
+            var servicioCatalogos = new CatalogosServiceClient(basicHttpBinding, endpoint);
+            return servicioCatalogos;
+        }
+        public FTPSeguridadServiceClient ServicioFTPSoftrade()
+        {
+            var ftpService = System.Configuration.ConfigurationSettings.AppSettings.Get("FTPService");            
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };            
+            var endpoint =
+                new EndpointAddress(
+                   ftpService);
+            var servicioConsultarPedimento = new FTPSeguridadServiceClient(basicHttpBinding, endpoint);
+            return servicioConsultarPedimento;
+        }
+        private Archivo ConvertirArchivo(Archivo archivo)
+        {
+            var request = new Archivo()
+            {
+                ArchivoBytes = archivo.ArchivoBytes,
+                TipoArchivoFiltro = TipoArchivo.ArchivoM,
+                ExtensionArchivo = archivo.ExtensionArchivo,
+                FechaSubida = archivo.FechaSubida,
+                LongitudArchivo = archivo.LongitudArchivo,
+                NombreArchivo = archivo.NombreArchivo,
+                Patente = archivo.Patente,
+                ExtensionData = archivo.ExtensionData,
+                IdCliente = archivo.IdCliente,
+                
+            };
+            return request;
+        }
+        private CatalogoGeneralOperacionRequest RequestTipoDocumentoXAbreviatura(string tipoDocumento, int idUsuarioEjecucion)
+        {
+            return new CatalogoGeneralOperacionRequest()
+            {
+                ExtraccionCatalogo = TipoExtraccionCatalogo.ExtraerIdXAbreviatura,
+                IdUsuarioEjecucion = idUsuarioEjecucion,
+                Item = new EntidadCatalogo()
+                {
+                    Alias = tipoDocumento,
+                    CatalogoALlamar = Catalogo.TipoDocumento
+                }
+            };
+        }
+    }
+
+
+}

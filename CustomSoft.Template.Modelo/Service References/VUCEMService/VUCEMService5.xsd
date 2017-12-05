@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CustomSoft.Template.Modelo.Dominio.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfDatosReg516Candados">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg516Candados" nillable="true" type="tns:DatosReg516Candados" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg516Candados" nillable="true" type="tns:ArrayOfDatosReg516Candados" />
+  <xs:complexType name="DatosReg516Candados">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdentificadorTransporte" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroCandado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg516Candados" nillable="true" type="tns:DatosReg516Candados" />
+  <xs:complexType name="ArrayOfDatosReg513Compensaciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg513Compensaciones" nillable="true" type="tns:DatosReg513Compensaciones" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg513Compensaciones" nillable="true" type="tns:ArrayOfDatosReg513Compensaciones" />
+  <xs:complexType name="DatosReg513Compensaciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveAduanaOriginal" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveGravamen" type="xs:float" />
+      <xs:element minOccurs="0" name="FechaPagoOriginal" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdAduanaSeccionCompensacion" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveGravamen" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporteCompensacion" type="xs:float" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumentoOUltimaRecti" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPatenteOriginal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg513Compensaciones" nillable="true" type="tns:DatosReg513Compensaciones" />
+  <xs:complexType name="ArrayOfDatosReg510ContribucionesNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg510ContribucionesNPed" nillable="true" type="tns:DatosReg510ContribucionesNPed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg510ContribucionesNPed" nillable="true" type="tns:ArrayOfDatosReg510ContribucionesNPed" />
+  <xs:complexType name="DatosReg510ContribucionesNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveContribucion" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="IdContribucionGravamenDerechoNPed" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporteContribucion" type="xs:float" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg510ContribucionesNPed" nillable="true" type="tns:DatosReg510ContribucionesNPed" />
+  <xs:complexType name="ArrayOfDatosReg508CuentasAduanerasNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg508CuentasAduanerasNPed" nillable="true" type="tns:DatosReg508CuentasAduanerasNPed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg508CuentasAduanerasNPed" nillable="true" type="tns:ArrayOfDatosReg508CuentasAduanerasNPed" />
+  <xs:complexType name="DatosReg508CuentasAduanerasNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadUnidadesMedida" type="xs:float" />
+      <xs:element minOccurs="0" name="ClaveInstitucionEmisoraCuenta" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveTipoCuentaGarantia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveTipoGarantia" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaConstancia" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FolioConstancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImporteTotalGarantia" type="xs:float" />
+      <xs:element minOccurs="0" name="NumeroCuentaAduanera" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="TitulosAsignados" type="xs:float" />
+      <xs:element minOccurs="0" name="ValorUnitarioTitulo" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg508CuentasAduanerasNPed" nillable="true" type="tns:DatosReg508CuentasAduanerasNPed" />
+  <xs:complexType name="DatosReg601DatosGeneralesPrevioConsolidado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CURPAgenteAduanal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CURPCausante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveAduanaSeccion" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveDestinoMercancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveImportacionExportacion" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveTramiteAduanero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdClaveAduanaSeccion" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveDestinoMercancia" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveImportacionExportacion" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveTramiteAduanero" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroPatente" type="xs:int" />
+      <xs:element minOccurs="0" name="RFCAgenteAduanal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RFCCausante" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg601DatosGeneralesPrevioConsolidado" nillable="true" type="tns:DatosReg601DatosGeneralesPrevioConsolidado" />
+  <xs:complexType name="ArrayOfDatosReg512Descargos">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg512Descargos" nillable="true" type="tns:DatosReg512Descargos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg512Descargos" nillable="true" type="tns:ArrayOfDatosReg512Descargos" />
+  <xs:complexType name="DatosReg512Descargos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadMercancia" type="xs:float" />
+      <xs:element minOccurs="0" name="ClaveAduanaOriginal" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveTramiteAduaneroOriginal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveUnidadMedida" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaPagoOriginal" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FraccionArancelariaOriginal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdAduanaSeccionDescargos" type="xs:int" />
+      <xs:element minOccurs="0" name="IdFraccionArancelariaOriginal" type="xs:int" />
+      <xs:element minOccurs="0" name="IdUnidadMedidaDescargo" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumentoOUltimaRecti" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroPatenteOriginal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg512Descargos" nillable="true" type="tns:DatosReg512Descargos" />
+  <xs:complexType name="ArrayOfDatosReg520Destinatario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg520Destinatario" nillable="true" type="tns:DatosReg520Destinatario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg520Destinatario" nillable="true" type="tns:ArrayOfDatosReg520Destinatario" />
+  <xs:complexType name="DatosReg520Destinatario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Calle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveIdentificadorFiscalDestinatario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoPostal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Destinatario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdPaisDestinatario" type="xs:int" />
+      <xs:element minOccurs="0" name="MunicipioCiudad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroExterior" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroInterior" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaisDestinatario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg520Destinatario" nillable="true" type="tns:DatosReg520Destinatario" />
+  <xs:complexType name="ArrayOfDatosReg702DiferenciaNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg702DiferenciaNPed" nillable="true" type="tns:DatosReg702DiferenciaNPed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg702DiferenciaNPed" nillable="true" type="tns:ArrayOfDatosReg702DiferenciaNPed" />
+  <xs:complexType name="DatosReg702DiferenciaNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveGravamen" type="xs:int" />
+      <xs:element minOccurs="0" name="DescripcionGravamen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveGravamen" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportePago" type="xs:float" />
+      <xs:element minOccurs="0" name="PedimentoRectificado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg702DiferenciaNPed" nillable="true" type="tns:DatosReg702DiferenciaNPed" />
+  <xs:complexType name="ArrayOfDatosReg514DocumentoAmparaFormaPago">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg514DocumentoAmparaFormaPago" nillable="true" type="tns:DatosReg514DocumentoAmparaFormaPago" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg514DocumentoAmparaFormaPago" nillable="true" type="tns:ArrayOfDatosReg514DocumentoAmparaFormaPago" />
+  <xs:complexType name="DatosReg514DocumentoAmparaFormaPago">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaExpedicion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporteSaldoDisponible" type="xs:float" />
+      <xs:element minOccurs="0" name="ImporteTotalDocumento" type="xs:float" />
+      <xs:element minOccurs="0" name="ImporteTotalPedimento" type="xs:float" />
+      <xs:element minOccurs="0" name="NombreDependencia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumentoAmpara" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg514DocumentoAmparaFormaPago" nillable="true" type="tns:DatosReg514DocumentoAmparaFormaPago" />
+  <xs:complexType name="ArrayOfDatosReg506Fechas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg506Fechas" nillable="true" type="tns:DatosReg506Fechas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg506Fechas" nillable="true" type="tns:ArrayOfDatosReg506Fechas" />
+  <xs:complexType name="DatosReg506Fechas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveTipoFecha" type="xs:int" />
+      <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg506Fechas" nillable="true" type="tns:DatosReg506Fechas" />
+  <xs:complexType name="ArrayOfDatosReg507IdentificadoresNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg507IdentificadoresNPed" nillable="true" type="tns:DatosReg507IdentificadoresNPed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg507IdentificadoresNPed" nillable="true" type="tns:ArrayOfDatosReg507IdentificadoresNPed" />
+  <xs:complexType name="DatosReg507IdentificadoresNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveIdentificador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Complemento1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Complemento2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Complemento3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdTipoIdentificador" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg507IdentificadoresNPed" nillable="true" type="tns:DatosReg507IdentificadoresNPed" />
+  <xs:complexType name="DatosReg515InformeIndustriaAut">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AduanaSeccionDespacho" type="xs:int" />
+      <xs:element minOccurs="0" name="AduanaSeccionEntrada" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdAduanaSeccionDespacho" type="xs:int" />
+      <xs:element minOccurs="0" name="IdAduanaSeccionEntrada" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Patente" type="xs:int" />
+      <xs:element minOccurs="0" name="Pedimento" type="xs:int" />
+      <xs:element minOccurs="0" name="RFCIE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoCambio" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg515InformeIndustriaAut" nillable="true" type="tns:DatosReg515InformeIndustriaAut" />
+  <xs:complexType name="ArrayOfDatosReg558ObservacionesNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg558ObservacionesNPart" nillable="true" type="tns:DatosReg558ObservacionesNPart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg558ObservacionesNPart" nillable="true" type="tns:ArrayOfDatosReg558ObservacionesNPart" />
+  <xs:complexType name="DatosReg558ObservacionesNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Consecutivo" type="xs:int" />
+      <xs:element minOccurs="0" name="FraccionArancelaria" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="ObservacionesNivelPartida" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg558ObservacionesNPart" nillable="true" type="tns:DatosReg558ObservacionesNPart" />
+  <xs:complexType name="ArrayOfDatosReg511ObservacionesNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg511ObservacionesNPed" nillable="true" type="tns:DatosReg511ObservacionesNPed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg511ObservacionesNPed" nillable="true" type="tns:ArrayOfDatosReg511ObservacionesNPed" />
+  <xs:complexType name="DatosReg511ObservacionesNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Consecutivo" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ObservacionesNivelPedimento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg511ObservacionesNPed" nillable="true" type="tns:DatosReg511ObservacionesNPed" />
+  <xs:complexType name="ArrayOfDatosReg560PartidaIndAutomotriz">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg560PartidaIndAutomotriz" nillable="true" type="tns:DatosReg560PartidaIndAutomotriz" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg560PartidaIndAutomotriz" nillable="true" type="tns:ArrayOfDatosReg560PartidaIndAutomotriz" />
+  <xs:complexType name="DatosReg560PartidaIndAutomotriz">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadMercanciaUM" type="xs:float" />
+      <xs:element minOccurs="0" name="ClavePaisDestinoFinal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClavePaisVendeIE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveUnidadMedida" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveUnidadMedidaImpuestos" type="xs:int" />
+      <xs:element minOccurs="0" name="FraccionArancelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdClavePaisDestinoFinal" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClavePaisVendeIE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdClaveUnidadMedida" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveUnidadMedidaImpuestos" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportePrecioSinIncrementables" type="xs:float" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="ValorMercanciaConformeUnidadMedida" type="xs:float" />
+      <xs:element minOccurs="0" name="ValosFacturaUSD" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg560PartidaIndAutomotriz" nillable="true" type="tns:DatosReg560PartidaIndAutomotriz" />
+  <xs:complexType name="ArrayOfDatosReg551Partidas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg551Partidas" nillable="true" type="tns:DatosReg551Partidas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg551Partidas" nillable="true" type="tns:ArrayOfDatosReg551Partidas" />
+  <xs:complexType name="DatosReg551Partidas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadMercanciaComercial" type="xs:float" />
+      <xs:element minOccurs="0" name="CantidadMercanciaTarifa" type="xs:float" />
+      <xs:element minOccurs="0" name="ClaveEntidadFederativaComprador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveEntidadFederativaOrigen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveEntidadFederativaVendedor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveEntidadfederativaDestino" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveMetodoValoracionMercancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClavePaisIE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClavePaisMercancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveUnidadMedidaComercial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveUnidadMedidadTarifa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveValorAduanaInfluido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoProducto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CuentasAduanerasNPartida" nillable="true" type="tns:ArrayOfDatosReg555CuentasAduanerasNPart" />
+      <xs:element minOccurs="0" name="DescripcionMercancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FraccionArancelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GravamenNPartida" nillable="true" type="tns:ArrayOfDatosReg557GravamenNPart" />
+      <xs:element minOccurs="0" name="IVA" type="xs:float" />
+      <xs:element minOccurs="0" name="IdClaveEntidadFederativaComprador" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveEntidadFederativaOrigen" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveEntidadFederativaVendedor" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveEntidadfederativaDestino" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveMetodoValoracionMercancia" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClavePaisMercancia" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveUnidadMedidaComercial" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveUnidadMedidadTarifa" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveValorAduanaInfluido" type="xs:int" />
+      <xs:element minOccurs="0" name="IdFraccionArancelaria" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPaisDestinatario" type="xs:int" />
+      <xs:element minOccurs="0" name="IdentificadoresNPartida" nillable="true" type="tns:ArrayOfDatosReg554IdentificadoreNPart" />
+      <xs:element minOccurs="0" name="ImportePrecio" type="xs:float" />
+      <xs:element minOccurs="0" name="ImportePrecioUnitario" type="xs:float" />
+      <xs:element minOccurs="0" name="ImporteValorAduana" type="xs:float" />
+      <xs:element minOccurs="0" name="MarcaProducto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mercancias" nillable="true" type="tns:ArrayOfDatosReg552Mercancias" />
+      <xs:element minOccurs="0" name="ModeloProducto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="ObservacionesNPart" nillable="true" type="tns:ArrayOfDatosReg558ObservacionesNPart" />
+      <xs:element minOccurs="0" name="Permisos" nillable="true" type="tns:ArrayOfDatosReg553Permisos" />
+      <xs:element minOccurs="0" name="SubdivisionFraccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TasasNPartida" nillable="true" type="tns:ArrayOfDatosReg556TasasNPart" />
+      <xs:element minOccurs="0" name="ValorFacturaDolares" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg551Partidas" nillable="true" type="tns:DatosReg551Partidas" />
+  <xs:complexType name="ArrayOfDatosReg555CuentasAduanerasNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg555CuentasAduanerasNPart" nillable="true" type="tns:DatosReg555CuentasAduanerasNPart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg555CuentasAduanerasNPart" nillable="true" type="tns:ArrayOfDatosReg555CuentasAduanerasNPart" />
+  <xs:complexType name="DatosReg555CuentasAduanerasNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CLaveInstitucionCuentaGarantia" type="xs:int" />
+      <xs:element minOccurs="0" name="CantidadUnidadesMedida" type="xs:float" />
+      <xs:element minOccurs="0" name="ClaveTipoGarantia" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaConstancia" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FolioConstancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FraccionAracelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImporteTotalGarantia" type="xs:float" />
+      <xs:element minOccurs="0" name="NumeroCuentaGarancia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="TipoGarantiaVUCEM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TitulosAsignados" type="xs:float" />
+      <xs:element minOccurs="0" name="ValorUnitarioTitulo" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg555CuentasAduanerasNPart" nillable="true" type="tns:DatosReg555CuentasAduanerasNPart" />
+  <xs:complexType name="ArrayOfDatosReg557GravamenNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg557GravamenNPart" nillable="true" type="tns:DatosReg557GravamenNPart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg557GravamenNPart" nillable="true" type="tns:ArrayOfDatosReg557GravamenNPart" />
+  <xs:complexType name="DatosReg557GravamenNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveFormaPago" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveGravamen" type="xs:int" />
+      <xs:element minOccurs="0" name="FraccionArancelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdClaveContribucionGravamenDerechoNPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveFormaPagoNPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporteGravamen" type="xs:float" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="Tasas" nillable="true" type="tns:ArrayOfDatosReg556TasasNPart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg557GravamenNPart" nillable="true" type="tns:DatosReg557GravamenNPart" />
+  <xs:complexType name="ArrayOfDatosReg556TasasNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg556TasasNPart" nillable="true" type="tns:DatosReg556TasasNPart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg556TasasNPart" nillable="true" type="tns:ArrayOfDatosReg556TasasNPart" />
+  <xs:complexType name="DatosReg556TasasNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveContribucion" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveTipoTasa" type="xs:int" />
+      <xs:element minOccurs="0" name="FraccionArancelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdClaveContribucionGravamenDerechoTasasNPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTasaContribucion" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="TasaContribucion" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg556TasasNPart" nillable="true" type="tns:DatosReg556TasasNPart" />
+  <xs:complexType name="ArrayOfDatosReg554IdentificadoreNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg554IdentificadoreNPart" nillable="true" type="tns:DatosReg554IdentificadoreNPart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg554IdentificadoreNPart" nillable="true" type="tns:ArrayOfDatosReg554IdentificadoreNPart" />
+  <xs:complexType name="DatosReg554IdentificadoreNPart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CLaveIdentificador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Complemento1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Complemento2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Complemento3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FraccionAracelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCLaveIdentificador" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg554IdentificadoreNPart" nillable="true" type="tns:DatosReg554IdentificadoreNPart" />
+  <xs:complexType name="ArrayOfDatosReg552Mercancias">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg552Mercancias" nillable="true" type="tns:DatosReg552Mercancias" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg552Mercancias" nillable="true" type="tns:ArrayOfDatosReg552Mercancias" />
+  <xs:complexType name="DatosReg552Mercancias">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FraccionAracelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KilometrajeVehiculo" type="xs:long" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroIdentificacionVehicular" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg552Mercancias" nillable="true" type="tns:DatosReg552Mercancias" />
+  <xs:complexType name="ArrayOfDatosReg553Permisos">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg553Permisos" nillable="true" type="tns:DatosReg553Permisos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg553Permisos" nillable="true" type="tns:ArrayOfDatosReg553Permisos" />
+  <xs:complexType name="DatosReg553Permisos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CLavePermiso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CantidadMercanciaUM" type="xs:float" />
+      <xs:element minOccurs="0" name="FirmaElectronica" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FraccionAracelaria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCLavePermiso" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPermisos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValorComercialDolares" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg553Permisos" nillable="true" type="tns:DatosReg553Permisos" />
+  <xs:complexType name="DatosReg701Rectificacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AduanaSeccionOriginal" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveAduanaSeccion" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveDocumentoOriginal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaveTramiteAduanero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaOperacionOriginal" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaPago" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPatente" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPedimentoOriginal" type="xs:int" />
+      <xs:element minOccurs="0" name="PatenteAgenteAduanalOriginal" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg701Rectificacion" nillable="true" type="tns:DatosReg701Rectificacion" />
+  <xs:complexType name="ArrayOfDatosReg509TasasNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosReg509TasasNPed" nillable="true" type="tns:DatosReg509TasasNPed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosReg509TasasNPed" nillable="true" type="tns:ArrayOfDatosReg509TasasNPed" />
+  <xs:complexType name="DatosReg509TasasNPed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaveContribucionGravamenDerechoTasasNPed" type="xs:int" />
+      <xs:element minOccurs="0" name="ClaveTipoTasa" type="xs:int" />
+      <xs:element minOccurs="0" name="IdClaveContribucionGravamenDerechoTasasNPed" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTasaContribucion" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroDocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="TasaContribucion" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosReg509TasasNPed" nillable="true" type="tns:DatosReg509TasasNPed" />
+</xs:schema>

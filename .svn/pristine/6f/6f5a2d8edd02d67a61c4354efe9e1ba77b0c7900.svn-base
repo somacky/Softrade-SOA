@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using MCS.ApplicationBlock.Logging;
+using MCS.ApplicationBlock.Logging.Providers;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class OperacionMotorController : IDisposable
+    {
+        private IOperacionMotorDominio operacionMotorDominio;
+
+        public OperacionMotorController()
+        {
+            operacionMotorDominio = FactoryEngine<IOperacionMotorDominio>.GetInstance("IOperacionMotorDominioConfig");
+        }
+
+        public OperacionMotorResponse EjecutaOperacionMotor(OperacionMotorRequest request)
+        {
+            OperacionMotorResponse response = new OperacionMotorResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = string.Empty,
+                Item = null
+            };
+            try
+            {
+                switch (request.Operacion)
+                {
+                    //1er Operacion
+                    case TipoOperacionMotor.DiaEjecucion:
+                        {
+                            response = operacionMotorDominio.DiaEjecucion(request);
+                        }
+                        break;
+                    //2da Operacion
+                    case TipoOperacionMotor.ListadoPedimentosPendientesAConsultar:
+                        {
+                            response = operacionMotorDominio.DameListadoPedimentosPendientes(request);
+                        }
+                        break;
+                    //3ra Operacion se tiene LOOP
+                    case TipoOperacionMotor.ListadoPedimentosVUCEM:
+                        {
+                            response = operacionMotorDominio.InvocaServicioVUCEMListadoPedimentos(request);
+                        }
+                        break;
+                    //4ta Operacion Insert en BD LOOP
+                    case TipoOperacionMotor.InsertaBulk:
+                        {
+                            response = operacionMotorDominio.InsertaListadoPedimentoBulk(request);
+                        }
+                        break;
+                    //5ta Operacion CierraListado en BD LOOP
+                    case TipoOperacionMotor.CierraListadoPedimento:
+                        {
+                            response = operacionMotorDominio.CierraListadoPedimento(request);
+                        }
+                        break;
+                    //6ta Operacion ListadoPedimentos a Consultar LOOP
+                    case TipoOperacionMotor.ConsultaListadoPedimentosBD:
+                        {
+                            response = operacionMotorDominio.DameListaPedimentos(request);
+                        }
+                        break;
+                    //7ma Operacion Consulta Pedimento Completo VUCEM LOOP
+                    case TipoOperacionMotor.ConsultaPedimentoVUCEM:
+                        {
+                            response = operacionMotorDominio.InvocaServicioVUCEMPedimento(request);
+                        }
+                        break;
+                    //7ma Operacion Consulta Partida VUCEM LOOP
+                    case TipoOperacionMotor.ConsultaPartidaVUCEM:
+                        {
+                            response = operacionMotorDominio.InvocaServicioVUCEMPartida(request);
+                        }
+                        break;
+                    //8va Operacion RegistraToken Pedimento
+                    case TipoOperacionMotor.RegistraToken:
+                        {
+                            response = operacionMotorDominio.RegistraToken(request);
+                        }
+                        break;
+                    //9na OperacionCierraPedimento
+                    case TipoOperacionMotor.CierraPedimento:
+                        {
+                            response = operacionMotorDominio.CierraPedimento(request);
+                        }
+                        break;
+                }
+                response.EjecucionValida = true;
+            }
+            catch (Exception ex)
+            {
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+                }
+            }
+            return response;
+        }
+
+        public void Dispose()
+        {
+            operacionMotorDominio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

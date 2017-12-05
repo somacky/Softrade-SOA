@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
+
+namespace CustomSoft.Template.Modelo.Dominio.Entidades
+{
+    [DataContract]
+    public class Usuario
+    {
+        [DataMember]
+        public string NombreUsuario { get; set; }
+
+        [DataMember]
+        public string Login { get; set; }
+
+        [DataMember]
+        public string Password { get; set; }
+
+        [DataMember]
+        public bool EsActivo { get; set; }
+
+        [DataMember]
+        public DateTime FechaRegistro { get; set; }
+    }
+}

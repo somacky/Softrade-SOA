@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.EnterpriseServices;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using MCS.ApplicationBlock.Logging;
+using MCS.ApplicationBlock.Logging.Providers;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class ArchivoController : IDisposable
+    {
+        private IRecibirArchivoDominio recibirArchivoDominio;
+
+        public ArchivoController()
+        {
+            recibirArchivoDominio = FactoryEngine<IRecibirArchivoDominio>.GetInstance("IRecibirArchivoDominioConfig");
+        }
+
+        public RecibeArchivoResponse ProcesarSubirArchivos(RecibeArchivoRequest request)
+        {
+            var response = new RecibeArchivoResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = string.Empty,
+                Item = null                
+            };
+            try
+            {
+                switch (request.TipoArchivoFiltro)
+                {
+                    case TipoArchivo.ArchivoM:
+                        response.Item = recibirArchivoDominio.ProcesarArchivoM(request.Item);
+                        break;
+                    case TipoArchivo.CFDI:
+                        break;
+                    case TipoArchivo.PDF:
+                        break;
+                }
+                response.EjecucionValida = true;
+            }
+            catch (Exception ex)
+            {
+                response.MensajeError = ex.Message;
+                using (var helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+                }
+            }
+            return null;
+        }
+
+        public void Dispose()
+        {           
+            throw new NotImplementedException();
+        }
+    }
+}

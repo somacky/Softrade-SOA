@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CatalogosService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" />
+      <xsd:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICatalogosService_ExtraerItemAduanaSeccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemAduanaSeccion" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemAduanaSeccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemAduanaSeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemClavePedimento_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemClavePedimento" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemClavePedimento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemClavePedimentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemTipoComprobante_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemTipoComprobante" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemTipoComprobante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemTipoComprobanteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemTipoMovimiento_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemTipoMovimiento" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemTipoMovimiento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemTipoMovimientoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemTipoOperacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemTipoOperacion" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerItemTipoOperacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerItemTipoOperacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoDocumentoItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoDocumentoItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoDocumentoItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoDocumentoItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerFraccionItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerFraccionItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerFraccionItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerFraccionItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerContribucionGravamenDerechoItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerContribucionGravamenDerechoItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerContribucionGravamenDerechoItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerContribucionGravamenDerechoItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoPruebaSuficienteItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoPruebaSuficienteItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoPruebaSuficienteItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoPruebaSuficienteItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoContenedorItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoContenedorItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoContenedorItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoContenedorItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoGuiaItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoGuiaItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerTipoGuiaItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerTipoGuiaItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerFormaPagoItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerFormaPagoItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerFormaPagoItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerFormaPagoItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerCatalogoItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerCatalogoItem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogosService_ExtraerCatalogoItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtraerCatalogoItemResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICatalogosService">
+    <wsdl:operation name="ExtraerItemAduanaSeccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemAduanaSeccion" message="tns:ICatalogosService_ExtraerItemAduanaSeccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemAduanaSeccionResponse" message="tns:ICatalogosService_ExtraerItemAduanaSeccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemClavePedimento">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemClavePedimento" message="tns:ICatalogosService_ExtraerItemClavePedimento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemClavePedimentoResponse" message="tns:ICatalogosService_ExtraerItemClavePedimento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemTipoComprobante">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemTipoComprobante" message="tns:ICatalogosService_ExtraerItemTipoComprobante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemTipoComprobanteResponse" message="tns:ICatalogosService_ExtraerItemTipoComprobante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemTipoMovimiento">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemTipoMovimiento" message="tns:ICatalogosService_ExtraerItemTipoMovimiento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemTipoMovimientoResponse" message="tns:ICatalogosService_ExtraerItemTipoMovimiento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemTipoOperacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemTipoOperacion" message="tns:ICatalogosService_ExtraerItemTipoOperacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerItemTipoOperacionResponse" message="tns:ICatalogosService_ExtraerItemTipoOperacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoDocumentoItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoDocumentoItem" message="tns:ICatalogosService_ExtraerTipoDocumentoItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoDocumentoItemResponse" message="tns:ICatalogosService_ExtraerTipoDocumentoItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerFraccionItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerFraccionItem" message="tns:ICatalogosService_ExtraerFraccionItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerFraccionItemResponse" message="tns:ICatalogosService_ExtraerFraccionItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerContribucionGravamenDerechoItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerContribucionGravamenDerechoItem" message="tns:ICatalogosService_ExtraerContribucionGravamenDerechoItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerContribucionGravamenDerechoItemResponse" message="tns:ICatalogosService_ExtraerContribucionGravamenDerechoItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoPruebaSuficienteItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoPruebaSuficienteItem" message="tns:ICatalogosService_ExtraerTipoPruebaSuficienteItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoPruebaSuficienteItemResponse" message="tns:ICatalogosService_ExtraerTipoPruebaSuficienteItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoContenedorItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoContenedorItem" message="tns:ICatalogosService_ExtraerTipoContenedorItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoContenedorItemResponse" message="tns:ICatalogosService_ExtraerTipoContenedorItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoGuiaItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoGuiaItem" message="tns:ICatalogosService_ExtraerTipoGuiaItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerTipoGuiaItemResponse" message="tns:ICatalogosService_ExtraerTipoGuiaItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerFormaPagoItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerFormaPagoItem" message="tns:ICatalogosService_ExtraerFormaPagoItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerFormaPagoItemResponse" message="tns:ICatalogosService_ExtraerFormaPagoItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerCatalogoItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerCatalogoItem" message="tns:ICatalogosService_ExtraerCatalogoItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogosService/ExtraerCatalogoItemResponse" message="tns:ICatalogosService_ExtraerCatalogoItem_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICatalogosService" type="tns:ICatalogosService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExtraerItemAduanaSeccion">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerItemAduanaSeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemClavePedimento">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerItemClavePedimento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemTipoComprobante">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerItemTipoComprobante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemTipoMovimiento">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerItemTipoMovimiento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerItemTipoOperacion">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerItemTipoOperacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoDocumentoItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerTipoDocumentoItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerFraccionItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerFraccionItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerContribucionGravamenDerechoItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerContribucionGravamenDerechoItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoPruebaSuficienteItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerTipoPruebaSuficienteItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoContenedorItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerTipoContenedorItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerTipoGuiaItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerTipoGuiaItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerFormaPagoItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerFormaPagoItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtraerCatalogoItem">
+      <soap:operation soapAction="http://tempuri.org/ICatalogosService/ExtraerCatalogoItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CatalogosService">
+    <wsdl:port name="BasicHttpBinding_ICatalogosService" binding="tns:BasicHttpBinding_ICatalogosService">
+      <soap:address location="http://192.168.2.160:2121/CatalogosService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

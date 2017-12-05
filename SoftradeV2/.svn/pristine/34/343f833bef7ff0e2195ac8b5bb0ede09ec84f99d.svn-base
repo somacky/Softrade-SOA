@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Repositorio.Contratos;
+
+namespace CustomSoft.Template.Dominio.UsuarioDominio
+{
+    partial class UsuarioDominioRutinas
+    {
+        //private void ValidarDatosUsuarioNuevo(U item)
+        //{
+        //    
+        //}
+    }
+}

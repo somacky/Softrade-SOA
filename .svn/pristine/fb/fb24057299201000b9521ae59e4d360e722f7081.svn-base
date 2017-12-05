@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    public class DocumentoExpedienteDigitalRepositorio : IDocumentoExpedienteDigitalRepositorio
+    {
+        private SqlHelper helper = null;
+
+        public void InicializarConexion(TipoBaseDatos baseDatos)
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(baseDatos));
+        }    
+        public Archivo DameItemXIdExpedienteDigital(int idExpedienteDigital)
+        {
+            var item = new Archivo();
+            var parametros = new SqlParameterItem("@pIdExpedienteDigital", SqlDbType.Int, idExpedienteDigital);            
+            InicializarConexion(TipoBaseDatos.Softrade);            
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameListaXId", parametros);
+            while (reader.Read())
+            {
+                item = new Archivo()
+                {
+                    IdArchivo = reader.GetInt32(reader.GetOrdinal("IdExpedienteDigital")),
+                    IdEmpresa = reader.GetInt32(reader.GetOrdinal("IdEmpresaVW")),
+                    NombreArchivo = reader.GetString(reader.GetOrdinal("NombreOrigen")),
+                    NuevoNombreArchivo = reader.GetString(reader.GetOrdinal("NombreDestino")),
+                    PathDestino = reader.GetString(reader.GetOrdinal("Path"))                                     
+                };
+            }
+            return item;
+        }
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

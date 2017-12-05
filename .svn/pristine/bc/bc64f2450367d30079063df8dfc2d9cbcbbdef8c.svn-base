@@ -1,0 +1,130 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Dominio.Excepciones.Pedimento;
+using CustomSoft.Template.Dominio.VUCEMService;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.OperacionPedimento
+{
+    partial class OperacionPedimentoDominio : IOperacionPedimentoDominio
+    {
+        private IOperacionPedimentoRepositorio iOperacionPedimentoRepositorioRepositorio = null;
+
+        public OperacionPedimentoDominio()
+        {
+            iOperacionPedimentoRepositorioRepositorio = FactoryEngine<IOperacionPedimentoRepositorio>.GetInstance("IPedimentoRepositorioConfig");
+        }
+        #region Metodos Privados
+
+        private VucemOperacionPedimentoCompletoRequest NormalizaDatosRequestVucem()
+        {
+            VucemOperacionPedimentoCompletoRequest reques = new VucemOperacionPedimentoCompletoRequest()
+            {
+                Consulta = TipoConsultaPedimento.PedimentoCompleto,
+                Entidad = new RequestVUCEM()
+                {
+
+                }
+            };
+            return reques;
+        }
+
+        #endregion
+        public EntidadArchivoM RegistraPedimento(EntidadArchivoM pedimento)
+        {
+            var transactionOptions = new TransactionOptions();
+            transactionOptions.IsolationLevel = IsolationLevel.Serializable;
+            transactionOptions.Timeout = new TimeSpan(3000000000);
+            //Falta Validar Datos de Entrada
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
+            {
+                try
+                {
+                    pedimento.ArchivoM = PedimentoExiste(pedimento.ArchivoM);
+                    if (pedimento.ArchivoM.IdPedimento == 0)
+                    {
+                        iOperacionPedimentoRepositorioRepositorio.RegistraPedimentoBD(pedimento.ArchivoM);
+                        transaction.Complete();
+
+                        GuardarEnFTPInsertaExpedienteDigital(pedimento.ArchivoFisico, pedimento.IdUsuario);
+                        pedimento.ArchivoSubido = true;
+                    }
+                    return pedimento;
+                }
+                catch (Exception)
+                {
+                    throw new FallaInsercionPedimentoException();
+                }
+            }
+        }
+
+        private ArchivoM PedimentoExiste(ArchivoM pedimento)
+        {
+            //pedimento.IdAduanaSeccionVW = iOperacionPedimentoRepositorioRepositorio.DameIdAduanaXClave(pedimento);
+            //pedimento.IdPatente = iOperacionPedimentoRepositorioRepositorio.DameIdPatenteXNumeroPatente(pedimento);
+            return iOperacionPedimentoRepositorioRepositorio.DameIdPedimentoXPedimento(pedimento);
+        }        
+
+        private void GuardarEnFTPInsertaExpedienteDigital(Archivo archivo, int idUsuario)
+        {
+            try
+            {
+                var request = new RecibeArchivoRequest()
+                {
+                    EjecucionValida = false,
+                    Item = archivo,
+                    MensajeError = "",
+                    UsuarioEjecucion = "",
+                    Operacion = TipoOperacionArchivo.Insertar
+                };
+                //hago llamado a NAS  
+                var ftp = ServicioFTPSoftrade();
+                var response = ftp.OperacionArchivo(request);
+                //TODO: calcular idTipoDocumento a CatalogosService
+                var catalogos = ServicioCatalogos();
+                var responseCatalogos =
+                    catalogos.ExtraerCatalogoItem(RequestTipoDocumentoXAbreviatura(null, idUsuario));                
+                archivo = response.Item;
+                archivo.IdTipoDocumento = responseCatalogos.Item.Id;
+                //Aquí se hace la inserción a la tabla expediente digital
+                archivo = iOperacionPedimentoRepositorioRepositorio.InsertaExpedienteDigital(archivo, 0, idUsuario);
+                response.Item.IdArchivo = archivo.IdArchivo;
+            }
+            catch (Exception ex)
+            {
+
+                throw new ErrorArchivoFisico();
+            }
+        }
+
+        public void ConsultaPedimentoCompletoVucem(EntidadArchivoM request)
+        {
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                try
+                {
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+        }
+
+        public void Dispose()
+        {
+            iOperacionPedimentoRepositorioRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

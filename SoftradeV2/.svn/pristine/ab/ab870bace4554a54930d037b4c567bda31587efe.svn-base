@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Configuration;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+
+namespace CustomSoft.Template.Dominio.ArchivoDominio
+{
+    public partial class ArchivoDominio : IRecibirArchivoDominio
+    {
+        public Archivo ProcesarArchivoM(Archivo archivo)
+        {
+            ValidarLongitudArchivo(archivo);
+            using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                var archivoFTP = new ModeloFTP
+                {
+                    //Item = archivo,
+                    Extension = archivo.Extension,
+                    UsuarioFTP = string.Empty,
+                    Password = string.Empty,
+                    PathOrigen = GuardaArchivoEnCarpetaTemporal(archivo)
+                };
+
+                var exitoso = SubeArchivoFtp(archivoFTP);
+                //TODO:falta insertar en base de datos la ruta y nombre archivo en tablas de expediente digital
+
+                transaction.Complete();
+            }
+            return null;
+        }        
+
+
+        public Archivo ProcesarArchivoCFDI(Archivo item)
+        {
+            //var exitoso = SubeArchivoFtp(archivoFTP);
+            return null;
+        }
+
+        public Archivo ProcesarArchivoPDF(Archivo item)
+        {
+            //TODO:se tiene que enviar a la capa Repositorio el envío del doc al FTP y el insert de este doc a la base de datos.
+            throw new NotImplementedException();
+        }
+        
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

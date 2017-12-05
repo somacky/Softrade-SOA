@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Filtro;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.UsuarioDominio
+{
+    public partial class UsuarioDominio : IUsuarioDominio
+    {
+        private IUsuarioRepositorio usuarioRepositorio;
+
+        public UsuarioDominio()
+        {
+            usuarioRepositorio = FactoryEngine<IUsuarioRepositorio>.GetInstance("IUsuarioRepositorioConfig");
+        }
+
+        #region Metodos Publicos
+
+        public Usuario InsertaUsuario(Usuario item)
+        {
+            //valida los datos del usuario para hacer 
+            
+            //valido los datos depentiendo en base a sus filtros
+            ValidarDatosUsuarioNuevo(item); 
+
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                usuarioRepositorio.InsertaUsuario(item);
+
+                transaction.Complete();
+            }
+            return item;
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public Usuario Actualizar(Usuario item)
+        {
+            this.ValidarDatosUsuarioExistente(item);
+
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                usuarioRepositorio.Actualizar(item);
+                //TODO: De existir datos adicionales del usuario, debe procesarse en este bloque de transacción
+                transaction.Complete();
+            }
+
+            return item;
+        }
+
+        public Usuario GetEntidad(UsuarioFiltro filtro)
+        {
+            if (!String.IsNullOrEmpty(filtro.Login))
+            {
+                ValidarLoginExistente(filtro.Login);
+            }
+
+            Usuario usuario = usuarioRepositorio.GetEntidad(filtro);
+            //TODO: Si requiere completar datos adicional puede realizarlo en esta sección
+            return usuario;
+        }
+        #endregion
+        ////agregado por resharper para isuauriodominio
+        //public Modelo.Dominio.Entidades.Usuario InsertaUsuario(Modelo.Dominio.Entidades.Usuario item)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //
+        //public void Dispose()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public void Dispose()
+        {
+            usuarioRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        
+    }
+}

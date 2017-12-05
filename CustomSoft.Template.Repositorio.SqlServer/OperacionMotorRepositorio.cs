@@ -1,0 +1,414 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Empresa;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Motor;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    public class OperacionMotorRepositorio : IOperacionMotorRepositorio
+    {
+        private SqlHelper helper = null;
+
+        public OperacionMotorRepositorio()
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.MainSoft));
+        }
+
+        private string pBaseDatos = string.Empty;
+        public SqlHelper InicializaConexion(int pIdEmpresa)
+        {
+            pBaseDatos = Util.DameBDxIdEmpresa(pIdEmpresa);
+            //return new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+
+            //Leo la conexion que se tiene en el WEbconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, pBaseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+            return helper;
+        }
+        private List<BitacoraCOVE> DameListaCOVEConsultaBd(int pIdEmpresa)
+        {
+            var lista = new List<BitacoraCOVE>();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var reader = vHelper.ExecuteReader("spListadoCOVE_VUCEM", parametros);
+            while (reader.Read())
+            {
+                lista.Add(new BitacoraCOVE()
+                {
+                    IdBitacoraCOVEVUCEM = reader.GetInt32(reader.GetOrdinal("IdBitacoraCOVEVUCEM")),
+                    NoCOVE = reader.GetString(reader.GetOrdinal("NoCOVE")),
+                    IdCOVE = reader.GetInt32(reader.GetOrdinal("IdCOVE")),
+                    IdPatente = reader.GetInt32(reader.GetOrdinal("IdPatente")),
+                });
+            }
+            reader.Close();
+            return lista;
+        }
+        #region Medotos Privados
+
+        private bool DiasEjecucionBD(DateTime pFechaInicio)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pFechaEjecucion", SqlDbType.Date, pFechaInicio));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+            var resDias = helper.ExecuteNonQuery("usp_DiaEjecucion_Inserta", parametros);
+            return resDias;
+
+        }
+
+        /// <summary>
+        /// listado de pedimentos que se tienen que consultar, generados por la bitacora
+        /// </summary>
+        /// <returns></returns>
+        private List<ListadoPedimentosPendientes> ListadoPedimentosPendientesMotorBD(int pIdEmpresa)
+        {
+            var lista = new List<ListadoPedimentosPendientes>();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@IdBitacoraSinc", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@pIdEmpresa", SqlDbType.SmallInt, pIdEmpresa));
+            parametros.Add(new SqlParameterItem("@IdDiaEjecucion", SqlDbType.VarChar, 11, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@FechaEjecucion", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@ClaveAduanaSeccion", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@RFC", SqlDbType.Char, 20, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@WebKeyVUCEM", SqlDbType.VarChar, 64, ParameterDirection.ReturnValue));
+            //parametros.Add(new SqlParameterItem("@CURPAA", SqlDbType.VarChar, 18, ParameterDirection.ReturnValue));
+            //parametros.Add(new SqlParameterItem("@PasswordKey", SqlDbType.VarChar, 255, ParameterDirection.ReturnValue));
+            var reader = helper.ExecuteReader("usp_BitacoraSinc_DameListadoPendientePedimento", parametros);
+            while (reader.Read())
+            {
+                lista.Add(new ListadoPedimentosPendientes()
+                {
+                    IdBitacoraSinc = reader.GetInt32(reader.GetOrdinal("IdBitacoraSinc")),
+                    IdEmpresa = reader.GetInt32(reader.GetOrdinal("IdEmpresa")),
+                    IdDiaEjecucion = reader.GetInt32(reader.GetOrdinal("IdDiaEjecucion")),
+                    FechaEjecucion = reader.GetDateTime(reader.GetOrdinal("FechaEjecucion")),
+                    ClaveAduanaSeccion = reader.GetString(reader.GetOrdinal("ClaveAduanaSeccion")),
+                    RFCEmpresa = reader.GetString(reader.GetOrdinal("RFC")),
+                    WebKeyVUCEMCliente = reader.GetString(reader.GetOrdinal("WebKeyVUCEM")),
+                    //CURPAA = reader.GetString(reader.GetOrdinal("CURPAA")),
+                    //PasswordKeyAA = reader.GetString(reader.GetOrdinal("PasswordKey"))
+                });
+            }
+            reader.Close();
+            return lista;
+        }
+        /// <summary>
+        /// Funcion que busca en BD de Bitacora los COVES a consultar
+        /// </summary>
+        /// <returns></returns>
+        private List<ListadoPedimentosPendientes> ListadoCOVEsPendientesMotorBD()
+        {
+            var lista = new List<ListadoPedimentosPendientes>();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@IdBitacoraSinc", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdEmpresa", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdDiaEjecucion", SqlDbType.VarChar, 11, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@FechaEjecucion", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@ClaveAduanaSeccion", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@RFC", SqlDbType.Char, 20, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@WebKeyVUCEM", SqlDbType.VarChar, 64, ParameterDirection.ReturnValue));
+            //parametros.Add(new SqlParameterItem("@CURPAA", SqlDbType.VarChar, 18, ParameterDirection.ReturnValue));
+            //parametros.Add(new SqlParameterItem("@PasswordKey", SqlDbType.VarChar, 255, ParameterDirection.ReturnValue));
+            var reader = helper.ExecuteReader("usp_BitacoraSinc_DameListadoPendientePedimento", parametros);
+            while (reader.Read())
+            {
+                lista.Add(new ListadoPedimentosPendientes()
+                {
+                    IdBitacoraSinc = reader.GetInt32(reader.GetOrdinal("IdBitacoraSinc")),
+                    IdEmpresa = reader.GetInt32(reader.GetOrdinal("IdEmpresa")),
+                    IdDiaEjecucion = reader.GetInt32(reader.GetOrdinal("IdDiaEjecucion")),
+                    FechaEjecucion = reader.GetDateTime(reader.GetOrdinal("FechaEjecucion")),
+                    ClaveAduanaSeccion = reader.GetString(reader.GetOrdinal("ClaveAduanaSeccion")),
+                    RFCEmpresa = reader.GetString(reader.GetOrdinal("RFC")),
+                    WebKeyVUCEMCliente = reader.GetString(reader.GetOrdinal("WebKeyVUCEM")),
+                    //CURPAA = reader.GetString(reader.GetOrdinal("CURPAA")),
+                    //PasswordKeyAA = reader.GetString(reader.GetOrdinal("PasswordKey"))
+                });
+            }
+            reader.Close();
+            return lista;
+        }
+
+
+        private bool InsertaListadoBulkBD(DataTable pTabla, int pIdBitacoraSinc)
+        {
+            //SqlParameter parametros = new SqlParameter();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdBitacoraSinc", SqlDbType.SmallInt, 0, pIdBitacoraSinc));
+            parametros.Add(new SqlParameterItem("@pTabla Bulk_udm_ListadoPedimento_VUCEM_Type", SqlDbType.Structured, pTabla));
+            var rescerrado = helper.ExecuteNonQuery("usp_udm_ListadoPedimento_VUCEM_InsertaBulk", parametros);
+            //PENDIENTE A ESTE SE LE TIENE QUE PEGAR A LA BASE DE DATOS DEL CLIENTE
+            return rescerrado;
+        }
+        //HASTA AQUI ME QUEDE EL 01-09-15
+        private int InsertaListadoSoloBD(int pIdBitacoraSinc, int pIdEmpresa, string pNombreAduana, int pNumeroAduana,
+            string pNumeroPedimento, string pPatente, string pBaseDatos)
+        {
+            //SqlParameter parametros = new SqlParameter();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdBitacoraSincVW", SqlDbType.SmallInt, 0, pIdBitacoraSinc));
+            parametros.Add(new SqlParameterItem("@IdEmpresaVW", SqlDbType.SmallInt, 0, pIdEmpresa));
+            parametros.Add(new SqlParameterItem("@NombreAduanaDespacho", SqlDbType.VarChar, 255, pNombreAduana));
+            parametros.Add(new SqlParameterItem("@NumeroAduanaDespacho", SqlDbType.SmallInt, 0, pNumeroAduana));
+            parametros.Add(new SqlParameterItem("@NumeroPedimento", SqlDbType.VarChar, 8, pNumeroPedimento));
+            parametros.Add(new SqlParameterItem("@Patente", SqlDbType.VarChar, 4, pPatente));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            //Leo la conexion que se tiene en el WEbconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, pBaseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+            helper.ExecuteNonQuery("usp_udm_ListadoPedimento_VUCEM_Inserta", parametros);
+            var entero = Convert.ToInt32(helper.GetParameterOutput("@pID"));
+            return entero;
+        }
+
+        private bool CierraListadoPedimentoBD(int pIdBitacoraSinc)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdBitacoraSinc", SqlDbType.SmallInt, 0, pIdBitacoraSinc));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+            var rescerrado = helper.ExecuteNonQuery("usp_BitacoraSinc_PedimentoCerrado", parametros);
+            return rescerrado;
+        }
+        /// <summary>
+        /// Obtiene el listado de los listados consultados en VUCEM para solicitar uno por uno el pedimento
+        /// </summary>
+        /// <returns></returns>
+        private List<ListadoPedimentosXProcesar> ListadoPedimentosXProcesarBD(string pBaseDatos)
+        {
+            var lista = new List<ListadoPedimentosXProcesar>();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@IdListadoPedimento", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdBitacoraSincVW", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdEmpresaVW", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NumeroAduanaDespacho", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NumeroPedimento", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@Patente", SqlDbType.VarChar, 4, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NumeroOperacion", SqlDbType.VarChar, 100, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@RFC", SqlDbType.Char, 20, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@WebKeyVUCEM", SqlDbType.VarChar, 64, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdPedimento", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NoPartidas", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+
+            //Leo la conexion que se tiene en el Webconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, pBaseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+            var reader = helper.ExecuteReader("usp_udm_ListadoPedimento_VUCEM_DameLista", parametros);
+            while (reader.Read())
+            {
+                lista.Add(new ListadoPedimentosXProcesar()
+                {
+                    IdListadoPedimento = reader.GetInt32(reader.GetOrdinal("IdListadoPedimento")),
+                    IdBitacoraSinc = reader.GetInt32(reader.GetOrdinal("IdBitacoraSincVW")),
+                    IdEmpresa = reader.GetInt32(reader.GetOrdinal("IdEmpresaVW")),
+                    ClaveAduanaSeccion = reader.GetString(reader.GetOrdinal("NumeroAduanaDespacho")),
+                    NumeroPedimento = reader.GetString(reader.GetOrdinal("NumeroPedimento")),
+                    NumeroPatente = reader.GetString(reader.GetOrdinal("Patente")),
+                    NoOperacion = Convert.ToString(reader.GetDecimal(reader.GetOrdinal("NumeroOperacion")), CultureInfo.InvariantCulture),
+                    RFCEmpresa = reader.GetString(reader.GetOrdinal("RFC")),//duda
+                    WebKeyVUCEMCliente = reader.GetString(reader.GetOrdinal("WebKeyVUCEM")),//duda
+                    IdPedimento = reader.GetInt32(reader.GetOrdinal("IdPedimento")),
+                    NoPartidas = reader.GetInt32(reader.GetOrdinal("NoPartidas")) // NEW
+                });
+            }
+            reader.Close();
+            return lista;
+        }
+        /*
+            parametros.Add(new SqlParameterItem("@IdListadoPedimento", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdBitacoraSincVW", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@IdEmpresaVW", SqlDbType.SmallInt, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NumeroAduanaDespacho", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NumeroPedimento", SqlDbType.VarChar, 8, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@Patente", SqlDbType.VarChar, 4, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@NumeroOperacion", SqlDbType.Decimal, 0, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@RFC", SqlDbType.Char, 20, ParameterDirection.ReturnValue));
+            parametros.Add(new SqlParameterItem("@WebKeyVUCEM", SqlDbType.VarChar, 64, ParameterDirection.ReturnValue));
+            var reader = helper.ExecuteReader("usp_udm_ListadoPedimento_VUCEM_DameLista", parametros);
+            while (reader.Read())
+            {
+                lista.Add(new ListadoPedimentosXProcesar()
+                {
+                    IdListadoPedimento = reader.GetInt32(reader.GetOrdinal("IdListadoPedimento")),
+                    IdBitacoraSinc = reader.GetInt32(reader.GetOrdinal("IdBitacoraSinc")),
+                    IdEmpresa = reader.GetInt32(reader.GetOrdinal("IdEmpresa")),
+                    ClaveAduanaSeccion = reader.GetString(reader.GetOrdinal("NumeroAduanaDespacho")),
+                    NumeroPedimento = reader.GetString(reader.GetOrdinal("NumeroPedimento")),
+                    NumeroPatente = reader.GetString(reader.GetOrdinal("Patente")),
+                    NumeroOperacion = reader.GetDecimal(reader.GetOrdinal("NumeroOperacion")),
+                    RFC = reader.GetString(reader.GetOrdinal("RFC")),
+                    WebKeyVUCEM = reader.GetString(reader.GetOrdinal("WebKeyVUCEM"))
+                });
+            }
+         */
+
+        private bool RegistraTokenBD(int pIdListadoPedimento, string pNumeroOperacion, string pBaseDatos, int pNoPartidas, int pIdPedimento)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdListadoPedimento", SqlDbType.SmallInt, 0, pIdListadoPedimento));
+            parametros.Add(new SqlParameterItem("@pNumeroOperacion", SqlDbType.Decimal, 0, pNumeroOperacion));
+            parametros.Add(new SqlParameterItem("@pNoPartidas", SqlDbType.SmallInt, 0, pNoPartidas));
+            parametros.Add(new SqlParameterItem("@pIdPedimento", SqlDbType.SmallInt, 0, pIdPedimento));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+            //Leo la conexion que se tiene en el WEbconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, pBaseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+            var rescerrado = helper.ExecuteNonQuery("usp_udm_ListadoPedimento_VUCEM_RegistraToken", parametros);
+            return rescerrado;
+        }
+
+        private bool CierraPedimentoBD(int pIdListadoPedimento, int pIdPedimento, string pBaseDatos)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdListadoPedimento", SqlDbType.SmallInt, 0, pIdListadoPedimento));
+            parametros.Add(new SqlParameterItem("@pIdPedimento", SqlDbType.SmallInt, 0, pIdPedimento));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+
+            //Leo la conexion que se tiene en el WEbconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, pBaseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+
+            var rescerrado = helper.ExecuteNonQuery("usp_udm_ListadoPedimento_VUCEM_CierraPedimento", parametros);
+            return rescerrado;
+        }
+
+        private List<BitacoraEdocument> DameListaEdocumentConsultaBd(int pIdEmpresa)
+        {
+            var lista = new List<BitacoraEdocument>();
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var reader = vHelper.ExecuteReader("spListadoEdocumentBitacora", parametros);
+            while (reader.Read())
+            {
+                lista.Add(new BitacoraEdocument()
+                {
+                    IdBitacoraEdocumentVUCEM = reader.GetInt32(reader.GetOrdinal("IdBitacoraEdocumentVUCEM")),
+                    NoEdocument = reader.GetString(reader.GetOrdinal("NoEdocument")),
+                    IdPedimento = reader.GetInt32(reader.GetOrdinal("IdPedimento")),
+                    IdPatente = reader.GetInt32(reader.GetOrdinal("IdPatente")),
+                });
+            }
+            reader.Close();
+            return lista;
+        }
+        #endregion
+
+        #region Metodos Publicos
+        /// <summary>
+        /// Funcion que genera la bitacora por el dia enviado por motor para realizar su bitacora correspondiente
+        /// </summary>
+        /// <param name="pFechaInicio"></param>
+        /// <returns></returns>
+        public bool DiaEjecucion(DateTime pFechaInicio)
+        {
+            return DiasEjecucionBD(pFechaInicio);
+        }
+        /// <summary>
+        /// Funcion que obtiene el listado de los pedimentos pendientes por consultar el Listado en el SAT
+        /// </summary>
+        /// <returns></returns>
+        public List<ListadoPedimentosPendientes> ListadoPedimentosPendientesMotor(int pIdEmpresa)
+        {
+            return ListadoPedimentosPendientesMotorBD(pIdEmpresa);
+        }
+
+        /// <summary>
+        /// PENDIENTE
+        /// </summary>
+        /// <param name="pTabla"></param>
+        /// <param name="pIdBitacoraSinc"></param>
+        /// <returns></returns>
+        public int InsertaListadoBulk(int pIdBitacoraSinc, int pIdEmpresa, string pNombreAduana, int pNumeroAduana, string pNumeroPedimento, string pPatente, string pBaseDatos)
+        {
+            //var empresarepositorio = new OperacionEmpresaRepositorio();
+            //var requestRepositorio = new Empresa();
+            //requestRepositorio.IdEmpresaVw = pIdEmpresa;
+            //var vNombreBD = empresarepositorio.DameBaseDatosEmpresaXId(requestRepositorio);
+            //var res = InsertaListadoBulkBD(pTabla, pIdBitacoraSinc);
+            var res = InsertaListadoSoloBD(pIdBitacoraSinc, pIdEmpresa, pNombreAduana, pNumeroAduana, pNumeroPedimento, pPatente, pBaseDatos);
+            return res;
+
+        }
+        /// <summary>
+        /// Funcion que Cierra Pedimento de bitacora para ya no buscar en SAT
+        /// </summary>
+        /// <param name="pIdBitacoraSinc"></param>
+        /// <returns></returns>
+        public bool CierraListadoPedimento(int pIdBitacoraSinc)
+        {
+            var res = CierraListadoPedimentoBD(pIdBitacoraSinc);
+            return res;
+        }
+        /// <summary>
+        /// Funcion que obtiene el listado de pedimentos para hacer busqueda en el SAT se consulta por BD de Cliente
+        /// </summary>
+        /// <returns></returns>
+        public List<ListadoPedimentosXProcesar> ListadoPedimentosXProcesar(string pBaseDatos)
+        {
+            var res = ListadoPedimentosXProcesarBD(pBaseDatos);
+            return res;
+        }
+        /// <summary>
+        /// Funion que registra el token del pedimento ya consultado para futuras consultas
+        /// </summary>
+        /// <param name="pIdListadoPedimento"></param>
+        /// <param name="pNumeroOperacion"></param>
+        /// <returns></returns>
+        public bool RegistraToken(int pIdListadoPedimento, string pNumeroOperacion, string pBaseDatos, int pNoPartidas, int pIdPedimento)
+        {
+            var res = RegistraTokenBD(pIdListadoPedimento, pNumeroOperacion, pBaseDatos, pNoPartidas, pIdPedimento);
+            return res;
+        }
+        /// <summary>
+        /// Funcion que se ocupa cuando ya se tiene insertado en BD el Pedimento completo y ya no es necsario hacer mas consultas del mismo
+        /// </summary>
+        /// <param name="pIdListadoPedimento"></param>
+        /// <param name="pIdPedimento"></param>
+        /// <returns></returns>
+        public bool CierraPedimento(int pIdListadoPedimento, int pIdPedimento, string pBaseDatos)
+        {
+            var res = CierraPedimentoBD(pIdListadoPedimento, pIdPedimento, pBaseDatos);
+            return res;
+        }
+
+        public List<BitacoraCOVE> DameListaCOVEConsulta(int pIdEmpresa)
+        {
+            return DameListaCOVEConsultaBd(pIdEmpresa);
+        }
+
+        public List<BitacoraEdocument> DameListaEdocumentConsulta(int pIdEmpresa)
+        {
+            return DameListaEdocumentConsultaBd(pIdEmpresa);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+
+    }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b7e7bf81-c1c9-4c98-9418-846fa2e3c5ca" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8090/FTPService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FTPService.xsd" MetadataType="Schema" ID="eeca3eeb-bcb8-49da-b760-78136eeeceb8" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd4" />
+    <MetadataFile FileName="FTPService1.xsd" MetadataType="Schema" ID="ac96a651-9ac7-4307-b721-deb57e687455" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd7" />
+    <MetadataFile FileName="FTPService2.xsd" MetadataType="Schema" ID="9ef27a20-2101-40d9-a623-163264bca3b4" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd6" />
+    <MetadataFile FileName="FTPService3.xsd" MetadataType="Schema" ID="330b51ad-5847-425b-8649-8366dfd8ec31" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FTPService4.xsd" MetadataType="Schema" ID="e66c60eb-880f-48c2-a283-316cba99d3ab" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FTPService5.xsd" MetadataType="Schema" ID="d7fb3088-a356-4fe7-a96c-da849f0fd314" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd3" />
+    <MetadataFile FileName="FTPService.disco" MetadataType="Disco" ID="f30ba5c4-5352-45f8-ac85-dfc37b2a5e81" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?disco" />
+    <MetadataFile FileName="FTPService.wsdl" MetadataType="Wsdl" ID="efc85964-d286-40ff-a391-1df900059eff" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?wsdl" />
+    <MetadataFile FileName="FTPService6.xsd" MetadataType="Schema" ID="43e02861-c1fb-47ab-8d20-f50371933654" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd2" />
+    <MetadataFile FileName="FTPService7.xsd" MetadataType="Schema" ID="d27d51af-68c2-460a-bc92-9da42362f027" SourceId="1" SourceUrl="http://localhost:8090/FTPService.svc?xsd=xsd5" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

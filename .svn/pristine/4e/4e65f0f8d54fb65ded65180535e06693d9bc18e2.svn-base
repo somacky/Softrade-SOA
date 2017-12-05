@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Configuration;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Dominio.Excepciones.OperacionEmpresa;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Empresa;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.OperacionEmpresa
+{
+    public class OperacionEmpresaDominio : IOperacionEmpresaDominio
+    {
+        private IOperacionEmpresaRepositorio operacionEmpresaRepositorio;
+
+        public OperacionEmpresaDominio()
+        {
+            operacionEmpresaRepositorio = FactoryEngine<IOperacionEmpresaRepositorio>.GetInstance("IOperacionEmpresaRepositorioConfig");
+        }
+
+        #region Metodos Privados
+        
+        /// <summary>
+        /// Valida que el Idsea distinto de 0 
+        /// </summary>
+        /// <param name="request"></param>
+        private void ValidaDatosRequestId(EntidadEmpresa request)
+        {
+            if (request.DatosEmpresa.IdEmpresaVw == 0)
+            {
+                throw new IdEmpresaException();
+            }
+        }
+        #endregion
+
+        #region Metodos Publicos
+
+        //public OperacionEmpresaResponse DameBDXIdEmpresa(OperacionEmpresaRequest request)
+        //{
+        //    //Valido los datos de entrada
+        //    ValidaDatosRequestId(request);
+
+        //    var response = new OperacionEmpresaResponse();
+
+        //    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+        //    {
+        //        response.Item = operacionEmpresaRepositorio.DameBaseDatosEmpresaXId(request.Item);
+        //        transaction.Complete();
+        //    }
+        //    return response;
+
+        //}
+
+        //public OperacionEmpresaResponse DameListaEmpresas(OperacionEmpresaRequest request)
+        //{
+        //    //Valido Datos entrada
+
+        //    var response = new OperacionEmpresaResponse();
+
+        //    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+        //    {
+        //        response.Item = operacionEmpresaRepositorio.DameListaEmpresas(request.Item);
+        //        transaction.Complete();
+        //    }
+        //    return response;
+        //}
+
+        public ListaEmpresa OperacionListaEmpresa(ListaEmpresa request)
+        {
+            ListaEmpresa response = null;
+
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                switch (request.OperacionEspecifica)
+                {
+                    case OperacionEmpresaLista.DameListaEmpresaXIdPatente:
+                        response = operacionEmpresaRepositorio.DameListaEmpresaXIdPatente(request);
+                        break;
+                    case OperacionEmpresaLista.DameListaEmpresas:
+                        response = operacionEmpresaRepositorio.DameListaEmpresas(request);
+                        break;
+                    case OperacionEmpresaLista.DameListaEmpresaXIdUsuario:
+                        response = operacionEmpresaRepositorio.DameListaEmpresaXIdUsuario(request);
+                        break;
+                }
+                transaction.Complete();
+                return response;
+            }
+        }
+
+        public EntidadEmpresa OperacionEmpresaItem(EntidadEmpresa entidad)
+        {            
+                        
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                switch (entidad.OperacionEspecifica)
+                {                    
+                    //case Modelo.Compartido.OperacionEmpresaItem.DameBDXIdEmpresa:
+                    //    response = operacionEmpresaRepositorio.DameBaseDatosEmpresaXId(entidad);
+                    //    break;
+                    case Modelo.Compartido.OperacionEmpresaItem.DameDatosPatenteXId:
+                        entidad = operacionEmpresaRepositorio.DameDatosPatenteXId(entidad);
+                        break;
+                    case Modelo.Compartido.OperacionEmpresaItem.DameDatosEmpresaXId:
+                        ValidaDatosRequestId(entidad);
+                        entidad.DatosEmpresa = operacionEmpresaRepositorio.DameDatosEmpresaXId(entidad.DatosEmpresa);
+                        break;
+                }
+                transaction.Complete();
+                return entidad;
+            }
+        }
+
+        //public OperacionEmpresaResponse DameDatosEmpresaXId(OperacionEmpresaRequest request)
+        //{
+        //    //Valido Datos entrada
+
+        //    var response = new OperacionEmpresaResponse();
+
+        //    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+        //    {
+        //        response.Item = operacionEmpresaRepositorio.DameDatosEmpresaXId(request.Item);
+        //        transaction.Complete();
+        //    }
+        //    return response;
+        //}
+        #endregion
+        public void Dispose()
+        {
+            operacionEmpresaRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+    }
+}

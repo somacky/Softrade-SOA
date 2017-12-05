@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using CustomSoft.Template.Dominio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class UsuarioController :IDisposable
+    {
+        private IUsuarioDominio usuarioDominio;
+
+        public UsuarioController()
+        {
+            usuarioDominio = FactoryEngine<IUsuarioDominio>.GetInstance("IUsuarioDominioConfig");
+        }
+
+         public void Dispose()
+         {
+            usuarioDominio.Dispose();
+            GC.SuppressFinalize(this);
+         }
+    }
+
+}

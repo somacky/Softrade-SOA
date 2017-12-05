@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Request" />
+  <xs:import schemaLocation="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Response" />
+  <xs:element name="InvocaVUCEMListados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Request" minOccurs="0" name="pRequest" nillable="true" type="q1:VucemOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvocaVUCEMListadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Response" minOccurs="0" name="InvocaVUCEMListadosResult" nillable="true" type="q2:VucemOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvocaVUCEMPedimentoCompleto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Request" minOccurs="0" name="pRequest" nillable="true" type="q3:VucemOperacionPedimentoCompletoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvocaVUCEMPedimentoCompletoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Response" minOccurs="0" name="InvocaVUCEMPedimentoCompletoResult" nillable="true" type="q4:VucemOperacionPedimentoCompletoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvocaVUCEMEstatusPedimento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Request" minOccurs="0" name="pRequest" nillable="true" type="q5:VucemOperacionEstatusPedimentoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvocaVUCEMEstatusPedimentoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Response" minOccurs="0" name="InvocaVUCEMEstatusPedimentoResult" nillable="true" type="q6:VucemOperacionEstatusPedimentoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

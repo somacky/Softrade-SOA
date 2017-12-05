@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Filtro;
+
+namespace CustomSoft.Template.Repositorio.Contratos
+{
+    public interface IUsuarioRepositorio :IDisposable
+    {
+        Usuario Registrar(Usuario item);
+        Usuario InsertaUsuario(Usuario item);
+        Usuario Actualizar(Usuario item);
+        Usuario GetEntidad(Usuario filtro);
+        /// <summary>
+        /// para los datos del sql paginar la informacion
+        /// </summary>
+        /// <param name="filtro"></param>
+        /// <param name="paginacion"></param>
+        /// <returns></returns>
+        IEnumerable<Usuario> GetLista(UsuarioFiltro filtro, ref Paginacion paginacion);
+    }
+}

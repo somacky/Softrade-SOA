@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Servicio.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Servicio.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8090/FTPService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://localhost:8090/FTPService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Servicio.Base" />
+  <xs:complexType name="RecibeArchivoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Servicio.Base" base="q1:OperacionRequestBaseOfArchivoVa2qu1_SJ">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" minOccurs="0" name="Operacion" type="q2:TipoOperacionArchivo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RecibeArchivoRequest" nillable="true" type="tns:RecibeArchivoRequest" />
+</xs:schema>

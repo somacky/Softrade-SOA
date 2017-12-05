@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FTPSoftrade.Template.Modelo.Compartido" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="TipoArchivo">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ArchivoM" />
+      <xs:enumeration value="CFDI" />
+      <xs:enumeration value="PDF" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoArchivo" nillable="true" type="tns:TipoArchivo" />
+  <xs:simpleType name="TipoOperacionArchivo">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Insertar" />
+      <xs:enumeration value="Extraer" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoOperacionArchivo" nillable="true" type="tns:TipoOperacionArchivo" />
+</xs:schema>

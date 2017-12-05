@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Dominio.Excepciones.Archivo;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio
+{
+    public class ArticuloDominio: IArticuloDominio
+    {
+        private IArticuloRepositorio iArticuloRepositorio = null;
+
+        public ArticuloDominio()
+        {
+            iArticuloRepositorio =
+                FactoryEngine<IArticuloRepositorio>.GetInstance("IArticuloRepositorioConfig");
+        }
+        #region region privada
+
+        private ListaArticulos DameArticulos(ListaArticulos request)
+        {
+            var iDocumentoExpedienteDigitalDominio = FactoryEngine<IDocumentoExpedienteDigitalDominio>.GetInstance("IDocumentoExpedienteDigitalDominioConfig");
+            
+            request.ListaArticulos = new List<Articulo>();
+            switch (request.TipoGetArticulo)
+            {
+                case EnumeradoresGetArticulo.Clave:
+                    request = iArticuloRepositorio.DameListaArticulosXClave(request);
+                    break;
+                case EnumeradoresGetArticulo.Empresa:
+                    request = iArticuloRepositorio.DameListaArticulosXEmpresa(request);
+                    break;
+                case EnumeradoresGetArticulo.Fraccion:
+                    request = iArticuloRepositorio.DameListaArticulosXFraccion(request);
+                    break;
+            }
+
+            foreach (var listaArticulo in request.ListaArticulos)
+            {
+                if (listaArticulo.DocumentoExpediente.IdExpedienteDigital != 0)
+                {
+                    listaArticulo.DocumentoExpediente = iDocumentoExpedienteDigitalDominio
+                        .ExtraerDocumentoExpedienteDigital(
+                            listaArticulo.DocumentoExpediente);
+                }
+            }
+            //iDocumentoExpedienteDigitalDominio.Dispose();
+            //pedir aquí el expediente digital y los archivos con los otros de dominio
+            return request;
+        }
+        #endregion
+        public ListaArticulos GetListArticulos(ListaArticulos request)
+
+        {
+            //using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                request = DameArticulos(request);
+                //transaction.Complete();
+            }
+            return request;
+        }
+
+        public ListaArticulos InsertListaArticulos(ListaArticulos request)
+        {
+            //using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                iArticuloRepositorio.InsertaListaArticulos(request);
+                //transaction.Complete();
+            }
+            return request;
+        }
+       
+        public Articulo SubeDocumentoArticulo(Articulo articulo)
+        {
+            articulo.DocumentoExpediente.ArchivoFisico = GuardarArchivoFTP(articulo.IdCliente, articulo.IdEmpresa, articulo.DocumentoExpediente.NombreOrigen,
+                articulo.DocumentoExpediente.ArchivoFisico.ArchivoBytes, articulo.DocumentoExpediente.ArchivoFisico.ExtensionArchivo);
+            var iExpedienteDigitalDominio = FactoryEngine<IExpedienteDigitalDominio>.GetInstance("IExpedienteDigitalDominioConfig");
+            var requestED = new Modelo.Dominio.Entidades.ExpedienteDigital.ExpedienteDigital()
+            {
+                IdEmpresa = articulo.IdEmpresa,
+                IdArticulo = articulo.IdArticulo,
+                NombreOrigen = articulo.DocumentoExpediente.ArchivoFisico.NombreArchivo,
+                NombreDestino = articulo.DocumentoExpediente.ArchivoFisico.NuevoNombreArchivo,
+                Path = articulo.DocumentoExpediente.ArchivoFisico.PathDestino,
+                IdTipoDocumento = 4,
+                IdUsuario = articulo.IdUsuario
+            };
+            iExpedienteDigitalDominio.InsertarExpedienteDigital(requestED);
+            return articulo;
+        }
+
+        private Archivo GuardarArchivoFTP(int idCliente, int idEmpresa, string nombre, byte[] archivoBytes, string extensionArchivo)
+        {
+            var request = new Archivo()
+            {
+                IdCliente = idCliente,
+                IdEmpresa = idEmpresa,
+                //Patente = patente,
+                NombreArchivo = nombre,
+                ExtensionArchivo = extensionArchivo,
+                ArchivoBytes = archivoBytes,
+                TipoArchivoFiltro = TipoArchivo.Otros,
+                LongitudArchivo = archivoBytes.Length,
+
+            };
+
+            return LlamadoAServidorFTP(request);
+        }
+
+        private Archivo LlamadoAServidorFTP(Archivo archivo)
+        {
+            var request = new RecibeArchivoRequest()
+            {
+                Item = archivo,
+                UsuarioEjecucion = "",
+                Operacion = TipoOperacionArchivo.Insertar
+            };
+            var ftp = Util.ServicioFTPSoftrade();
+            var responseFTP = ftp.OperacionArchivo(request);
+            return responseFTP.Item;
+        }
+
+        public void Dispose()
+        {
+            iArticuloRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

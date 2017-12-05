@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" />
+  <xs:complexType name="EntidadCatalogo">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q1:CatalogosBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EntidadCatalogo" nillable="true" type="tns:EntidadCatalogo" />
+  <xs:complexType name="CatalogoRequerido">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Dominio.Base" base="q2:CatalogoRequeridoBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoRequerido" nillable="true" type="tns:CatalogoRequerido" />
+  <xs:complexType name="ArrayOfEntidadCatalogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EntidadCatalogo" nillable="true" type="tns:EntidadCatalogo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEntidadCatalogo" nillable="true" type="tns:ArrayOfEntidadCatalogo" />
+</xs:schema>

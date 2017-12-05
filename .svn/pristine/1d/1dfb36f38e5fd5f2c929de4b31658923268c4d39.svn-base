@@ -1,0 +1,136 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades.ExpedienteDigital;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    public class ExpedienteDigitalRepositorio : IExpedienteDigitalRepositorio
+    {
+        private SqlHelper helper = null;
+        private string baseDatos = string.Empty;
+
+        public ExpedienteDigitalRepositorio()
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+        }
+        public SqlHelper InicializaConexion(int pIdEmpresa)
+        {
+            baseDatos = Util.DameBDxIdEmpresa(pIdEmpresa);
+            //pBaseDatos = "BASFPrueba";
+            //return new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+
+            //Leo la conexion que se tiene en el WEbconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, baseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+            return helper;
+        }
+
+        public ExpedienteDigital InsertaExpedienteDigital(ExpedienteDigital expediente)
+        {
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdEmpresaVW", SqlDbType.Int, expediente.IdEmpresa));
+            parametros.Add(new SqlParameterItem("@pIdCuentaGasto", SqlDbType.Int, expediente.IdCuentaGasto));
+            parametros.Add(new SqlParameterItem("@pIdArticulo", SqlDbType.Int, expediente.IdArticulo));
+            parametros.Add(new SqlParameterItem("@pNombreOrigen", SqlDbType.VarChar, 100, expediente.NombreOrigen));
+            parametros.Add(new SqlParameterItem("@pNombreDestino", SqlDbType.VarChar, 100, expediente.NombreDestino));
+            parametros.Add(new SqlParameterItem("@pPath", SqlDbType.VarChar, 300, expediente.Path));
+            parametros.Add(new SqlParameterItem("@pIdTipoDocumentoVW", SqlDbType.Int, expediente.IdTipoDocumento));
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.Int, expediente.IdUsuario));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            helper = InicializaConexion(expediente.IdEmpresa);
+            helper.ExecuteNonQuery("[usp_ExpedienteDigital_Inserta]", parametros);
+            expediente.IdExpedienteDigital = Convert.ToInt16(helper.GetParameterOutput("@pID"));
+            return expediente;            
+        }
+        
+
+        public ListaExpedienteDigital ObtenerListaDeArchivos(string where, ListaExpedienteDigital request, int idUsuario)
+        {
+            var listaExpedienteDigital = new List<ExpedienteDigital>();
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pWhere", SqlDbType.VarChar, 4000, where));
+            parametros.Add(new SqlParameterItem("@pPagina", SqlDbType.SmallInt, request.ListaPaginacion.Pagina));
+            parametros.Add(new SqlParameterItem("@pRegistros", SqlDbType.SmallInt, request.ListaPaginacion.Registros));                            
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.SmallInt, request.IdUsuario));
+            helper = InicializaConexion(idUsuario);
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameListaXWhere", parametros);            
+            while (reader.Read())
+            {                
+                listaExpedienteDigital.Add(new ExpedienteDigital()
+                {                    
+                    IdExpedienteDigital = reader.GetInt32(reader.GetOrdinal("IdExpedienteDigital")),
+                    Empresa = reader.GetString(reader.GetOrdinal("Empresa")),
+                    Identificador = reader.GetString(reader.GetOrdinal("Identificador")),
+                    TipoDocumento = reader.GetString(reader.GetOrdinal("TipoDocumento")),
+                    FechaSubida = reader.GetDateTime(reader.GetOrdinal("TimeStamp"))
+                });                                   
+            }
+            reader.Close();
+            request.ListaPaginacion.TotalRegistros = ObtenerTotalRegistros(where, request, idUsuario);            
+            request.ListaDocumentos = listaExpedienteDigital;
+            return request;
+        }
+
+        public ListaExpedienteDigital ObtenerListaDeArchivosTop5(ListaExpedienteDigital request, int idTipoDocumento, int idUsuario)
+        {
+            var listaExpedienteDigital = new List<ExpedienteDigital>();
+            var parametros = new List<SqlParameterItem>();            
+            parametros.Add(new SqlParameterItem("@pPagina", SqlDbType.SmallInt, request.ListaPaginacion.Pagina));
+            parametros.Add(new SqlParameterItem("@pRegistros", SqlDbType.SmallInt, request.ListaPaginacion.Registros));
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.SmallInt, request.IdUsuario));
+            parametros.Add(new SqlParameterItem("@pIdTipoDocumento", SqlDbType.SmallInt, idTipoDocumento));
+            helper = InicializaConexion(idUsuario);
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameListaXTop5", parametros);
+            while (reader.Read())
+            {
+                listaExpedienteDigital.Add(new ExpedienteDigital()
+                {
+                    IdExpedienteDigital = reader.GetInt32(reader.GetOrdinal("IdExpedienteDigital")),
+                    Empresa = reader.GetString(reader.GetOrdinal("Empresa")),
+                    Identificador = reader.GetString(reader.GetOrdinal("Identificador")),
+                    TipoDocumento = reader.GetString(reader.GetOrdinal("TipoDocumento")),
+                    FechaSubida = reader.GetDateTime(reader.GetOrdinal("TimeStamp"))
+                });
+            }
+            reader.Close();            
+            request.ListaDocumentos = listaExpedienteDigital;
+            return request;
+        }
+
+        public int ObtenerTotalRegistros(string where, ListaExpedienteDigital request, int idUsuario)
+        {            
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pWhere", SqlDbType.VarChar, 500, where));            
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.SmallInt, request.IdUsuario));
+            //parametros.Add(new SqlParameterItem("@pTotalRegistros", SqlDbType.Int, ParameterDirection.Output));
+            helper = InicializaConexion(idUsuario);
+            var reader = helper.ExecuteReader("usp_ExpedienteDigital_DameTotalRegistrosXWhere", parametros);
+            int totalRegistros = 0;
+            while (reader.Read())
+            {
+                totalRegistros = reader.GetInt32((reader.GetOrdinal("Conteo")));
+            }
+            reader.Close();
+            return totalRegistros;
+        }
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        
+    }
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" />
+  <xs:complexType name="AduanaSeccionItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q1:OperacionResponseBaseOfAduanaSeccioncYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AduanaSeccionItemOperacionResponse" nillable="true" type="tns:AduanaSeccionItemOperacionResponse" />
+  <xs:complexType name="ClavePedimentoItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q2:OperacionResponseBaseOfClavePedimentocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClavePedimentoItemOperacionResponse" nillable="true" type="tns:ClavePedimentoItemOperacionResponse" />
+  <xs:complexType name="TipoComprobanteOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q3:OperacionResponseBaseOfTipoComprobantecYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoComprobanteOperacionResponse" nillable="true" type="tns:TipoComprobanteOperacionResponse" />
+  <xs:complexType name="TipoMovimientoItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q4:OperacionResponseBaseOfTipoMovimientocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoMovimientoItemOperacionResponse" nillable="true" type="tns:TipoMovimientoItemOperacionResponse" />
+  <xs:complexType name="TipoOperacionItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q5:OperacionResponseBaseOfTipoOperacioncYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoOperacionItemOperacionResponse" nillable="true" type="tns:TipoOperacionItemOperacionResponse" />
+  <xs:complexType name="TipoDocumentoItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q6:OperacionResponseBaseOfTipoDocumentocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoDocumentoItemOperacionResponse" nillable="true" type="tns:TipoDocumentoItemOperacionResponse" />
+  <xs:complexType name="FraccionItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q7:OperacionResponseBaseOfFraccioncYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FraccionItemOperacionResponse" nillable="true" type="tns:FraccionItemOperacionResponse" />
+  <xs:complexType name="ContribucionGravamenDerechoItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q8:OperacionResponseBaseOfContribucionGravamenDerechocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContribucionGravamenDerechoItemOperacionResponse" nillable="true" type="tns:ContribucionGravamenDerechoItemOperacionResponse" />
+  <xs:complexType name="TipoPruebaSuficienteItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q9:OperacionResponseBaseOfTipoPruebaSuficientecYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoPruebaSuficienteItemOperacionResponse" nillable="true" type="tns:TipoPruebaSuficienteItemOperacionResponse" />
+  <xs:complexType name="TipoContenedorItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q10:OperacionResponseBaseOfTipoContenedorcYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoContenedorItemOperacionResponse" nillable="true" type="tns:TipoContenedorItemOperacionResponse" />
+  <xs:complexType name="TipoGuiaItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q11:OperacionResponseBaseOfTipoGuiacYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoGuiaItemOperacionResponse" nillable="true" type="tns:TipoGuiaItemOperacionResponse" />
+  <xs:complexType name="FormaPagoItemOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q12:OperacionResponseBaseOfFormaPagocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FormaPagoItemOperacionResponse" nillable="true" type="tns:FormaPagoItemOperacionResponse" />
+  <xs:complexType name="CatalogoGeneralOperacionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q13:OperacionResponseBaseOfEntidadCatalogocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoGeneralOperacionResponse" nillable="true" type="tns:CatalogoGeneralOperacionResponse" />
+</xs:schema>

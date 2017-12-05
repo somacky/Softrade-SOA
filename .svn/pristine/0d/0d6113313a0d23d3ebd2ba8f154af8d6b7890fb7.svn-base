@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IFTPSeguridadService" />
+                <binding name="BasicHttpBinding_ISeguridadVucemService" />
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://192.168.2.160:8090/FTPService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IFTPSeguridadService"
+                contract="FTPSoftrade.IFTPSeguridadService" name="BasicHttpBinding_IFTPSeguridadService" />
+            <endpoint address="http://192.168.2.111:8585/VUCEMService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISeguridadVucemService"
+                contract="VUCEMService.ISeguridadVucemService" name="BasicHttpBinding_ISeguridadVucemService" />
+        </client>
+    </system.serviceModel>
+</configuration>

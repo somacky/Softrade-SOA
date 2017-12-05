@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    /// <summary>
+    /// clase que implementa el metodo general para la recuperar la cadena de conexion 
+    /// </summary>
+    public class Util :IDisposable
+    {
+        private SqlConnection cn;
+
+        /// <summary>
+        /// cadena de conexion?
+        /// </summary>
+        /// <returns></returns>
+        public static string ConexionSqlServer(TipoBaseDatos BaseDatosSoftrade)
+        {
+            switch (BaseDatosSoftrade)
+            {
+                case TipoBaseDatos.Catalogos:
+                    return ConfigurationManager.ConnectionStrings["cnSqlServerCatalogo"].ConnectionString;
+                case TipoBaseDatos.Softrade:
+                    return ConfigurationManager.ConnectionStrings["cnSqlServerSoftTrade"].ConnectionString;
+                case TipoBaseDatos.MainSoft:
+                    return ConfigurationManager.ConnectionStrings["cnSqlServerMainSoft"].ConnectionString;
+            }            
+            return null;
+        }
+
+        //public Util(BaseDatos BaseDatosSoftrade)
+        //{
+        //    cn = new SqlConnection(ConexionSqlServer(BaseDatosSoftrade));
+        //}
+
+        /// <summary>
+        /// funcion que ejecuta un nonquery como por ejemplo un stored procedure
+        /// </summary>
+        /// <param name="cmd"></param>
+        public void ExecuteNonQuery(SqlCommand cmd)
+        {
+            cmd.Connection = cn;
+            cn.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// esta funcion regresará un reader de un stored procedure que es la información de un select
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public SqlDataReader ExecuteReader(SqlCommand cmd)
+        {
+            cmd.Connection = cn;
+            cn.Open();
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public void Dispose()
+        {
+            if (cn != null)
+            {
+                if (cn.State == ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+                cn.Dispose();
+            }
+
+            GC.SuppressFinalize(this);
+        }
+
+
+    }
+}

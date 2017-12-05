@@ -1,0 +1,93 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using MCS.ApplicationBlock.Logging;
+using MCS.ApplicationBlock.Logging.Providers;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class ArticuloController : IDisposable
+    {
+         private IArticuloDominio iArticuloDominio = null;
+
+        public ArticuloController()
+        {
+            iArticuloDominio = FactoryEngine<IArticuloDominio>.GetInstance("IArticuloDominioConfig");
+        }
+
+        public OperacionArticuloResponse OperacionArticulo(OperacionArticuloRequest request)
+        {
+            var response = new OperacionArticuloResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = string.Empty,
+                IdUsuarioEjecucion = request.IdUsuarioEjecucion
+            };
+
+            try
+            {
+                request.Item.Paginas = request.Item.Paginas.ConfiguracionPaginacionDefault();
+                switch (request.Operacion)
+                {
+                    case Modelo.Compartido.OperacionArticulo.GetList:
+                        response.Item = iArticuloDominio.GetListArticulos(request.Item);
+                        break;
+                    case Modelo.Compartido.OperacionArticulo.Inserta:
+                        response.Item = iArticuloDominio.InsertListaArticulos(request.Item);
+                        break;
+                }
+                response.EjecucionValida = true;
+            }
+            catch (Exception ex)
+            {
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+
+                }
+            }
+            return response;
+        }
+       
+        public ArticuloDocumentoResponse SubirDocumentoArticulo(ArticuloDocumentoRequest request)
+        {
+            var response = new ArticuloDocumentoResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = string.Empty,
+                IdUsuarioEjecucion = request.IdUsuarioEjecucion
+            };
+
+            try
+            {                
+                response.Item = iArticuloDominio.SubeDocumentoArticulo(request.Item);
+                response.EjecucionValida = true;
+            }
+            catch (Exception ex)
+            {
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+
+                }
+            }
+            return response;
+        }
+
+        public void Dispose()
+        {
+            iArticuloDominio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

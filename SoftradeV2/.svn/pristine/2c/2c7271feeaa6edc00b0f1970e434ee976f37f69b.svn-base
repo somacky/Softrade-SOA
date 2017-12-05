@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+//TODO: Agregar una referencia a System.Runtime.Serialization
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace CustomSoft.Template.BusinessEntities
+{
+	//-------------------------------------------------------------------
+	//Archivo     : Usuario.cs
+  //Proyecto    : (NOMBRE DEL PROYECTO)
+  //Creacion    : Custom Soft (INICIALES) 20150623 - REQ:XXX
+	//Fecha       : 23/06/2015
+	//Descripcion : Modelo de Datos
+	//-------------------------------------------------------------------
+	[DataContract]
+	public class Usuario
+	{	
+		[DataMember]
+		public int IdUsuario { get; set; }
+		[DataMember]
+		public int IdRol { get; set; }
+		[DataMember]
+		public int IdCliente { get; set; }
+		[DataMember]
+		public int IdPatente { get; set; }
+		[DataMember]
+		public int IdIdioma { get; set; }
+		[DataMember]
+		public int IdPreguntaSecreta { get; set; }
+		[DataMember]
+		public string Nombre { get; set; }
+		[DataMember]
+		public string ApellidoPaterno { get; set; }
+		[DataMember]
+		public string ApellidoMaterno { get; set; }
+		[DataMember]
+		public string NombreCompleto { get; set; }
+        /// <summary>
+        /// anteriormente llamada Usuario
+        /// </summary>
+		[DataMember]
+		public string Login { get; set; }
+		[DataMember]
+		public string Pass { get; set; }
+		[DataMember]
+		public string CorreoElectronico { get; set; }
+		[DataMember]
+		public bool Inactivo { get; set; }
+		[DataMember]
+		public string RespuestaPreguntaSecreta { get; set; }
+		[DataMember]
+		public bool Activo { get; set; }
+	}
+}

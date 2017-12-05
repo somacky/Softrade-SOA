@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio
+{
+    public class UsuarioDominio : IUsuarioDominio
+    {
+        private IUsuarioRepositorio usuarioRepositorio;
+
+        public UsuarioDominio()
+        {
+            //duda para que sirve
+            usuarioRepositorio = FactoryEngine<IUsuarioRepositorio>.GetInstance("IUsuarioRepositorioConfig");
+        }
+
+        #region Metodos Publicos
+
+        public Usuario InsertaUsuario(Usuario item)
+        {
+            //valida los datos del usuario para hacer 
+            
+            //this.ValidarDatosUsuarioNuevo(item); fatar revisar
+
+            using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                usuarioRepositorio.InsertaUsuario(item);
+
+                transaction.Complete();
+            }
+            return item;
+        }
+
+
+        #endregion
+        ////agregado por resharper para isuauriodominio
+        //public Modelo.Dominio.Entidades.Usuario InsertaUsuario(Modelo.Dominio.Entidades.Usuario item)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //
+        //public void Dispose()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public void Dispose()
+        {
+            usuarioRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

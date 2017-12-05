@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CustomSoft.Template.Modelo.Dominio.Base.ExpedienteDigital
+{
+    [DataContract]
+    public abstract class ExpedienteDigitalBase
+    {
+        [DataMember]
+        public int IdExpedienteDigital { get; set; }
+        [DataMember]
+        public string Empresa  { get; set; }
+        [DataMember]
+        public string Identificador  { get; set; }    
+        [DataMember]
+        public string TipoDocumento { get; set; }
+    }
+}

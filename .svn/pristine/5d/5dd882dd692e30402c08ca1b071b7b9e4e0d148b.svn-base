@@ -1,0 +1,219 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Filtro;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    /// <summary>
+    /// implementacion de las operacion CRUD (Create, Read, update, delete)
+    /// </summary>
+    public class UsuarioRepositorio:IUsuarioRepositorio
+    {
+
+        private SqlHelper helper = null;
+
+        public void InicializarConexion(TipoBaseDatos baseDatos)
+        {
+            helper = new SqlHelper(Util.ConexionSqlServer(baseDatos));
+        }    
+
+        //no tengo los metodos privados
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+        
+
+        public bool Actualizar(Usuario item)
+        {
+            var parametros = new List<SqlParameterItem>();
+            //parametros.Add(new SqlParameterItem("@pUsuario", SqlDbType.VarChar, 50, filtro.Login));
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.Int, item.Id));
+            parametros.Add(new SqlParameterItem("@pIdRol", SqlDbType.Int, item.IdRol));
+            parametros.Add(new SqlParameterItem("@pIdCliente", SqlDbType.Int, item.IdCliente));
+            parametros.Add(new SqlParameterItem("@pIdPatente", SqlDbType.Int, item.IdPatente));
+            parametros.Add(new SqlParameterItem("@pIdIdioma", SqlDbType.Int, item.IdIdioma));
+            parametros.Add(new SqlParameterItem("@pIdPreguntaSecreta", SqlDbType.Int, item.IdPreguntaSecreta));
+            parametros.Add(new SqlParameterItem("@pNombre", SqlDbType.VarChar, 80, item.Nombre));
+            parametros.Add(new SqlParameterItem("@pApellidoPaterno", SqlDbType.VarChar, 80, item.ApellidoPaterno));
+            parametros.Add(new SqlParameterItem("@pApellidoMaterno", SqlDbType.VarChar, 80, item.ApellidoMaterno));
+            parametros.Add(new SqlParameterItem("@pNombreCompleto", SqlDbType.VarChar, 240,
+                item.Nombre + item.ApellidoPaterno + item.ApellidoMaterno));
+            parametros.Add(new SqlParameterItem("@pUsuario", SqlDbType.VarChar, 50, item.Login));
+            parametros.Add(new SqlParameterItem("@pPass", SqlDbType.VarChar, 250, item.Pass));
+            parametros.Add(new SqlParameterItem("@pCorreoElectronico", SqlDbType.VarChar, 80, item.CorreoElectronico));
+            parametros.Add(new SqlParameterItem("@pInactivo", SqlDbType.Bit, item.Inactivo));
+            parametros.Add(new SqlParameterItem("@pRespuestaPreguntaSecreta", SqlDbType.VarChar, 250,
+                item.RespuestaPreguntaSecreta));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, 0, ParameterDirection.Output));
+            //InicializaConexion(cuentaGasto.IdEmpresa);
+            helper.ExecuteNonQuery("[usp_Usuario_Actualiza]", parametros);
+            return Convert.ToBoolean(helper.GetParameterOutput("pResultado"));
+            //cuentaGasto.IdCuentaGasto = Convert.ToInt16(helper.GetParameterOutput("@pID"));
+        }
+
+        public Usuario GetEntidad(UsuarioFiltro filtro)
+        {
+            Usuario usuario = null;
+            switch (filtro.TipoFiltro)
+            {
+                    case TipoFiltroUsuario.ByCorreo:
+                    return GetUsuarioXCorreo(filtro);
+                    case TipoFiltroUsuario.ByLogin:
+                    return GetUsuarioXLogin(filtro);
+                    case TipoFiltroUsuario.ById:
+                    return GetUsuarioXId(filtro);
+            }
+            return null;
+        }
+
+        private Usuario GetUsuarioXLogin(Usuario filtro)
+        {
+            Usuario usuario = null;
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pUsuario", SqlDbType.VarChar, 50, filtro.Login));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, ParameterDirection.Output));
+            InicializarConexion(TipoBaseDatos.MainSoft);
+            var reader = helper.ExecuteReader("usp_Usuario_DameDatosUsuarioXUsuario", parametros);
+            while (reader.Read())
+            {
+                usuario = new Usuario()
+                {
+                    Id = reader.GetInt32(reader.GetOrdinal("IdUsuario")),
+                    IdRol = reader.GetInt32(reader.GetOrdinal("IdRol")),
+                    IdCliente = reader.GetInt32(reader.GetOrdinal("IdCliente")),
+                    IdPatente = reader.GetInt32(reader.GetOrdinal("IdPatente")),
+                    Nombre = reader.GetString(reader.GetOrdinal("Nombre")),
+                    ApellidoPaterno = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
+                    ApellidoMaterno = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
+                    Login = reader.GetString(reader.GetOrdinal("Usuario")),
+                    Pass = reader.GetString(reader.GetOrdinal("Pass")),
+                    CorreoElectronico = reader.GetString(reader.GetOrdinal("CorreoElectronico"))
+                };
+            }
+            return usuario;
+        }
+
+        private Usuario GetUsuarioXId(Usuario filtro)
+        {
+            Usuario usuario = null;
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.VarChar, 50, filtro.Id));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, ParameterDirection.Output));
+            InicializarConexion(TipoBaseDatos.MainSoft);
+            var reader = helper.ExecuteReader("[usp_Usuario_DameDatosUsuarioXId]", parametros);
+            while (reader.Read())
+            {
+                usuario = new Usuario()
+                {
+                    Id = reader.GetInt32(reader.GetOrdinal("IdUsuario")),
+                    IdRol = reader.GetInt32(reader.GetOrdinal("IdRol")),
+                    IdCliente = reader.GetInt32(reader.GetOrdinal("IdCliente")),
+                    IdPatente = reader.GetInt32(reader.GetOrdinal("IdPatente")),
+                    Nombre = reader.GetString(reader.GetOrdinal("Nombre")),
+                    ApellidoPaterno = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
+                    ApellidoMaterno = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
+                    Login = reader.GetString(reader.GetOrdinal("Usuario")),
+                    Pass = reader.GetString(reader.GetOrdinal("Pass")),
+                    CorreoElectronico = reader.GetString(reader.GetOrdinal("CorreoElectronico"))
+                };
+            }
+            return usuario;
+        }
+
+        private Usuario GetUsuarioXCorreo(Usuario filtro)
+        {
+            Usuario usuario = null;
+            var parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pCorreo", SqlDbType.VarChar, 50, filtro.Login));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, ParameterDirection.Output));
+            InicializarConexion(TipoBaseDatos.MainSoft);
+            var reader = helper.ExecuteReader("usp_Usuario_DameDatosUsuarioXCorreo", parametros);
+            while (reader.Read())
+            {
+                usuario = new Usuario()
+                {
+                    Id = reader.GetInt32(reader.GetOrdinal("IdUsuario")),
+                    IdRol = reader.GetInt32(reader.GetOrdinal("IdRol")),
+                    IdCliente = reader.GetInt32(reader.GetOrdinal("IdCliente")),
+                    IdPatente = reader.GetInt32(reader.GetOrdinal("IdPatente")),
+                    Nombre = reader.GetString(reader.GetOrdinal("Nombre")),
+                    ApellidoPaterno = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
+                    ApellidoMaterno = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
+                    Login = reader.GetString(reader.GetOrdinal("Usuario")),
+                    Pass = reader.GetString(reader.GetOrdinal("Pass")),
+                    CorreoElectronico = reader.GetString(reader.GetOrdinal("CorreoElectronico"))
+                };
+            }
+            return usuario;
+        }
+
+        public IEnumerable<Usuario> GetLista(Modelo.Dominio.Filtro.UsuarioFiltro filtro, ref Modelo.Compartido.Paginacion paginacion)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Metodos publicos
+
+        public Usuario InsertaUsuario(Usuario item)
+        {
+
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int,item.Id, ParameterDirection.Output));
+            parametros.Add(new SqlParameterItem("@pIdRol", SqlDbType.Int, item.IdRol));
+            parametros.Add(new SqlParameterItem("@pIdCliente", SqlDbType.Int, item.IdCliente));
+            parametros.Add(new SqlParameterItem("@pIdPatente", SqlDbType.Int, item.IdPatente));
+            parametros.Add(new SqlParameterItem("@pIdIdioma", SqlDbType.Int, item.IdIdioma));
+            parametros.Add(new SqlParameterItem("@pIdPreguntaSecreta", SqlDbType.Int, item.IdPreguntaSecreta));
+            parametros.Add(new SqlParameterItem("@pNombre", SqlDbType.VarChar, 80, item.Nombre));
+            parametros.Add(new SqlParameterItem("@pApellidoPaterno", SqlDbType.VarChar, 80, item.ApellidoPaterno));
+            parametros.Add(new SqlParameterItem("@pApellidoMaterno", SqlDbType.VarChar, 80, item.ApellidoMaterno));
+            parametros.Add(new SqlParameterItem("@pNombreCompleto", SqlDbType.VarChar, 240, item.Nombre +" "+  item.ApellidoPaterno +" "+ item.ApellidoMaterno));
+            parametros.Add(new SqlParameterItem("@pUsuario", SqlDbType.VarChar, 30, item.Login));
+            parametros.Add(new SqlParameterItem("@pPass", SqlDbType.VarChar, 255, item.Pass));
+            parametros.Add(new SqlParameterItem("@pCorreoElectronico", SqlDbType.VarChar, 80, item.CorreoElectronico));
+            parametros.Add(new SqlParameterItem("@pInactivo", SqlDbType.Bit, item.Inactivo));
+            parametros.Add(new SqlParameterItem("@pRespuestaPreguntaSecreta", SqlDbType.VarChar, 250, item.RespuestaPreguntaSecreta));
+            //parametros.Add(new SqlParameterItem("@pActivo", SqlDbType.Bit, 80, item.Activo));
+            InicializarConexion(TipoBaseDatos.MainSoft);
+            helper.ExecuteNonQuery("[usp_Usuario_Inserta]", parametros);
+            return item;
+        }
+
+        public Usuario InsertaUsuarioXEmpresa(Usuario item, int idUsuarioCreacion)
+        {
+            foreach (var VARIABLE in item.IdEmpresa)
+            {
+                List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+                parametros.Add(new SqlParameterItem("@pIdEmpresa", SqlDbType.Int, VARIABLE));
+                parametros.Add(new SqlParameterItem("@pIdUsuario", SqlDbType.Int, item.IdCliente));
+                parametros.Add(new SqlParameterItem("@pInactivo", SqlDbType.Int, 0));
+                parametros.Add(new SqlParameterItem("@pIdUsuarioCreacion", SqlDbType.Int, idUsuarioCreacion));
+                parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, item.Id, ParameterDirection.Output));
+                InicializarConexion(TipoBaseDatos.MainSoft);
+                helper.ExecuteNonQuery("usp_UsuarioXEmpresa_Inserta", parametros);
+            }
+
+            return item;
+        }
+
+        //public Usuario UpdatePassword(Usuario usuario)
+        //{
+        //    return null;
+        //}
+
+        #endregion
+    }
+}

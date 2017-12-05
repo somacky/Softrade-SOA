@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2121/CatalogosService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" />
+  <xs:import schemaLocation="http://localhost:2121/CatalogosService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" />
+  <xs:element name="ExtraerCatalogoItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q1:CatalogoGeneralOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerCatalogoItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerCatalogoItemResult" nillable="true" type="q2:CatalogoGeneralOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerListadoCatalogo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q3:ListadoCatalogoGeneralOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerListadoCatalogoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerListadoCatalogoResult" nillable="true" type="q4:ListadoCatalogoGeneralOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerListadoCatalogoGP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" minOccurs="0" name="request" nillable="true" type="q5:ListadoCatalogoGeneralGPOperacionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtraerListadoCatalogoGPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Response" minOccurs="0" name="ExtraerListadoCatalogoGPResult" nillable="true" type="q6:ListadoCatalogoGeneralGPOperacionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

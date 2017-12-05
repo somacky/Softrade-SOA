@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.111:8080/SeguridadService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://192.168.2.111:8080/SeguridadService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Base" />
+  <xs:complexType name="VucemOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Base" base="q1:OperacionRequestBaseOfRequestVUCEMfmVq_Slhw">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Compartido" minOccurs="0" name="Consulta" type="q2:TipoConsulta" />
+          <xs:element minOccurs="0" name="NoIntentos" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VucemOperacionRequest" nillable="true" type="tns:VucemOperacionRequest" />
+  <xs:complexType name="RequestVUCEM">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Base" base="q3:RequestBaseWS">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FechaFinal" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaInicial" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="pAduana" type="xs:int" />
+          <xs:element minOccurs="0" name="pContenedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pEDocumentCOVE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pGuia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pPatente" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pPedimento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pRFC" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RequestVUCEM" nillable="true" type="tns:RequestVUCEM" />
+  <xs:complexType name="VucemOperacionPedimentoCompletoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Servicios.Base" base="q4:OperacionResponseBaseOfRequestVUCEMfmVq_Slhw">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NoIntentos" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VucemOperacionPedimentoCompletoRequest" nillable="true" type="tns:VucemOperacionPedimentoCompletoRequest" />
+</xs:schema>

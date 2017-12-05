@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="DatosBasePedimento">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PedimentoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CLaveAduanaSeccionEntradaSalida" type="xs:int" />
+          <xs:element minOccurs="0" name="CLaveTramiteAduanero" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CURPCausante" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CalleDomicilioIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ClaveDestinoMercancia" type="xs:int" />
+          <xs:element minOccurs="0" name="ClaveMedioTrasporteArriboAduana" type="xs:int" />
+          <xs:element minOccurs="0" name="ClaveMedioTrasporteEntradaSalidaMercancia" type="xs:int" />
+          <xs:element minOccurs="0" name="ClaveMedioTrasporteSalidaAduana" type="xs:int" />
+          <xs:element minOccurs="0" name="ClaveOperacion" type="xs:int" />
+          <xs:element minOccurs="0" name="CodigoPostalIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CurpAgente" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EntidadFederativaIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FirmaElectronicaAvanzada" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ImporteEmbalajes" type="xs:float" />
+          <xs:element minOccurs="0" name="ImporteFletes" type="xs:float" />
+          <xs:element minOccurs="0" name="ImporteOtrosIncrementables" type="xs:float" />
+          <xs:element minOccurs="0" name="ImporteSeguros" type="xs:float" />
+          <xs:element minOccurs="0" name="MunicipioIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreImportador" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumeroExteriorIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumeroInteriorIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumeroSerieCertificadoFEA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PaisDomicilioFiscalIE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PesoBruto" type="xs:float" />
+          <xs:element minOccurs="0" name="RFCAgenteAduanal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RFCCausante" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoCambio" type="xs:float" />
+          <xs:element minOccurs="0" name="TipoFigura" type="xs:int" />
+          <xs:element minOccurs="0" name="TipoMovimiento" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosBasePedimento" nillable="true" type="tns:DatosBasePedimento" />
+  <xs:complexType name="PedimentoBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NombreAduanaDespacho" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroAduanaDespacho" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPedimento" type="xs:long" />
+      <xs:element minOccurs="0" name="Patente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PedimentoBase" nillable="true" type="tns:PedimentoBase" />
+</xs:schema>

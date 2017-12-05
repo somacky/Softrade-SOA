@@ -1,0 +1,295 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Dominio.Entidades.EdocumentCOVE;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Motor;
+using CustomSoft.Template.Modelo.VUCEMService;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.ApplicationBlock.SqlServer;
+
+namespace CustomSoft.Template.Repositorio.SqlServer
+{
+    public class OperacionEdocumentCOVERepositorio : IOperacionEdocumentCOVERepositorio
+    {
+        private SqlHelper helper = null;
+
+        public SqlHelper InicializaConexion(int pIdEmpresa)
+        {
+            pBaseDatos = Util.DameBDxIdEmpresa(pIdEmpresa);
+            //pBaseDatos = "BASFPrueba";
+            //return new SqlHelper(Util.ConexionSqlServer(TipoBaseDatos.Softrade));
+
+            //Leo la conexion que se tiene en el WEbconfig
+            var conexion = ConfigurationManager.ConnectionStrings["cnSqlServerEmpresas"].ConnectionString;
+            
+            //sustituyo el parametro por la base de datos a pegarle
+            var conexionparametrizada = string.Format(conexion, pBaseDatos);
+            helper = new SqlHelper(conexionparametrizada);
+            return helper;
+        }
+
+        //Variabel gloobal de Base de datos
+        private string pBaseDatos = string.Empty;
+        #region Metodos Privados
+        
+
+        private bool CierraCovebd(int pIdEmpresa, int pIdBitacoraCOVEVUCEM, int pIdCOVE)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdBitacoraCOVEVUCEM", SqlDbType.SmallInt, 0, pIdBitacoraCOVEVUCEM));
+            parametros.Add(new SqlParameterItem("@pIdCOVE", SqlDbType.Int, pIdCOVE));
+            parametros.Add(new SqlParameterItem("@pResultado", SqlDbType.Bit, false, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var res = vHelper.ExecuteNonQuery("spCierraCOVEVUCEMBitacora", parametros);
+            return res;
+        }
+
+        private DatosCOVE InsertaTablaCOVEBd(DatosCOVE datosCOVE)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdAduanaVW", SqlDbType.Int, 0));
+            //parametros.Add(new SqlParameterItem("@pTimeStamp", SqlDbType.DateTime, DateTime.Now));//
+            parametros.Add(new SqlParameterItem("@pIdPaisCompradorVendedor", SqlDbType.Int, 0));
+            parametros.Add(new SqlParameterItem("@pEDocument", SqlDbType.VarChar, 15, datosCOVE.Request.ResponseEdocument.Cove.Edocument));//
+            parametros.Add(new SqlParameterItem("@pXML", SqlDbType.VarChar, 200, datosCOVE.Request.ResponseEdocument.Cove.XML));//
+            parametros.Add(new SqlParameterItem("@pPDF", SqlDbType.VarChar, 200, datosCOVE.Request.ResponseEdocument.Cove.PDF));
+            
+            parametros.Add(new SqlParameterItem("@pTipoOperacion", SqlDbType.VarChar, 50, datosCOVE.Request.ResponseEdocument.Cove.TipoOperacion));//
+            parametros.Add(new SqlParameterItem("@pFechaExpedicion", SqlDbType.Date, datosCOVE.Request.ResponseEdocument.Cove.FechaExpedicion));//
+            //parametros.Add(new SqlParameterItem("@pNumeroFactura", SqlDbType.VarChar, 30, pNumerofactura));//lista
+            //parametros.Add(new SqlParameterItem("@pNombreEmisor", SqlDbType.VarChar, 200, pNombreEmisor));//
+            //parametros.Add(new SqlParameterItem("@pIdentificadorEmisor", SqlDbType.VarChar, 50, pIdentificadorEmisor));//
+            //parametros.Add(new SqlParameterItem("@pNombreDestinatario", SqlDbType.VarChar, 200, pNombreDestinatario));//
+            //parametros.Add(new SqlParameterItem("@pIdentificadorDestinatar", SqlDbType.VarChar, 50, pIdentificadorDestinatario));//
+            //parametros.Add(new SqlParameterItem("@pCertificadoOrigen", SqlDbType.Bit, pCertificadoOrigen));//NO VA
+            parametros.Add(new SqlParameterItem("@pSumaValorTotal", SqlDbType.Float, 0));
+            parametros.Add(new SqlParameterItem("@pIdEmpresa", SqlDbType.Int, datosCOVE.IdEmpresa));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(datosCOVE.IdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_COVE_Inserta", parametros);//duda false
+            datosCOVE.Request.ResponseEdocument.Cove.IdCOVE = Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+            //Insertar lista de patentes 
+            foreach (var patente in datosCOVE.Request.ResponseEdocument.Cove.PatentesAduanales)
+            {
+                InsertaPatenteXCOVE(patente, datosCOVE.Request.ResponseEdocument.Cove.IdCOVE, datosCOVE.IdEmpresa);
+            }
+            for(int i = 0; i < datosCOVE.Request.ResponseEdocument.Cove.Facturas.Count(); i++)
+            {
+                datosCOVE.Request.ResponseEdocument.Cove.Facturas[i] =
+                    InsertaFacturaCOVE(datosCOVE.Request.ResponseEdocument.Cove.Facturas[i],
+                        datosCOVE.Request.ResponseEdocument.Cove.IdCOVE, datosCOVE.IdUsuario, datosCOVE.IdEmpresa);
+            }            
+            return datosCOVE;
+        }
+
+        private bool InsertaPatenteXCOVE(string patente, int idCove, int idEmpresa, int idPatente = 0)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            //parametros.Add(new SqlParameterItem("@pIdPatenteXCOVE", SqlDbType.VarChar, 4, patente));
+            parametros.Add(new SqlParameterItem("@pIdCOVE", SqlDbType.Int, idCove));//parametros.Add(new SqlParameterItem("@pIdCOVE", SqlDbType.DateTime, DateTime.Now));//
+            parametros.Add(new SqlParameterItem("@pPatente", SqlDbType.VarChar, 4 , patente));//
+            parametros.Add(new SqlParameterItem("@pIdPatente", SqlDbType.Int, idPatente));//
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int,ParameterDirection.Output));//
+            var vHelper = InicializaConexion(idEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_PatenteXCOVE_Inserta", parametros);//duda false
+            return true;
+        }
+
+        private int InsertaDetalleCOVEBd(int pIdEmpresa, int pIdCOVE, string pDescripcion, int pIdArticulo, int pIdPaisOrigenDestino,
+            int pIdUnidadFactura, string pClaveArticulo, float pCantidad, float pCantidadFactura, decimal pValorUnitario,
+            decimal pValorTotal, int pIdMoneda, int pUnidadMedidaOMA, decimal pValorTotalUSD)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdCove", SqlDbType.Int, pIdCOVE));
+            parametros.Add(new SqlParameterItem("@pDescripcion", SqlDbType.VarChar, 255, pDescripcion));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pIdEmpresa", SqlDbType.Int, pIdEmpresa));
+            parametros.Add(new SqlParameterItem("@pIdArticulo", SqlDbType.Int, pIdArticulo));
+            parametros.Add(new SqlParameterItem("@pIdPaisOrigenDestinoVW", SqlDbType.Int, pIdPaisOrigenDestino));
+            parametros.Add(new SqlParameterItem("@pIdUnidadFacturaVW", SqlDbType.Int, pIdUnidadFactura));
+            parametros.Add(new SqlParameterItem("@pClaveArticulo", SqlDbType.VarChar, 50, pClaveArticulo));
+            parametros.Add(new SqlParameterItem("@pCantidad", SqlDbType.Float, pCantidad));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pCantidadFactura", SqlDbType.Float, pCantidadFactura));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pValorUnitario", SqlDbType.Decimal, pValorUnitario));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pValorTotal", SqlDbType.Decimal, pValorTotal));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pIdMonedaVW", SqlDbType.Int, pIdMoneda));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pUnidadMedidaOMA", SqlDbType.Int, pUnidadMedidaOMA));
+            parametros.Add(new SqlParameterItem("@pValorTotalUSD", SqlDbType.Decimal, pValorTotalUSD));//MercanciaXFactura
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_DetalleCove_Inserta", parametros);
+            return Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+        }
+
+        private Factura InsertaFacturaCOVE(Factura factura, int idCOVE, int idUsuario, int idEmpresa)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdCove", SqlDbType.Int, idCOVE));
+            parametros.Add(new SqlParameterItem("@pCertificadoOrigen", SqlDbType.Int, factura.CertificadoOrigen));
+            parametros.Add(new SqlParameterItem("@pNumeroExportadorConfiable", SqlDbType.VarChar, 50,
+                factura.NumeroExportadorConfiable));
+            parametros.Add(new SqlParameterItem("@pSubdivision", SqlDbType.Int, factura.Subdivision));
+            parametros.Add(new SqlParameterItem("@pNumeroFactura", SqlDbType.VarChar, 30, factura.NumeroFactura));
+            //parametros.Add(new SqlParameterItem("@pNombreEmisor", SqlDbType.VarChar, 200, factura varchar(200) = '',
+            //parametros.Add(new SqlParameterItem("@pIdentificadorEmisor varchar(50) = '',
+            //parametros.Add(new SqlParameterItem("@pNombreDestinatario varchar(200) = '',
+            //parametros.Add(new SqlParameterItem("@pIdentificadorDestinatario varchar(50) = '',
+            parametros.Add(new SqlParameterItem("@pIdUsuarioCreacion", SqlDbType.Int, idUsuario));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(idEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_FacturaCove_Inserta", parametros);
+            
+            factura.IdFactura = Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+            InsertaPersonaCOVEDestinatarioBd(factura.IdFactura, factura.Destinatario, false, idEmpresa);
+            InsertaPersonaCOVEDestinatarioBd(factura.IdFactura, factura.Emisor, true, idEmpresa);
+            for (int i = 0; i < factura.Mercancias.Count(); i++)
+            {
+                factura.Mercancias[i] = InsertaDetalleFacturaCOVEBd(idCOVE, factura.IdFactura, factura.Mercancias[i], idEmpresa);
+            }            
+            return factura;
+        }
+
+        private DatosCOVE DameIdXNOCOVEBd(DatosCOVE datosCOVE)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pNoCOVE", SqlDbType.VarChar, 15, datosCOVE.Request.Edocument));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(datosCOVE.IdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_COVE_DameIDxNoCOVE", parametros);
+            datosCOVE.Request.ResponseEdocument = new ConsultaEdocumentResponse();
+            datosCOVE.Request.ResponseEdocument.Cove = new COVE();            
+            datosCOVE.Request.ResponseEdocument.Cove.IdCOVE= Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+            return datosCOVE;
+        }
+
+         #region nuevo lalo
+
+        private PersonaCOVE InsertaPersonaCOVEDestinatarioBd(int pIdFacturaCOVE, PersonaCOVE pPersonaCOVE, bool pEsEmisor, int pIdEmpresa)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdFacturaCOVE", SqlDbType.Int, pIdFacturaCOVE));
+            parametros.Add(new SqlParameterItem("@pEsEmisor", SqlDbType.Bit, pEsEmisor));
+            parametros.Add(new SqlParameterItem("@pTipoIdentificador", SqlDbType.Int, pPersonaCOVE.TipoIdentificador));
+            parametros.Add(new SqlParameterItem("@pIdentificacion", SqlDbType.VarChar, 50, pPersonaCOVE.Identificacion));
+            parametros.Add(new SqlParameterItem("@pApellidoPaterno", SqlDbType.VarChar, 200, pPersonaCOVE.ApellidoPaterno));
+            parametros.Add(new SqlParameterItem("@pApellidoMaterno", SqlDbType.VarChar, 200, pPersonaCOVE.ApellidoMaterno));
+            parametros.Add(new SqlParameterItem("@pNombre", SqlDbType.VarChar, 200, pPersonaCOVE.Nombre));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_PersonaCOVE_Inserta", parametros);
+            pPersonaCOVE.IdPersonaCOVE =  Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+            if (pPersonaCOVE.Domicilio != null)
+                pPersonaCOVE.Domicilio = InsertaDomicilioPersonaCOVEBd(pPersonaCOVE.IdPersonaCOVE,
+                    pPersonaCOVE.Domicilio, pIdEmpresa);
+            return pPersonaCOVE;
+        }
+
+        private DomicilioCOVE InsertaDomicilioPersonaCOVEBd(int pIdPersonaCOVE, DomicilioCOVE pDomicilioCove, int pIdEmpresa)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdPersonaCOVE", SqlDbType.Int, pIdPersonaCOVE));
+            parametros.Add(new SqlParameterItem("@pCalle", SqlDbType.VarChar, 120, pDomicilioCove.Calle));
+            parametros.Add(new SqlParameterItem("@pNumeroExterior", SqlDbType.VarChar, 55, pDomicilioCove.NumeroExterior));
+            parametros.Add(new SqlParameterItem("@pNumeroInterior", SqlDbType.VarChar, 55, pDomicilioCove.NumeroInterior));
+            parametros.Add(new SqlParameterItem("@pColonia", SqlDbType.VarChar, 120, pDomicilioCove.Colonia));
+            parametros.Add(new SqlParameterItem("@pLocalidad", SqlDbType.VarChar, 120, pDomicilioCove.Localidad));
+            parametros.Add(new SqlParameterItem("@pMunicipio", SqlDbType.VarChar, 120, pDomicilioCove.Municipio));
+            parametros.Add(new SqlParameterItem("@pIdEntidadFederativa", SqlDbType.Int, pDomicilioCove.IdEntidadFederativa));
+            parametros.Add(new SqlParameterItem("@pIdPais", SqlDbType.Int, pDomicilioCove.IdPais));
+            parametros.Add(new SqlParameterItem("@pCodigoPostal", SqlDbType.VarChar, 120, pDomicilioCove.CodigoPostal));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_DomicilioPersonaCOVE_Inserta", parametros);
+            pDomicilioCove.IdDomicilioCOVE = Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+            return pDomicilioCove;
+        }
+
+        private MercanciaCOVE InsertaDetalleFacturaCOVEBd(int pIdCOVE, int pIdFacturaCOVE, MercanciaCOVE pMercanciaCove, int pIdEmpresa)
+        {
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdCove", SqlDbType.Int, pIdCOVE));
+            parametros.Add(new SqlParameterItem("@pIdFacturaCOVE", SqlDbType.Int, pIdFacturaCOVE));
+            parametros.Add(new SqlParameterItem("@pDescripcionGenerica", SqlDbType.VarChar, 255, pMercanciaCove.DescripcionGenerica));
+            //parametros.Add(new SqlParameterItem("@pDescripcionEspecifica", SqlDbType.VarChar, 255, pMercanciaCove.DescripcionesEspecificas));
+            parametros.Add(new SqlParameterItem("@pIdArticulo", SqlDbType.Int, 0));
+            parametros.Add(new SqlParameterItem("@pIdPaisOrigenDestinoVW", SqlDbType.Int, 0));
+            parametros.Add(new SqlParameterItem("@pIdUnidadFacturaVW", SqlDbType.Int, pMercanciaCove.IdUnidadFacturaVW));
+            parametros.Add(new SqlParameterItem("@pClaveArticulo", SqlDbType.VarChar, 50, ""));
+            parametros.Add(new SqlParameterItem("@pCantidad", SqlDbType.Float, pMercanciaCove.Cantidad));
+            parametros.Add(new SqlParameterItem("@pCantidadFactura", SqlDbType.Float, pMercanciaCove.Cantidad));
+            parametros.Add(new SqlParameterItem("@pValorUnitario", SqlDbType.Float, pMercanciaCove.ValorUnitario));
+            parametros.Add(new SqlParameterItem("@pValorTotal", SqlDbType.Float, pMercanciaCove.ValorTotal));
+            parametros.Add(new SqlParameterItem("@pIdMonedaVW", SqlDbType.Int, pMercanciaCove.IdMoneda));
+            parametros.Add(new SqlParameterItem("@pUnidadMedidaOMA", SqlDbType.Int, /*pMercanciaCove.ClaveUnidadMedida*/0));
+            parametros.Add(new SqlParameterItem("@pValorTotalUSD", SqlDbType.Float, pMercanciaCove.ValorDolares));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_DetalleFacturaCove_Inserta", parametros);
+            pMercanciaCove.IdMercanciaCOVE = Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+            foreach (var descripcionEspecifica in pMercanciaCove.DescripcionesEspecificas)
+            {
+                if (!string.IsNullOrEmpty(descripcionEspecifica.Marca))
+                    InsertaDEDetalleFacturaCOVEBd(pMercanciaCove.IdMercanciaCOVE, descripcionEspecifica.Marca, 1, pIdEmpresa);
+                if (!string.IsNullOrEmpty(descripcionEspecifica.Modelo))
+                    InsertaDEDetalleFacturaCOVEBd(pMercanciaCove.IdMercanciaCOVE, descripcionEspecifica.Modelo, 2, pIdEmpresa);
+                if (!string.IsNullOrEmpty(descripcionEspecifica.SubModelo))
+                    InsertaDEDetalleFacturaCOVEBd(pMercanciaCove.IdMercanciaCOVE, descripcionEspecifica.SubModelo, 3, pIdEmpresa);
+                if (!string.IsNullOrEmpty(descripcionEspecifica.NumeroSerie))
+                    InsertaDEDetalleFacturaCOVEBd(pMercanciaCove.IdMercanciaCOVE, descripcionEspecifica.NumeroSerie, 4, pIdEmpresa);
+            }
+            return pMercanciaCove;
+        }
+
+        private int InsertaDEDetalleFacturaCOVEBd(int pIdDetalleFacturaCOVE,  string pParametros, int pIdTipoDescripcionEspecifica, int pIdEmpresa)
+        { 
+            List<SqlParameterItem> parametros = new List<SqlParameterItem>();
+            parametros.Add(new SqlParameterItem("@pIdDetalleFacturaCOVE", SqlDbType.Int, pIdDetalleFacturaCOVE));
+            parametros.Add(new SqlParameterItem("@pParametro", SqlDbType.VarChar, 100, pParametros));
+            parametros.Add(new SqlParameterItem("@pIdTipoDescripcionEspecifica", SqlDbType.Int, pIdTipoDescripcionEspecifica));
+            parametros.Add(new SqlParameterItem("@pID", SqlDbType.Int, 0, ParameterDirection.Output));
+            var vHelper = InicializaConexion(pIdEmpresa);
+            var rCove = vHelper.ExecuteNonQuery("usp_DEDetalleFacturaCOVE_Inserta", parametros);            
+            return Convert.ToInt16(vHelper.GetParameterOutput("@pID"));
+        }
+        #endregion
+
+        #endregion
+
+        #region Metodos Publicos
+       
+
+        public bool CierraCove(int pIdEmpresa, int pIdBitacoraCOVEVUCEM, int pIdCOVE)
+        {
+            return CierraCovebd(pIdEmpresa, pIdBitacoraCOVEVUCEM, pIdCOVE);
+        }
+
+        public DatosCOVE InsertaCOVE(DatosCOVE datosCOVE)
+        {
+
+            //Insertar en la tabla COVE, 
+            datosCOVE = InsertaTablaCOVEBd(datosCOVE);
+            //Luego en FacturaCOVE un foreac
+            //Después en la tabla DetalleFacturaCOVE
+            //Al final en la tabla DEDetalleFacturaCOVE
+            return datosCOVE;
+        }
+
+      
+
+        public DatosCOVE DameIdXNOCOVE(DatosCOVE datosCOVE)
+        {
+            return DameIdXNOCOVEBd(datosCOVE);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            helper.Dispose();
+            GC.SuppressFinalize(this);
+        }
+        
+    }
+}

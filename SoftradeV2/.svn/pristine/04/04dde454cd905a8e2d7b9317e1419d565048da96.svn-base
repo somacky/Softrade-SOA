@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+
+namespace CustomSoft.Template.Dominio.ArchivoDominio
+{
+    public class ArchivoDominio : IRecibirArchivoDominio
+    {
+        public Archivo ProcesarArchivo(Modelo.Dominio.Entidades.Archivo item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

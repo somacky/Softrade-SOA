@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a4c2f2d3-21b1-489c-9c12-0be20b009520" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+      <CollectionMapping TypeName="System.Collections.Generic.SortedList`2" Category="Dictionary" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.2.111:8585/VucemService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VUCEMService.xsd" MetadataType="Schema" ID="6a3d8195-dd7c-4167-ab71-dcafef204ea7" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd8" />
+    <MetadataFile FileName="VUCEMService1.xsd" MetadataType="Schema" ID="573e36b2-8cf5-4e85-9cfc-b9d36b44c68d" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd3" />
+    <MetadataFile FileName="VUCEMService2.xsd" MetadataType="Schema" ID="742c4af1-c89d-4786-bbce-acc766118531" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd5" />
+    <MetadataFile FileName="VUCEMService3.xsd" MetadataType="Schema" ID="14a58024-4075-4eab-a433-86319bf5401f" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd7" />
+    <MetadataFile FileName="VucemService.wsdl" MetadataType="Wsdl" ID="5129e823-1182-4fa1-993c-16d03f1e4053" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?wsdl" />
+    <MetadataFile FileName="VUCEMService4.xsd" MetadataType="Schema" ID="50a06ea9-bfa8-404b-b38b-a3d8186a0a7a" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd6" />
+    <MetadataFile FileName="VUCEMService5.xsd" MetadataType="Schema" ID="2a70e9bd-3547-455c-a13e-7c946702fba0" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd10" />
+    <MetadataFile FileName="VUCEMService6.xsd" MetadataType="Schema" ID="8433acdc-a120-4cbc-9f2e-e3948beeb421" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VUCEMService7.xsd" MetadataType="Schema" ID="3bdf9c6e-2d67-49c9-afa2-6d58900aaac0" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd12" />
+    <MetadataFile FileName="VUCEMService.disco" MetadataType="Disco" ID="3da9a3d8-db74-4592-b66a-9625d056a138" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?disco" />
+    <MetadataFile FileName="VUCEMService8.xsd" MetadataType="Schema" ID="8877daa5-b3d6-461d-952b-9dc4c393ae32" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd9" />
+    <MetadataFile FileName="VUCEMService9.xsd" MetadataType="Schema" ID="c6564b66-3511-4d5d-be7c-6a479d690875" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VUCEMService10.xsd" MetadataType="Schema" ID="8be95e19-c756-4574-8533-48a49c7cdb6b" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd4" />
+    <MetadataFile FileName="VUCEMService11.xsd" MetadataType="Schema" ID="385f48e1-3724-4e65-8aea-3713b78c74dd" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VUCEMService12.xsd" MetadataType="Schema" ID="c21b44eb-675b-49c1-b55b-7b4a8c59f03f" SourceId="1" SourceUrl="http://192.168.2.111:8585/VUCEMService.svc?xsd=xsd11" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="Catalogo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AduanaSeccion" />
+      <xs:enumeration value="AduanaSeccionXEntidadFederativa" />
+      <xs:enumeration value="ClavePedimento" />
+      <xs:enumeration value="ContribucionGravamenDerecho" />
+      <xs:enumeration value="Destino" />
+      <xs:enumeration value="EntidadFederativa" />
+      <xs:enumeration value="FormaPago" />
+      <xs:enumeration value="Fraccion" />
+      <xs:enumeration value="MedioTransporte" />
+      <xs:enumeration value="MetodoValoracion" />
+      <xs:enumeration value="Moneda" />
+      <xs:enumeration value="Pais" />
+      <xs:enumeration value="TerminoFactura" />
+      <xs:enumeration value="TipoComprobante" />
+      <xs:enumeration value="TipoContenedor" />
+      <xs:enumeration value="TipoDocumento" />
+      <xs:enumeration value="TipoFigura" />
+      <xs:enumeration value="TipoGuia" />
+      <xs:enumeration value="TipoMovimiento" />
+      <xs:enumeration value="TipoOperacion" />
+      <xs:enumeration value="TipoPruebaSuficiente" />
+      <xs:enumeration value="TipoTasa" />
+      <xs:enumeration value="UnidadMedida" />
+      <xs:enumeration value="Identificador" />
+      <xs:enumeration value="Regulacion" />
+      <xs:enumeration value="Permiso" />
+      <xs:enumeration value="Vinculacion" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Catalogo" nillable="true" type="tns:Catalogo" />
+  <xs:simpleType name="Filtrado">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Alias" />
+      <xs:enumeration value="Descripcion" />
+      <xs:enumeration value="Abreviacion" />
+      <xs:enumeration value="Id" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Filtrado" nillable="true" type="tns:Filtrado" />
+  <xs:simpleType name="TipoExtraccionCatalogo">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ExtraerIdXAbreviatura" />
+      <xs:enumeration value="ExtraerIdXNombre" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoExtraccionCatalogo" nillable="true" type="tns:TipoExtraccionCatalogo" />
+  <xs:simpleType name="CatalogoGP">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Aduana" />
+      <xs:enumeration value="Cliente" />
+      <xs:enumeration value="ZonaInspeccion" />
+      <xs:enumeration value="TipoInspeccion" />
+      <xs:enumeration value="TipoEmbarque" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CatalogoGP" nillable="true" type="tns:CatalogoGP" />
+</xs:schema>

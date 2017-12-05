@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+
+namespace CustomSoft.Template.Repositorio.Contratos
+{
+    public interface IReporteadorRepositorio : IDisposable
+    {
+        ReporteadorEntidad DameDatosReporteIvaNPartida(string pWhere);
+        ReporteadorEntidad DameDatosReporteIvaNPedimento(string pWhere);
+        ReporteadorEntidad DameDatosReporteOperNPartida(string pWhere);
+        ReporteadorEntidad DameDatosReporteOperNPedimento(string pWhere);
+        ReporteadorEntidad DameDatosReporteResumenOper(string pWhere);
+        ReporteadorEntidad DameDatosReporteCGDetallado(string pWhere);
+        ReporteadorEntidad DameDatosReporteCGTotalizado(string pWhere);
+        ReporteadorEntidad DameDatosReporteDiasDespacho(string pWhere);
+        ReporteadorEntidad DameDatosReporteCGAgenteAduanal(string pWhere);
+        ReporteadorEntidad DameDatosReportaAnexo18(string pWhere);
+        ReporteadorEntidad DameDatosReporteAnexo9(string pWhere);
+        ReporteadorEntidad DameDatosReporteEstatusExpedienteDigital(string pWhere);
+        ReporteadorEntidad DameDatosReporteContribucionesMis7();
+        ReporteadorEntidad DameDatosReporteDiasDespachoMis7();
+        ReporteadorEntidad DameDatosReporteOperacionesMis7();
+    }
+}

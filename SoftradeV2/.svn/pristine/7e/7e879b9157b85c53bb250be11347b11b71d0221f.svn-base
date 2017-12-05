@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ServiceModel;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Contratos
+{
+    [ServiceContract]
+    public interface ISeguridadService
+    {
+        [OperationContract]
+        UsuarioOperacionResponse UsuarioExecute(UsuarioOperacionRequest request);
+        //[OperationContract]
+        //void RecibirArchivo();      
+    }
+}

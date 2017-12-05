@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Base;
+
+namespace CustomSoft.Template.Modelo.Dominio.Filtro
+{
+    [DataContract]
+    public class ArchivoFiltro : ArchivoBase
+    {
+        [DataMember]
+        public TipoArchivo TipoDeArchivo { get; set; }
+    }
+}

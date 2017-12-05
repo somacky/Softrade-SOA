@@ -1,0 +1,129 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using MCS.ApplicationBlock.Logging;
+using MCS.ApplicationBlock.Logging.Providers;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class OperacionMotorController : IDisposable
+    {
+        private IOperacionMotorDominio operacionMotorDominio;
+
+        public OperacionMotorController()
+        {
+            operacionMotorDominio = FactoryEngine<IOperacionMotorDominio>.GetInstance("IOperacionMotorDominioConfig");
+        }
+
+        public OperacionMotorResponse EjecutaOperacionMotor(OperacionMotorRequest request)
+        {
+            OperacionMotorResponse response = new OperacionMotorResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = string.Empty,
+                Item = null
+            };
+            try
+            {
+                switch (request.Operacion)
+                {
+                    //1er Operacion Dia Ejecucion
+                    case TipoOperacionMotor.DiaEjecucion:
+                        {
+                            response = operacionMotorDominio.DiaEjecucion(request);
+                        }
+                        break;
+                    //2da Operacion relacion de listados pendientes a consultar por dia
+                    case TipoOperacionMotor.ListadoPedimentosPendientesAConsultar:
+                        {
+                            response = operacionMotorDominio.DameListadoPedimentosPendientes(request);
+                        }
+                        break;
+                    //3ra Operacion Invocacion de Listado a VUCEM (LOOP)
+                    case TipoOperacionMotor.ListadoPedimentosVucem:
+                        {
+                            response = operacionMotorDominio.InvocaServicioVucemListadoPedimentos(request);
+                        }
+                        break;
+                    //4ta Operacion Insert de Listados en BD (LOOP)
+                    case TipoOperacionMotor.InsertaBulk:
+                        {
+                            response = operacionMotorDominio.InsertaListadoPedimentoBulk(request);
+                        }
+                        break;
+                    //5ta Operacion Cierre de Listado en BD (LOOP)
+                    case TipoOperacionMotor.CierraListadoPedimento:
+                        {
+                            response = operacionMotorDominio.CierraListadoPedimento(request);
+                        }
+                        break;
+                    //6ta Operacion Listado de Pedimentos a Consultar en VUCEM (LOOP)
+                    case TipoOperacionMotor.ConsultaListadoPedimentosBd:
+                        {
+                            response = operacionMotorDominio.DameListaPedimentos(request);
+                        }
+                        break;
+                    //7ma Operacion Consulta Pedimento Completo en VUCEM (LOOP)
+                    case TipoOperacionMotor.ConsultaPedimentoVucem:
+                        {
+                            response = operacionMotorDominio.InvocaServicioVucemPedimento(request);
+                        }
+                        break;
+                    //8va Operacion RegistraToken, IdPedimento, NoPartidas Totales
+                    case TipoOperacionMotor.RegistraToken:
+                        {
+                            response = operacionMotorDominio.RegistraToken(request);
+                        }
+                        break;
+                    //9na Operacion Consulta Partida VUCEM y Guarda en BD (LOOP)
+                    case TipoOperacionMotor.ConsultaPartidaBdYVucem:
+                        {
+                            response = operacionMotorDominio.InvocaServicioVucemPartidaYGuarda(request);
+                        }
+                        break;
+
+                    //10ma OperacionCierraPedimento si es que ya se tienen todas sus partidas consultadas
+                    case TipoOperacionMotor.CierraPedimento:
+                        {
+                            response = operacionMotorDominio.CierraPedimento(request);
+                        }
+                        break;
+                    //11va Operacion que regresa el listado de los cove a consultar 
+                    case TipoOperacionMotor.ListadoCoveAConsultar:
+                        {
+                            response = operacionMotorDominio.DameListadoCoveConsulta(request);
+                        }
+                        break;
+                    //12va Operacion que regresa el listado de edocuments a descargar de VUCEM
+                    case TipoOperacionMotor.ListadoEdocumentAConsultar:
+                        {
+                            response = operacionMotorDominio.DameListadoEdocumentConsulta(request);
+                        }
+                        break;
+                }
+                response.EjecucionValida = true;
+            }
+            catch (Exception ex)
+            {
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+                }
+            }
+            return response;
+        }
+
+        public void Dispose()
+        {
+            operacionMotorDominio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

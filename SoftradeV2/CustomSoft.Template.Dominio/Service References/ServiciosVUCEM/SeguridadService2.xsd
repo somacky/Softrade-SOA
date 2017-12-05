@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.111:8080/SeguridadService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Base" />
+  <xs:complexType name="ArrayOfPedimentoVUCEM">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PedimentoVUCEM" nillable="true" type="tns:PedimentoVUCEM" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPedimentoVUCEM" nillable="true" type="tns:ArrayOfPedimentoVUCEM" />
+  <xs:complexType name="PedimentoVUCEM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NombreAduana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroAduana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroPedimento" type="xs:long" />
+      <xs:element minOccurs="0" name="Patente" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PedimentoVUCEM" nillable="true" type="tns:PedimentoVUCEM" />
+  <xs:complexType name="ArchivoM">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VUCEM.Template.Modelo.Dominio.Base" base="q1:DatosBasePedimento">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ArchivoM" nillable="true" type="tns:ArchivoM" />
+</xs:schema>

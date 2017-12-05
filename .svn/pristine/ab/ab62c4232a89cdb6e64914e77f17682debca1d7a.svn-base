@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Dominio.Excepciones.DigitalizacionVUCEM;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Repositorio.Contratos;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.DigitalizacionVUCEM
+{
+    public partial class DigitalizacionVUCEMDominio : IDigitalizacionVUCEMDominio
+    {
+        private IDigitalizacionVUCEMRepositorio iDigitalizacionVUCEMRepositorio = null;
+
+        public DigitalizacionVUCEMDominio()
+        {
+            iDigitalizacionVUCEMRepositorio = FactoryEngine<IDigitalizacionVUCEMRepositorio>.GetInstance("IDigitalizacionVUCEMRepositorioConfig");
+        }
+
+        public Modelo.Dominio.Entidades.DigitalizacionVUCEM GetDigitalizacionVUCEM(Modelo.Dominio.Entidades.DigitalizacionVUCEM digitalizacion)
+        {
+            //using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                digitalizacion = LlamarDigitalizacionVUCEM(digitalizacion, ConsultaDigitalizacionVUCEMPor.Empresa);
+                if (digitalizacion.ArchivoFisico.ArchivoBytes == null)
+                {
+                    digitalizacion = LlamarDigitalizacionVUCEM(digitalizacion, ConsultaDigitalizacionVUCEMPor.Patente);
+                    if (digitalizacion.ArchivoFisico.ArchivoBytes == null)
+                    {
+                        throw new ErrorAlDescargarLaDigitalizacionVUCEM();
+                    }
+                }             
+                var io = FactoryEngine<IExpedienteDigitalDominio>.GetInstance("IExpedienteDigitalDominioConfig");
+                digitalizacion = InsertarArchivo(digitalizacion);
+                if (digitalizacion == null)
+                {
+                    throw new ErrorInsertarDigitalizacion();
+                }
+                //transaction.Complete();
+            }
+            return digitalizacion;
+        }
+
+        private Modelo.Dominio.Entidades.DigitalizacionVUCEM InsertarArchivo(Modelo.Dominio.Entidades.DigitalizacionVUCEM digitalizacion)
+        {
+            var archivo = digitalizacion.ArchivoFisico;
+            var req = new Template.Modelo.Dominio.Entidades.ExpedienteDigital.ExpedienteDigital()
+            {
+                IdEmpresa = archivo.IdEmpresa,
+                NombreOrigen = archivo.NombreArchivo,
+                NombreDestino = archivo.NuevoNombreArchivo,
+                Path = archivo.PathDestino,    
+                IdUsuario = 0,//pendiente
+                IdTipoDocumento  = 2
+            };
+            var io = FactoryEngine<IExpedienteDigitalDominio>.GetInstance("IExpedienteDigitalDominioConfig");
+            req = io.InsertarExpedienteDigital(req);              
+            bool ok = false;
+            if (req.IdExpedienteDigital != 0)
+            {
+                if (iDigitalizacionVUCEMRepositorio.InsertaGrupoArchivo(digitalizacion.IdPedimento,
+                    req.IdExpedienteDigital,
+                    archivo.IdEmpresa))
+                    if (iDigitalizacionVUCEMRepositorio.CierraEdocument(archivo.IdEmpresa,
+                        digitalizacion.IdBitacoraEdocumentVUCEM, digitalizacion.IdPedimento))
+                        return digitalizacion;
+            }
+            return null;
+        }           
+        
+        
+       
+        public void Dispose()
+        {
+            iDigitalizacionVUCEMRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }        
+    }
+}

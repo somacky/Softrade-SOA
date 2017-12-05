@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using CustomSoft.Template.Modelo.Compartido;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public static class Util
+    {
+        public static Paginacion ConfiguracionPaginacionDefault(this Paginacion paginacionRequest)
+        {
+            if (paginacionRequest == null || paginacionRequest.Pagina == 0)
+            {
+                paginacionRequest = new Paginacion()
+                {
+                    Pagina = Convert.ToInt16(ConfigurationManager.AppSettings["paginaActualDefault"]),
+                    Registros = Convert.ToInt16(ConfigurationManager.AppSettings["paginaRegistrosDefault"])
+                };
+            }
+            else
+            {
+                paginacionRequest = new Paginacion()
+                {
+                    Pagina = paginacionRequest.Pagina,
+                    Registros = Convert.ToInt16(ConfigurationManager.AppSettings["paginaRegistrosDefault"])
+                };
+            }
+            return paginacionRequest;
+        }
+
+        public static Paginacion ConfiguracionPaginacionTop5(this Paginacion paginacionRequest)
+        {
+            if (paginacionRequest == null || paginacionRequest.Pagina == 0)
+            {
+                paginacionRequest = new Paginacion()
+                {
+                    Pagina = Convert.ToInt16(ConfigurationManager.AppSettings["paginaActualDefault"]),
+                    Registros = Convert.ToInt16(ConfigurationManager.AppSettings["paginaRegistrosTop5"])
+                };
+            }
+            else
+            {
+                paginacionRequest = new Paginacion()
+                {
+                    Pagina = paginacionRequest.Pagina,
+                    Registros = Convert.ToInt16(ConfigurationManager.AppSettings["paginaRegistrosDefault"])
+                };
+            }
+            return paginacionRequest;
+        }
+
+        public static Paginacion ConfiguracionPaginacionNotificacion(this Paginacion paginacionRequest)
+        {
+            if (paginacionRequest == null || paginacionRequest.Pagina == 0)
+            {
+                paginacionRequest = new Paginacion()
+                {
+                    Pagina = Convert.ToInt16(ConfigurationManager.AppSettings["paginaActualDefault"]),
+                    Registros = Convert.ToInt16(ConfigurationManager.AppSettings["paginaRegistrosNotificacion"])
+                };
+            }
+            else
+            {
+                paginacionRequest = new Paginacion()
+                {
+                    Pagina = paginacionRequest.Pagina,
+                    Registros = Convert.ToInt16(ConfigurationManager.AppSettings["paginaRegistrosNotificacion"])
+                };
+            }
+            return paginacionRequest;
+        }
+    }
+}

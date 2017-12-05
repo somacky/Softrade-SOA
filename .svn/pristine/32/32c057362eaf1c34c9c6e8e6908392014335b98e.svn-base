@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Compartido;
+
+namespace CustomSoft.Template.Modelo.Dominio.Entidades
+{
+    [DataContract]
+    public class ReporteadorEntidad
+    {
+        [DataMember]
+        public Reporte NombreReporte { get; set; }
+        [DataMember]
+        public string Where { get; set; }
+        [DataMember]
+        public List<DatosReporte> Informacion { get; set; }
+    }
+}

@@ -1,0 +1,100 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Dominio.Base;
+using CustomSoft.Template.Modelo.Dominio.Base.Pedimento;
+
+namespace CustomSoft.Template.Modelo.Dominio.Entidades
+{
+    [DataContract]
+    public class ArchivoM : DatosBasePedimento
+    {
+        [DataMember]
+        public List<DatosReg502Transporte> Transporte { get; set; }
+        [DataMember]
+        public List<DatosReg503Guias> Guias { get; set; }
+        [DataMember]
+        public List<DatosReg504Contenedores> Contenedores { get; set; }
+        [DataMember]
+        public List<DatosReg505Facturas> Facturas { get; set; }
+        [DataMember]
+        public List<DatosReg506Fechas> Fechas { get; set; }
+        [DataMember]
+        public List<DatosReg507IdentificadoresNPed> IdentificadoresNPed { get; set; }
+        [DataMember]
+        public List<DatosReg508CuentasAduanerasNPed> CuentasAduanerasNPed { get; set; }
+        [DataMember]
+        public List<DatosReg509TasasNPed> TasasNPed { get; set; }
+        [DataMember]
+        public List<DatosReg510ContribucionesNPed> ContribucionesNPed { get; set; }
+        [DataMember]
+        public List<DatosReg511ObservacionesNPed> ObservacionesNPed { get; set; }
+        [DataMember]
+        public List<DatosReg512Descargos> Descargos { get; set; }
+        [DataMember]
+        public List<DatosReg513Compensaciones> Compensaciones { get; set; }
+        [DataMember]
+        public List<DatosReg514DocumentoAmparaFormaPago> DoctosFormaPago { get; set; }
+        [DataMember]
+        public DatosReg515InformeIndustriaAut InformeIndustriaAut { get; set; }
+        [DataMember]
+        public List<DatosReg516Candados> Candados { get; set; }
+        [DataMember]
+        public List<DatosReg520Destinatario> Destinatarios { get; set; }
+        [DataMember]
+        public List<DatosReg551Partidas> Partidas { get; set; }
+        [DataMember]
+        public List<DatosReg558ObservacionesNPart> ObservacionesNPart { get; set; }
+        [DataMember]
+        public List<DatosReg560PartidaIndAutomotriz> PartidaIndAutomotriz { get; set; }
+        [DataMember]
+        public DatosReg301DatosGeneralesPedComplementario DatosGeneralesPedComplementario { get; set; }
+        [DataMember]
+        public List<DatosReg302PruebaSuficiente> PruebaSuficiente { get; set; }
+        [DataMember]
+        public List<DatosReg351DeterminacionContribucionesNPart> DetContribucionesNPart { get; set; }
+        [DataMember]
+        public List<DatosReg352DetalleImportacionEUACAN> DetalleImportacionEUACAN { get; set; }
+        [DataMember]
+        public List<DatosReg353DeterminacionPagoContribucioneNPed> DeterminacionPagoContribucioneNPed { get; set; }
+        [DataMember]
+        public List<DatosReg355PagoContribucionesPorAplicacion> PagoContribucionesPorAplicacion { get; set; }
+        [DataMember]
+        public List<DatosReg358ObservacionesNPedComplementario> ObservacionesNPedComplementario { get; set; }
+        [DataMember]
+        public DatosReg601DatosGeneralesPrevioConsolidado DatosGeneralesPrevioConsolidado { get; set; }
+        [DataMember]
+        public DatosReg701Rectificacion Rectificacion { get; set; }
+        [DataMember]
+        public List<DatosReg702DiferenciaNPed> DiferenciaNPed { get; set; }
+        [DataMember]
+        public DatosReg801FinArchivo FinArchivo { get; set; }
+        [DataMember]
+        public float ValorAduanaTotal { get; set; }
+        [DataMember]
+        public float ValorComercialtotal { get; set; }
+        [DataMember]
+        public float ValorDolares { get; set; }
+
+        //public float CampoEfectivoVUCEM { get; set; }
+        //
+        //public float CampoOtrosVUCEM { get; set; }
+        //
+        //public float CampoTotalVUCEM { get; set; }
+        //Agregados Roberto
+        [DataMember]
+        public int IdUsuarioEjecucion { get; set; }
+        [DataMember]
+        public string NombreArchivo { get; set; }
+        //agregado por motor VUCEM
+        [DataMember]
+        public int NoTotalPartidas { get; set; }
+        [DataMember]
+        public bool EsPedimentoVUCEM { get; set; }
+
+    }
+}

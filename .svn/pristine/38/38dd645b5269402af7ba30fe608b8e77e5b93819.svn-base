@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Empresa;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Modelo.VUCEMService;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Dominio.DigitalizacionVUCEM
+{
+    public partial class DigitalizacionVUCEMDominio
+    {
+        public Modelo.Dominio.Entidades.DigitalizacionVUCEM LlamarDigitalizacionVUCEM(Modelo.Dominio.Entidades.DigitalizacionVUCEM documento, ConsultaDigitalizacionVUCEMPor consultaPor)
+        {
+            documento = GenerarLlamadoEspecifico(documento, consultaPor);
+            var request = new ConsultaDocumentoDigitalizadoVUCEMRequest()
+            {
+                request = new DocumentoVUCEMRequest()
+                {
+                    Entidad = documento.Documento
+                }
+
+            };
+            
+            var vucem = Util.ServicioVUCEM();
+            var response = vucem.ConsultaDocumentoDigitalizadoVUCEM(request);
+            documento.ArchivoFisico.ArchivoBytes =
+                response.ConsultaDocumentoDigitalizadoVUCEMResult.Entidad.DocumentoPDF;
+            if (response.ConsultaDocumentoDigitalizadoVUCEMResult.EjecucionValida)
+                //generar el request archivo
+
+                documento.ArchivoFisico = GuardarArchivoFTP(documento.ArchivoFisico);
+            return documento;
+        }
+
+        private Modelo.Dominio.Entidades.DigitalizacionVUCEM GenerarLlamadoEspecifico(Modelo.Dominio.Entidades.DigitalizacionVUCEM documento, ConsultaDigitalizacionVUCEMPor consultaPor)
+        {
+
+            //var vucem = Util.ServicioVUCEM();
+            var io = FactoryEngine<IOperacionEmpresaDominio>.GetInstance("IOperacionEmpresaDominioConfig");
+            var entidad = new Modelo.Dominio.Entidades.DigitalizacionVUCEM();
+            switch (consultaPor)
+            {
+                case ConsultaDigitalizacionVUCEMPor.Empresa:
+                    var req = new EntidadEmpresa()
+                    {
+                        OperacionEspecifica = OperacionEmpresaItem.DameDatosEmpresaXId,
+                        DatosEmpresa = new Empresa()
+                        {
+                            IdEmpresaVw = documento.IdEmpresa
+
+                        },
+                        DatosPatente = new Patente()
+                        {
+                            IdPatente = documento.IdPatente
+                        }
+                    };
+                    var response = io.OperacionEmpresaItem(req);
+                    documento.Documento.RFC = response.DatosEmpresa.RFC;
+                    documento.Documento.PasswordWSVucem = response.DatosEmpresa.PasswordDescarga;
+                    break;
+                case ConsultaDigitalizacionVUCEMPor.Patente:
+                    req = new EntidadEmpresa()
+                    {
+                        OperacionEspecifica = OperacionEmpresaItem.DameDatosPatenteXId,
+                        DatosEmpresa = new Empresa()
+                        {
+                            IdEmpresaVw = documento.IdEmpresa
+
+                        },
+                        DatosPatente = new Patente()
+                        {
+                            IdPatente = documento.IdPatente
+                        }
+                    };
+                    response = io.OperacionEmpresaItem(req);  
+                    documento.Documento.RFC = response.DatosPatente.RFC;
+                    documento.Documento.PasswordWSVucem = response.DatosPatente.WebKeyVUCEM;
+                    break;
+            }
+            return entidad;
+            //var response = vucem.ConsultaEdocumentVucem(new ConsultaEdocumentVUCEMRequest());
+        }
+
+        private Archivo LlamadoAServidorFTP(Archivo archivo)
+        {
+            var request = new RecibeArchivoRequest()
+            {
+                Item = archivo,
+                UsuarioEjecucion = "",
+                Operacion = TipoOperacionArchivo.Insertar
+            };
+            var ftp = Util.ServicioFTPSoftrade();
+            var responseFTP = ftp.OperacionArchivo(request);
+            return responseFTP.Item;
+        }
+       
+        private Archivo GuardarArchivoFTP(Archivo archivo)
+        {
+            var request = archivo;
+
+            return LlamadoAServidorFTP(request);
+        }
+    }
+}

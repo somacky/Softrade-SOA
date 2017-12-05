@@ -1,0 +1,6 @@
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Release\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Release\CustomSoft.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Release\FTPSoftrade.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\bin\Release\FTPSoftrade.Template.Modelo.pdb
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\obj\Release\CustomSoft.Template.Modelo.dll
+C:\Users\SistemasTI\Documents\Visual Studio 2013\Projects\SOA Softrade\SoftradeV2\CustomSoft.Template.Modelo\obj\Release\CustomSoft.Template.Modelo.pdb

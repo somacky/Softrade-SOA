@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
+
+namespace CustomSoft.Template.Modelo.Compartido
+{
+    [DataContract]
+    public enum TipoFiltroUsuario :byte
+    {
+        [EnumMember]
+        ByLogin,
+
+        [EnumMember]
+        ByNombre,
+        
+        [EnumMember]
+        ByCorreo,
+        
+        [EnumMember]
+        ById
+    }
+
+    [DataContract]
+    public enum TipoOperacion : byte
+    {
+
+        [EnumMember]
+        Actualizar,
+
+        [EnumMember]
+        Insertar,
+
+        [EnumMember]
+        Login,
+
+        [EnumMember]
+        ActualizarPassword
+    }
+
+    [DataContract]
+    public enum TipoBaseDatos : byte
+    {
+        //[EnumMember]
+        //Catalogos,
+        [EnumMember]
+        Softrade,
+        [EnumMember]
+        MainSoft
+    }
+
+    [DataContract]
+    public enum TipoCatalogoEspecifico: byte
+    {
+        [EnumMember]
+        Patente
+    }
+
+    [DataContract]
+    public enum TipoExtraccion : byte
+    {
+        [EnumMember]
+        Top5,
+        [EnumMember]
+        Listado,
+        [EnumMember]
+        IdArticulo
+    }
+
+    [DataContract]
+    public enum TipoOperacionExpedienteDigital : byte
+    {
+        [EnumMember]
+        Extraer,
+        [EnumMember]
+        Insertar
+    }
+
+
+    [DataContract]
+    public enum Expediente : byte
+    {
+        [EnumMember]
+        Pedimento,
+        [EnumMember]
+        Factura,
+        [EnumMember]
+        COVE
+        
+    }
+
+    [DataContract]
+    public enum TipoNotificacion : byte
+    {
+        [EnumMember]
+        Pedimento,
+        [EnumMember]
+        FacturaPropia,
+        [EnumMember]
+        FacturaTerceros
+    }
+
+    [DataContract]
+    public enum OperacionNotificacion : byte
+    {
+        [EnumMember]
+        Extraer,
+        [EnumMember]
+        Marcar
+    }
+
+    [DataContract]
+    public enum ConsultaEdocumentPor : byte
+    {
+        [EnumMember]
+        Patente,
+        [EnumMember]
+        Empresa
+    }
+
+    [DataContract]
+    public enum ConsultaDigitalizacionVUCEMPor : byte
+    {
+        [EnumMember]
+        Patente,
+        [EnumMember]
+        Empresa
+    }
+}

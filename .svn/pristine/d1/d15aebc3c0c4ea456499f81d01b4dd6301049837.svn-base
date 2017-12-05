@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Contratos;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using MCS.ApplicationBlock.Logging;
+using MCS.ApplicationBlock.Logging.Providers;
+using MCS.Factory;
+
+namespace CustomSoft.Template.Servicios.Seguridad.Controller
+{
+    public class ExpedienteDigitalController : IDisposable
+    {
+        private IExpedienteDigitalDominio iExpedienteDigitalDominio = null;
+
+        public ExpedienteDigitalController()
+        {
+            iExpedienteDigitalDominio =
+                FactoryEngine<IExpedienteDigitalDominio>.GetInstance("IExpedienteDigitalDominioConfig");
+        }
+
+        public ExpedienteDigitalInsertResponse InsertarExpedienteDigital(ExpedienteDigitalInsertRequest request)
+        {
+            var response = new ExpedienteDigitalInsertResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = String.Empty,
+                IdUsuarioEjecucion = request.IdUsuarioEjecucion
+            };
+            try
+            {
+                response.Item = iExpedienteDigitalDominio.InsertarExpedienteDigital(request.Item);
+                response.EjecucionValida = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                //TODO: Debe procurar dar un mejor tratamiento a los mensajes de error
+                //que serán retornados a la aplicación cliente
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+                }
+            }
+            return null;
+        }
+
+        public ExpedienteDigitalResponse ExtraerExpedienteDigital(ExpedienteDigitalRequest request)
+        {            
+            var response = new ExpedienteDigitalResponse()
+            {
+                EjecucionValida = false,
+                MensajeError = String.Empty,
+                IdUsuarioEjecucion = request.IdUsuarioEjecucion 
+
+            };
+            try
+            {                
+                request.Item.IdUsuario = request.IdUsuarioEjecucion;
+                switch (request.DatosAExtraer)
+                {
+                    case TipoExtraccion.Listado:
+                        request.Item.ListaPaginacion = request.Item.ListaPaginacion.ConfiguracionPaginacionDefault();
+                        response.Item = iExpedienteDigitalDominio.ExtraerListaDocumentos(request.Item);
+                        response.Item.ListaPaginacion.PaginasTotales = (response.Item.ListaPaginacion.TotalRegistros/
+                                                                        Convert.ToInt16(
+                                                                            ConfigurationManager.AppSettings[
+                                                                                "paginaRegistrosDefault"]) + 1);
+                        break;
+                        case TipoExtraccion.Top5:
+                        request.Item.ListaPaginacion = request.Item.ListaPaginacion.ConfiguracionPaginacionTop5();
+                        response.Item = iExpedienteDigitalDominio.ExtraerListaDocumentosTop5(request.Item);
+                        break;
+                }
+                response.EjecucionValida = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                //TODO: Debe procurar dar un mejor tratamiento a los mensajes de error
+                //que serán retornados a la aplicación cliente
+                response.MensajeError = ex.Message;
+                using (LoggingHelper helper = new LoggingHelper(TipoRepositorio.Xml))
+                {
+                    helper.Registrar(ex);
+                }
+            }
+            return null;
+        }
+
+        public void Dispose()
+        {
+            iExpedienteDigitalDominio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+    }
+}

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D6EF385-67D0-4383-83B9-13E87B1AE7E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomSoft.Template.Dominio.Contratos</RootNamespace>
+    <AssemblyName>CustomSoft.Template.Dominio.Contratos</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FTPSoftrade.Template.Modelo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\FTPWCF\FTPSoftrade.Template.Servicio\bin\FTPSoftrade.Template.Modelo.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IDocumentoExpedienteDigitalDominio.cs" />
+    <Compile Include="ICatalogoEspecificoDominio.cs" />
+    <Compile Include="IExpedienteDigitalDominio.cs" />
+    <Compile Include="IOperacionPedimentoDominio.cs" />
+    <Compile Include="ICuentaGastoDominio.cs" />
+    <Compile Include="IRecibirArchivoDominio.cs" />
+    <Compile Include="IReporteadorDominio.cs" />
+    <Compile Include="IRFCDominio.cs" />
+    <Compile Include="Properties\IProcesoArchivoDominio.cs" />
+    <Compile Include="IUsuarioDominio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomSoft.Template.Modelo\CustomSoft.Template.Modelo.csproj">
+      <Project>{65253aa4-3da5-488c-abaa-550df1a83068}</Project>
+      <Name>CustomSoft.Template.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomSoft.Template.Repositorio.Contratos\CustomSoft.Template.Repositorio.Contratos.csproj">
+      <Project>{a05ab729-9ec8-4299-bbd7-17c69df8074f}</Project>
+      <Name>CustomSoft.Template.Repositorio.Contratos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomSoft.Template.Repositorio.SqlServer\CustomSoft.Template.Repositorio.SqlServer.csproj">
+      <Project>{3f45379d-d90a-42ed-9adb-defdd7a772b9}</Project>
+      <Name>CustomSoft.Template.Repositorio.SqlServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

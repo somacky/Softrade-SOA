@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:21250/GPFiltrosService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" />
+  <xs:complexType name="OperacionRequestBaseOfFiltrosBusqueda0caiiWiN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperacionRequestBaseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Base" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="FiltrosBusqueda" Namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" minOccurs="0" name="Item" nillable="true" type="q1:FiltrosBusqueda" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperacionRequestBaseOfFiltrosBusqueda0caiiWiN" nillable="true" type="tns:OperacionRequestBaseOfFiltrosBusqueda0caiiWiN" />
+  <xs:complexType name="RequestBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdUsuarioEjecucion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestBase" nillable="true" type="tns:RequestBase" />
+  <xs:complexType name="OperacionResponseBaseOfListaCatalogoPersonalizadoString0caiiWiN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperacionResponseBaseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Servicios.Base" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ListaCatalogoPersonalizadoString" Namespace="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseBase">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GPFiltros.Template.Modelo.Dominio.Entidades" minOccurs="0" name="Item" nillable="true" type="q2:ListaCatalogoPersonalizadoString" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperacionResponseBaseOfListaCatalogoPersonalizadoString0caiiWiN" nillable="true" type="tns:OperacionResponseBaseOfListaCatalogoPersonalizadoString0caiiWiN" />
+  <xs:complexType name="ResponseBase">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EjecucionValida" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MensajeError" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseBase" nillable="true" type="tns:ResponseBase" />
+</xs:schema>

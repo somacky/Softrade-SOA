@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+
+namespace CustomSoft.Template.Dominio.Contratos
+{
+    public interface IOperacionMotorDominio : IDisposable
+    {
+        OperacionMotorResponse DiaEjecucion(OperacionMotorRequest request);
+        OperacionMotorResponse DameListadoPedimentosPendientes(OperacionMotorRequest request);
+        OperacionMotorResponse InvocaServicioVucemListadoPedimentos(OperacionMotorRequest request);
+        OperacionMotorResponse InsertaListadoPedimentoBulk(OperacionMotorRequest request);
+        OperacionMotorResponse CierraListadoPedimento(OperacionMotorRequest request);
+        OperacionMotorResponse DameListaPedimentos(OperacionMotorRequest request);
+        OperacionMotorResponse InvocaServicioVucemPedimento(OperacionMotorRequest request);
+        OperacionMotorResponse InvocaServicioVucemPartidaYGuarda(OperacionMotorRequest request);
+        OperacionMotorResponse RegistraToken(OperacionMotorRequest request);
+        OperacionMotorResponse CierraPedimento(OperacionMotorRequest request);
+        OperacionMotorResponse DameListadoCoveConsulta(OperacionMotorRequest request);
+        OperacionMotorResponse DameListadoEdocumentConsulta(OperacionMotorRequest request);
+    }
+}

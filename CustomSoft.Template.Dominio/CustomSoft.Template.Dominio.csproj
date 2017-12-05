@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F81F0628-EBE2-4C86-BEB5-31C353C0C3F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomSoft.Template.Dominio</RootNamespace>
+    <AssemblyName>CustomSoft.Template.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\CustomSoft.Template.Servicios.Seguridad\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MCS.Factory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=012f222d6ca5f71f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\MCS.Factory.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticuloDominio.cs" />
+    <Compile Include="CatalogoEspecificoDominio.cs" />
+    <Compile Include="CuentaGastoDominio\CuentaGastoDominio.cs" />
+    <Compile Include="CuentaGastoDominio\CuentaGastoRutinasDominio.cs" />
+    <Compile Include="DigitalizacionVUCEM\DigitalizacionVUCEMDominio.cs" />
+    <Compile Include="DigitalizacionVUCEM\DigitalizacionVUCEMDominioRutinas.cs" />
+    <Compile Include="DocumentoExpedienteDigital\DocumentoExpedienteDigitalDominio.cs" />
+    <Compile Include="DocumentoExpedienteDigital\DocumentoExpedienteDigitalRutinasDominio.cs" />
+    <Compile Include="EdocumentCOVE\OperacionesEdocumentCOVEDominio.cs" />
+    <Compile Include="EdocumentCOVE\OperacionesEdocumentCOVEDominioRutinas.cs" />
+    <Compile Include="EstadoClimaDominio.cs" />
+    <Compile Include="ExpedienteDigital\ExpedienteDigitalDominio.cs" />
+    <Compile Include="ExpedienteDigital\ExpedienteDigitalRutinasDominio.cs" />
+    <Compile Include="GraficasDominio.cs" />
+    <Compile Include="NotificacionDominio.cs" />
+    <Compile Include="OperacionEmpresa\OperacionEmpresaDominio.cs" />
+    <Compile Include="OperacionMotor\OperacionMotorDominio.cs" />
+    <Compile Include="OperacionMotor\OperacionMotorRutinasDominio.cs" />
+    <Compile Include="OperacionPedimento\OperacionPedimentoDominio.cs" />
+    <Compile Include="OperacionPedimento\OperacionPedimentoRutinasDominio.cs" />
+    <Compile Include="Reporteador\Reporteadordominio.cs" />
+    <Compile Include="Reporteador\ReporteadorDominioRutinas.cs" />
+    <Compile Include="RFCDominio.cs" />
+    <Compile Include="Service References\BanxicoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CatalogosFiltrosService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CatalogosService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="TasaCambioDominio.cs" />
+    <Compile Include="TokenDominio.cs" />
+    <Compile Include="UrlTemporalDominio.cs" />
+    <Compile Include="UsuarioDominio\CriptografiaDominio.cs" />
+    <Compile Include="UsuarioDominio\UsuarioDominio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioDominio\UsuarioDominioRutinas.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomSoft.Template.Dominio.Contratos\CustomSoft.Template.Dominio.Contratos.csproj">
+      <Project>{6d6ef385-67d0-4383-83b9-13e87b1ae7e4}</Project>
+      <Name>CustomSoft.Template.Dominio.Contratos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomSoft.Template.Dominio.Excepciones\CustomSoft.Template.Dominio.Excepciones.csproj">
+      <Project>{f3ab7db8-c563-4742-8aa2-ca2a2b42c08b}</Project>
+      <Name>CustomSoft.Template.Dominio.Excepciones</Name>
+    </ProjectReference>
+    <!--=======
+    <ProjectReference Include="..\CustomSoft.Template.Dominio.Excepciones\CustomSoft.Template.Dominio.Excepciones.csproj">
+      <Project>{F3AB7DB8-C563-4742-8AA2-CA2A2B42C08B}</Project>
+      <Name>CustomSoft.Template.Dominio.Excepciones</Name>
+    </ProjectReference>
+>>>>>>> .r30-->
+    <ProjectReference Include="..\CustomSoft.Template.Modelo\CustomSoft.Template.Modelo.csproj">
+      <Project>{65253aa4-3da5-488c-abaa-550df1a83068}</Project>
+      <Name>CustomSoft.Template.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomSoft.Template.Repositorio.Contratos\CustomSoft.Template.Repositorio.Contratos.csproj">
+      <Project>{a05ab729-9ec8-4299-bbd7-17c69df8074f}</Project>
+      <Name>CustomSoft.Template.Repositorio.Contratos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\CustomSoft.Template.Modelo.FTPSoftrade.RecibeArchivoResponse.datasource" />
+    <None Include="Properties\DataSources\FTPSoftrade.Template.Modelo.Servicio.Response.RecibeArchivoResponse.datasource" />
+    <None Include="Service References\BanxicoService\DgieWS.wsdl" />
+    <None Include="Service References\CatalogosFiltrosService\CustomSoft.Template.Dominio.CatalogosFiltrosService.CatalogoPersonalizadoStringResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService.wsdl" />
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService1.wsdl" />
+    <None Include="Service References\CatalogosService\CatalogosService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService81.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService82.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService83.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService84.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService85.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService86.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CatalogosService87.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogosService\CustomSoft.Template.Dominio.CatalogosService.CatalogoGeneralOperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CatalogosService\CustomSoft.Template.Dominio.CatalogosService.ListadoCatalogoGeneralGPOperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CatalogosService\CustomSoft.Template.Dominio.CatalogosService.ListadoCatalogoGeneralOperacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BanxicoService\" />
+    <WCFMetadataStorage Include="Service References\CatalogosFiltrosService\" />
+    <WCFMetadataStorage Include="Service References\CatalogosService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BanxicoService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BanxicoService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BanxicoService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosFiltrosService\GPFiltrosService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosFiltrosService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosFiltrosService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosFiltrosService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CatalogosService\CatalogosService1.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <!--inicio datos-->
+  <configSections>
+    <section name="factoryConfiguration"
+              type="MCS.Factory.Configuration.FactoryConfiguration, MCS.Factory, Version=1.0.0.0, Culture=neutral"
+              allowLocation="true"
+              allowDefinition="Everywhere"
+              restartOnExternalChanges="false" />
+  </configSections>
+  <factoryConfiguration>
+    <factorySettings>
+      <add contractName   = "IUsuarioRepositorioConfig"
+           typeName       = "CustomSoft.Template.Repositorio.SqlServer.UsuarioRepositorio"
+           libraryName    = "CustomSoft.Template.Repositorio.SqlServer" />
+
+      <add contractName   = "IUsuarioDominioConfig"
+           typeName       = "CustomSoft.Template.Dominio.UsuarioDominio"
+           libraryName    = "CustomSoft.Template.Dominio" />
+    </factorySettings>
+  </factoryConfiguration>
+  <!--fin agregado-->
+  
+
+  <appSettings>
+    
+    <!--Sección de mensajes de error para reglas de negocio-->
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="errorArchivoCorrupto" value="El archivo está corrupto, intente enviarlo nuevamente"/>
+    <add key="errorArchivoNoSubido" value="El archivo no se guardó correctamente"/>
+    <add key="errorSubidaFTP" value="El FTP no responde o no pudo guardar el archivo"/>
+    <add key ="ErrorNombreExistente" value="El Nombre del usuario ya existe"/>
+    <add key="ErrorCorreoExistente" value="El Correo ya existe"/>
+    <add key ="ErrorLoginExistente" value ="El Login del usuario ya existe seleccione otro"/>
+    <add key="ErrorUsuarioNoExiste" value="El Usuario no se encontro"/>
+  </appSettings>
+
+  <connectionStrings>
+    <add name ="cnSqlServer"
+         connectionString="Data Source=Mexsist006\ESEACEK8;
+         Initial Catalog=MainSoft;
+         Persist Security Info=True;User 
+         ID=sa;
+         Password=MhVenegas69"/>
+  </connectionStrings>
+  
+  
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5"/>
+  </system.web>
+  <system.serviceModel>
+    <!--nuevo-->
+    <services>
+      <service name="CustomSoft.Template.Servicios.Seguridad.SeguridadService">
+        <endpoint address=""
+                  binding ="basicHttpBinding"
+                  contract ="CustomSoft.Template.Servicios.Seguridad.Contratos.ISeguridadService"/>
+        
+      </service>
+    </services>
+    <!--nuevo fin-->
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <!-- Para evitar revelar información de los metadatos, establezca los valores siguientes en false antes de la implementación -->
+          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true"/>
+          <!-- Para recibir detalles de las excepciones en los fallos, con el fin de poder realizar la depuración, establezca el valor siguiente en true. Para no revelar información sobre las excepciones, establézcalo en false antes de la implementación -->
+          <serviceDebug includeExceptionDetailInFaults="false"/>
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <protocolMapping>
+        <add binding="basicHttpsBinding" scheme="https" />
+    </protocolMapping>    
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
+  </system.serviceModel>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true"/>
+    <!--
+        Para examinar el directorio raíz de la aplicación web durante la depuración, establezca el valor siguiente en true.
+        Establézcalo en false antes de la implementación para evitar revelar información sobre la carpeta de aplicación web.
+      -->
+    <directoryBrowse enabled="true"/>
+  </system.webServer>
+
+</configuration>

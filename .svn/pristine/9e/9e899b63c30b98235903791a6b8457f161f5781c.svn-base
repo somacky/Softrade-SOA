@@ -1,0 +1,170 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Base;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using CustomSoft.Template.Servicios.Seguridad.Contratos;
+using CustomSoft.Template.Servicios.Seguridad.Controller;
+
+namespace CustomSoft.Template.Servicios.Seguridad
+{   
+    public class SoftradeService : ISoftradeService
+    {
+        public UsuarioOperacionResponse UsuarioExecute(UsuarioOperacionRequest request)
+        {
+            UsuarioOperacionResponse response = new UsuarioOperacionResponse();
+            using (UsuarioController controller = new UsuarioController())
+            {
+                response = controller.ExecuteOperacion(request);
+            }
+            return response;
+        }      
+
+
+        public RFCResponse ExtraerRFC(RFCRequest request)
+        {
+            //request.Item = new RFC()
+            //{
+            //    TipoDeRFC = TipoRFC.RFCEmpresa,
+            //    IdRFC = 0,
+            //    RFCDato = "RFC123456ASD"
+            //};
+            var response = new RFCResponse();
+            using (var controller = new RFCController())
+            {
+                response = controller.ExtraeRFC(request);
+            }
+            return response;
+        }
+        
+
+        /// <summary>
+        /// Funcion que Realiza operaciones en la tabla cuenta gasto.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public CuentaGastoOperacionResponse CuentaGastoExecute(CuentaGastoOperacionRequest request)
+        {
+            //var file = ConvertirFileToByteArray(@"C:\Users\SistemasTI\Documents\script.sql");
+            var response = new CuentaGastoOperacionResponse();         
+            using (var controller = new CuentaGastoController())
+            {
+                response = controller.ExecuteOperacionCuentaGasto(request);
+            }
+            return response;
+        }
+
+        /// <summary>
+        /// Funcion que inserta el pedimento a la base de datos.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public OperacionPedimentoResponse ExecuteOperacionPedimento(OperacionPedimentoRequest request)
+        {
+            var response = new OperacionPedimentoResponse();
+            using (var controller = new OperacionPedimentoController())
+            {
+                response = controller.ExecuteOperacion(request);
+            }
+            return response;
+        }
+
+        /// <summary>
+        /// Funion que Obtiene informacion de reportes
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ReporteadorResponse ExecuteReportes(ReporteadorRequest request)
+        {
+            var response = new ReporteadorResponse();
+            using (var controller = new ReporteadorController())
+            {
+                response = controller.ExcuteReportes(request);
+            }
+            return response;
+        }
+
+
+        public ExpedienteDigitalResponse ExtraerExpedienteDigital(ExpedienteDigitalRequest request)
+        {
+            var response = new ExpedienteDigitalResponse();
+            using (var controller = new ExpedienteDigitalController())
+            {
+                response = controller.ExtraerExpedienteDigital(request);
+            }
+            return response;
+        }
+
+
+        public CatalogoEspecificoOperacionResponse ExecuteOperacionCatalogoEspecifico(CatalogoEspecificoOperacionRequest request)
+        {
+            var response = new CatalogoEspecificoOperacionResponse();
+            using (var controller = new CatalogoEspecificoController())
+            {
+                response = controller.ExecuteOperacionCatalogoEspecifico(request);
+            }
+            return response;
+        }
+
+
+        public DocumentoExpedienteDigitalResponse ExtraerDocumento(DocumentoExpedienteDigitalRequest request)
+        {
+            var response = new DocumentoExpedienteDigitalResponse();
+            using (var controller = new DocumentoExpedienteDigitalController())
+            {
+                response = controller.ExtraerDocumentoExpedienteDigital(request);
+            }
+            return response;
+        }
+
+
+        public NotificacionResponse OperacionNotificacion(NotificacionRequest request)
+        {
+            var response = new NotificacionResponse();
+            using (var controller = new NotificacionController())
+            {
+                response = controller.OperacionNotificacion(request);
+            }
+            return response;
+        }
+
+        public OperacionEmpresaItemResponse ExecuteOperacionEmpresaItem(OperacionEmpresaItemRequest request)
+        {
+            var response = new OperacionEmpresaItemResponse();
+            using (var controller = new OperacionEmpresaController())
+            {
+                response = controller.ExecuteOperacionEmpresaItem(request);
+            }
+            return response;
+        }
+
+        public OperacionEmpresaListaResponse ExecuteOperacionEmpresaLista(OperacionEmpresaListaRequest request)
+        {
+            var response = new OperacionEmpresaListaResponse();
+            using (var controller = new OperacionEmpresaController())
+            {
+                response = controller.ExecuteOperacionEmpresaLista(request);
+            }
+            return response;
+        }
+
+        public OperacionMotorResponse ExecuteOperacionMotor(OperacionMotorRequest request)
+        {
+            var response = new OperacionMotorResponse();
+            using (var controller = new OperacionMotorController())
+            {
+                response = controller.EjecutaOperacionMotor(request);
+            }
+            return response;
+        }
+    }   
+}

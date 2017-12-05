@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+using System.Xml.Serialization;
+using CustomSoft.Template.Dominio.CatalogosService;
+using CustomSoft.Template.Dominio.Excepciones.Reporteador;
+using CustomSoft.Template.Modelo.Dominio.Entidades.Empresa;
+using CustomSoft.Template.Modelo.FTPSoftrade;
+using CustomSoft.Template.Modelo.Servicios.Request;
+using CustomSoft.Template.Modelo.Servicios.Response;
+using CustomSoft.Template.Modelo.VUCEMService;
+using CustomSoft.Template.Repositorio.Contratos;
+
+namespace CustomSoft.Template.Dominio
+{
+    public class Util
+    {
+
+        public static CatalogosServiceClient ServicioCatalogos()
+        {
+            var catalogosService = System.Configuration.ConfigurationSettings.AppSettings.Get("CatalogosService");
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            var endpoint =
+                new EndpointAddress(
+                    catalogosService);
+            var servicioCatalogos = new CatalogosServiceClient(basicHttpBinding, endpoint);
+            return servicioCatalogos;
+        }
+
+        public static FTPSeguridadServiceClient ServicioFTPSoftrade()
+        {
+            var ftpService = System.Configuration.ConfigurationSettings.AppSettings.Get("FTPService");
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            var endpoint =
+                new EndpointAddress(
+                    ftpService);
+            var servicioConsultarPedimento = new FTPSeguridadServiceClient(basicHttpBinding, endpoint);
+            return servicioConsultarPedimento;
+        }
+
+        public static SeguridadVucemServiceClient ServicioVUCEM()
+        {
+            var vucemService = System.Configuration.ConfigurationSettings.AppSettings.Get("VUCEMService");
+            //var basicHttpBinding = new WSHttpBinding(SecurityMode.Transport);
+            var basicHttpBinding = new BasicHttpBinding()
+            {
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            //basicHttpBinding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;
+            var endpoint =
+                new EndpointAddress(vucemService);
+            var servicioConsultarListadoPedimento = new SeguridadVucemServiceClient(basicHttpBinding, endpoint);
+            return servicioConsultarListadoPedimento;
+        }
+
+        public static byte[] GetXmlBytes(object objeto)
+        {
+            byte[] data;
+            var ms = new MemoryStream();
+            var serializer = new XmlSerializer(objeto.GetType());
+            serializer.Serialize(ms,objeto);
+            data = ms.ToArray();
+            return data;
+        }
+    }
+}

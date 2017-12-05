@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using CustomSoft.Template.Dominio.Excepciones.Archivo;
+using CustomSoft.Template.Modelo.Compartido;
+using CustomSoft.Template.Modelo.Dominio.Entidades;
+using CustomSoft.Template.Modelo.Dominio.Filtro;
+
+namespace CustomSoft.Template.Dominio.ArchivoDominio
+{
+    partial class ArchivoDominio
+    {
+        /// <summary>
+        /// Funcion que valida que el archivo el WCF y Servidor Web no venga corrupto
+        /// </summary>
+        /// <param name="archivo">Archivo físico + datos de archivo M</param>
+        private void ValidarLongitudArchivo(Archivo archivo)
+        {
+            //Archivo archivoCorrecto = archivo.Get
+            if (archivo.ArchivoBytes != null)
+            {
+                if (!archivo.Longitud.Equals(archivo.ArchivoBytes.Length))
+                {
+                    throw new ArchivoCorruptoException();
+                }
+            }
+        }
+        /// <summary>
+        /// Funcion que guarda el archivo recibido en la carpeta temporal local para posteriormente 
+        /// subirla al NAS vía FTP
+        /// </summary>
+        /// <param name="archivo">Contiene todos los datos del archivo además del mismo</param>
+        /// <returns>Regresa el path completo en que fue guardado el archivo o una excepcion</returns>
+        private string GuardaArchivoEnCarpetaTemporal(Archivo archivo)
+        {
+            try
+            {                
+                //Revisa Directorio para guardar Archivo
+                var dir = new DirectoryInfo("C:\\SoftTrade\\Temp");
+                if (!dir.Exists)
+                {
+                    dir.Create();
+                }
+                //guarda archivo
+                var pathArchivo = "C:\\SoftTrade\\Temp\\" + archivo.NombreArchivo;
+                File.WriteAllBytes(pathArchivo, archivo.ArchivoBytes);
+                return pathArchivo;
+            }
+            catch (Exception)
+            {
+                throw new ArchivoNoSubidoException();
+            }
+        }
+
+        /// <summary>
+        /// Funcion que envía un archivo de cualquier tipo por vía FTP
+        /// </summary>
+        /// <param name="datosFTP">Dentro contiene los datos pathDestino, pathOrigen, usuarioFTP y contraseñaFTP, además de los datos del archivo</param>
+        /// <returns></returns>
+        public bool SubeArchivoFtp(ModeloFTP datosFTP)
+        {
+            try
+            {
+                var dirFtp = ((FtpWebRequest)WebRequest.Create(datosFTP.PathDestino + datosFTP.NombreArchivo));
+                // El comando a ejecutar
+                dirFtp.Method = WebRequestMethods.Ftp.UploadFile;
+                // Los datos del usuario (credenciales) 
+                dirFtp.Credentials = new NetworkCredential(datosFTP.UsuarioFTP, datosFTP.Password);
+                dirFtp.UsePassive = true;
+                dirFtp.UseBinary = true;
+                dirFtp.KeepAlive = true;
+                //Se leen parametros de archivo
+                FileStream stream = File.OpenRead(datosFTP.PathOrigen + datosFTP.NombreArchivo);
+                var buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                stream.Close();
+                Stream reqStream = dirFtp.GetRequestStream();
+                //se crea archivo
+                reqStream.Write(buffer, 0, buffer.Length);
+                reqStream.Flush();
+                reqStream.Close();
+                return true;
+            }
+            catch (Exception)
+            {                
+                throw new ArchivoNoSubidoException();
+            }
+        }
+    }
+}

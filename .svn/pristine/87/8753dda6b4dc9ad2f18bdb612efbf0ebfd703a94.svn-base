@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" />
+  <xs:import schemaLocation="http://192.168.2.160:2121/CatalogosService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" />
+  <xs:complexType name="CatalogoGeneralOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q1:OperacionRequestBaseOfEntidadCatalogocYoVAI_SS">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Compartido" minOccurs="0" name="ExtraccionCatalogo" type="q2:TipoExtraccionCatalogo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CatalogoGeneralOperacionRequest" nillable="true" type="tns:CatalogoGeneralOperacionRequest" />
+  <xs:complexType name="ListadoCatalogoGeneralOperacionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/CatalogosService.Template.Modelo.Servicios.Base" base="q3:OperacionRequestBaseOfCatalogoRequeridocYoVAI_SS">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListadoCatalogoGeneralOperacionRequest" nillable="true" type="tns:ListadoCatalogoGeneralOperacionRequest" />
+</xs:schema>
